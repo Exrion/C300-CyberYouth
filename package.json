@@ -1,0 +1,33 @@
+{
+  "name": "c300-cyberyouth",
+  "version": "1.0.0",
+  "description": "C300 CyberYouth Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exrion/C300-CyberYouth.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize",
+    "mysql",
+    "rest",
+    "api"
+  ],
+  "author": "Titus, Bjorn, Ke Ying, Charisse",
+  "license": " GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Exrion/C300-CyberYouth/issues"
+  },
+  "homepage": "https://github.com/Exrion/C300-CyberYouth#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.0"
+  }
+}
