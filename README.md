@@ -8,7 +8,9 @@ Then open "ReactJS Tutorial" folder in terminal
 Run the following commands:
 ---------------------------
 cd react-crud
-npm install react-scripts --save     
+
+npm install react-scripts --save
+
 npm start
 
 ---------------------------
