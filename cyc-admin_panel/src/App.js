@@ -23,15 +23,64 @@ function App() {
         </div>
       </nav>
 
+      <div class="grid grid-cols-5 gap-4">
+      <div class="col-span-2">
+      <div class="links rounded-lg "> 
+      
+      <ul> 
+          <li className="nav-item">
+              <Link to={"/configAnnouncements"} className="nav-link">
+                Announcements
+              </Link>
+          </li>
+       
+          
+        
+          <li className="nav-item">
+              <Link to={"/configExchangeItems"} className="nav-link">
+                Exchange Items
+              </Link>
+          </li>
+        
+
+       
+          <li className="nav-item">
+              <Link to={"/configTiers"} className="nav-link">
+                Tiers
+              </Link>
+          </li>
+       
+
+
+       
+          <li className="nav-item">
+              <Link to={"/configTracks"} className="nav-link">
+                Tracks
+              </Link>
+          </li>
+       
+
+        
+          <li className="nav-item">
+              <Link to={"/configTrophies"} className="nav-link">
+                Trophies
+              </Link>
+          </li>
+       
+       </ul> 
+          </div>
+        </div>
+      </div>
+
       {/* Main Content */}
       <div>
         <Routes>
           <Route index component={<Dashboard />} />
-          <Route path='configAnnouncements' component={<ConfigAnnouncements />} />
-          <Route path='configExchangeItems' component={<ConfigExchangeItems />} />
-          <Route path='configTiers' component={<ConfigTiers />} />
-          <Route path='configTracks' component={<ConfigTracks />} />
-          <Route path='configTrophies' component={<ConfigTrophies />} />
+          <Route path='/configAnnouncements' component={<ConfigAnnouncements />} />
+          <Route path='/configExchangeItems' component={<ConfigExchangeItems />} />
+          <Route path='/configTiers' component={<ConfigTiers />} />
+          <Route path='/configTracks' component={<ConfigTracks />} />
+          <Route path='/configTrophies' component={<ConfigTrophies />} />
         </Routes>
       </div>
     </div>
