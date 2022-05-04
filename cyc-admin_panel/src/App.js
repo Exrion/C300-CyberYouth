@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaCog } from "react-icons/fa";
 
 // Importing Components
 import Dashboard from './components/dashboard.componenet';
@@ -14,26 +14,31 @@ import SettingsAccount from './components/settingsAccount.component';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" class="px-60">
       {/* Navigation Bar */}
       <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" class="flex items-center">
             <img src={require('./images/navbar/CYS-Favicon.png')} class="mr-3 h-6 sm:h-9" alt="CYS Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-black">Cyber Youth Singapore</span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap text-black">Cyber Youth Singapore</span>
           </Link>
           <div class="flex items-center md:order-2">
-            <button type="button" class="flex mr-3 text-sm bg-gray-100 rounded-full md:mr-0" id="user-menu-button" data-dropdown-toggle="dropdown">
+            <button type="button" class="flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
               <span class="sr-only">Open user menu</span>
-              <FontAwesomeIcon icon="fa-solid fa-cog" spin />
+              <FaCog />
             </button>
             {/* Dropdown menu */}
-            <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown">
-              <div class="py-3 px-4">
-                <span class="block text-sm text-gray-900 dark:text-white">John Doe</span>
-                <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">john.doe@gmail.com</span>
+            <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
+              <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
+                <div>
+                  <img src={require('./images/navbar/pepe.png')} class="rounded-full object-scale-down h-20 w-20 border-solid" alt='user portrait'/>
+                </div>
+                <div>
+                  <span class="block text-sm text-white">John Doe</span>
+                  <span class="block text-sm font-medium text-gray-300 truncate">john.doe@gmail.com</span>
+                </div>
               </div>
-              <ul class="py-1" aria-labelledby="dropdown">
+              <ul class="p-4 space-y-2" aria-labelledby="dropdown">
                 <li>
                   <Link to="/settingsAccount">Account Settings</Link>
                 </li>
@@ -53,8 +58,6 @@ function App() {
 
       {/* Main Content */}
       <div>
-        <FontAwesomeIcon icon="fa-solid fa-cog" spin />
-
         <Routes>
           <Route index component={<Dashboard />} />
           <Route path='configAnnouncements' component={<ConfigAnnouncements />} />
