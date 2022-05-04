@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import TutorialDataService from "../services/tutorial.service";
-
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,6 @@ export default class Tutorial extends Component {
     this.updatePublished = this.updatePublished.bind(this);
     this.updateTutorial = this.updateTutorial.bind(this);
     this.deleteTutorial = this.deleteTutorial.bind(this);
-
     this.state = {
       currentTutorial: {
         id: null,
@@ -21,14 +19,11 @@ export default class Tutorial extends Component {
       message: ""
     };
   }
-
   componentDidMount() {
     this.getTutorial(this.props.match.params.id);
   }
-
   onChangeTitle(e) {
     const title = e.target.value;
-
     this.setState(function(prevState) {
       return {
         currentTutorial: {
@@ -38,7 +33,6 @@ export default class Tutorial extends Component {
       };
     });
   }
-
   onChangeDescription(e) {
     const description = e.target.value;
     
@@ -49,7 +43,6 @@ export default class Tutorial extends Component {
       }
     }));
   }
-
   getTutorial(id) {
     TutorialDataService.get(id)
       .then(response => {
@@ -62,7 +55,6 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-
   updatePublished(status) {
     var data = {
       id: this.state.currentTutorial.id,
@@ -70,7 +62,6 @@ export default class Tutorial extends Component {
       description: this.state.currentTutorial.description,
       published: status
     };
-
     TutorialDataService.update(this.state.currentTutorial.id, data)
       .then(response => {
         this.setState(prevState => ({
@@ -85,7 +76,6 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-
   updateTutorial() {
     TutorialDataService.update(
       this.state.currentTutorial.id,
@@ -101,7 +91,6 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-
   deleteTutorial() {    
     TutorialDataService.delete(this.state.currentTutorial.id)
       .then(response => {
@@ -112,10 +101,8 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-
   render() {
     const { currentTutorial } = this.state;
-
     return (
       <div>
         {currentTutorial ? (
@@ -142,7 +129,6 @@ export default class Tutorial extends Component {
                   onChange={this.onChangeDescription}
                 />
               </div>
-
               <div className="form-group">
                 <label>
                   <strong>Status:</strong>
@@ -150,7 +136,6 @@ export default class Tutorial extends Component {
                 {currentTutorial.published ? "Published" : "Pending"}
               </div>
             </form>
-
             {currentTutorial.published ? (
               <button
                 className="badge badge-primary mr-2"
@@ -166,14 +151,12 @@ export default class Tutorial extends Component {
                 Publish
               </button>
             )}
-
             <button
               className="badge badge-danger mr-2"
               onClick={this.deleteTutorial}
             >
               Delete
             </button>
-
             <button
               type="submit"
               className="badge badge-success"
