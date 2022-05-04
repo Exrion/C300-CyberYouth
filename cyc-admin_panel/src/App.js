@@ -106,20 +106,12 @@ function App() {
 
         <Routes>
           <Route index component={<Dashboard />} />
-<<<<<<< HEAD
-          <Route path='/configAnnouncements' component={<ConfigAnnouncements />} />
-          <Route path='/configExchangeItems' component={<ConfigExchangeItems />} />
-          <Route path='/configTiers' component={<ConfigTiers />} />
-          <Route path='/configTracks' component={<ConfigTracks />} />
-          <Route path='/configTrophies' component={<ConfigTrophies />} />
-=======
           <Route path='configAnnouncements' component={<ConfigAnnouncements />} />
           <Route path='configExchangeItems' component={<ConfigExchangeItems />} />
           <Route path='configTiers' component={<ConfigTiers />} />
           <Route path='configTracks' component={<ConfigTracks />} />
           <Route path='configTrophies' component={<ConfigTrophies />} />
           <Route path='settingsAccount' component={<SettingsAccount />} />
->>>>>>> 6ec04a7fa9880516204d09c3b82177a1f50d7a16
         </Routes>
       </div>
     </div>
