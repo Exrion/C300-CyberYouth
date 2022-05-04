@@ -31,7 +31,7 @@ function App() {
             <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
                 <div>
-                  <img src={require('./images/navbar/pepe.png')} class="rounded-full object-scale-down h-20 w-20 border-solid" alt='user portrait'/>
+                  <img src={require('./images/navbar/pepe.png')} class="rounded-full object-scale-down h-20 w-20 border-solid" alt='user portrait' />
                 </div>
                 <div>
                   <span class="block text-sm text-white">John Doe</span>
@@ -55,6 +55,35 @@ function App() {
           </div>
         </div>
       </nav>
+
+      {/* Configuration Items Flexbox */}
+      <div class="flex flex-wrap text-l bg-gray-100 rounded p-4 ">
+        <div class="p-4 text-black bg-gray-100 ">
+            <Link to={"/configAnnouncements"} className="nav-link">
+              Announcements
+            </Link>
+        </div>
+        <div class="p-4 text-black bg-gray-100">
+            <Link to={"/configExchangeItems"} className="nav-link">
+              Exchange Items
+            </Link>
+        </div>
+        <div class="p-4 text-black bg-gray-100">
+            <Link to={"/configTiers"} className="nav-link">
+              Tiers
+            </Link>
+        </div>
+        <div class="p-4 text-black bg-gray-100">
+            <Link to={"/configTracks"} className="nav-link">
+              Tracks
+            </Link>
+        </div>
+        <div class="p-4 text-black bg-gray-100">
+            <Link to={"/configTrophies"} className="nav-link">
+              Trophies
+            </Link>
+        </div>
+      </div>
 
       {/* Main Content */}
       <div>
