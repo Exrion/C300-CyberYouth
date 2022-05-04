@@ -11,41 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-.links {
-  margin:0;
-  padding:0;
-  border:1px solid gray;
-  background-color: #ababab;
-}
-
-.links ul {
-  list-style-type:none;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  justify-content:space-evenly;
-  align-content:stretch;
-}
-
-.links li {
-  padding:10px 0 10px;
-  flex-grow:1;
-}
-
-.links a {
-  font-family:ralewayLight, sans-serif;
-  padding:10px 0 10px;
-  display:block;
-  text-align:center;
-}
-
-.links a:hover {
-  text-decoration:none;
-  color:rgb(0, 0, 0);
-  background-color:rgb(238, 238, 238);
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

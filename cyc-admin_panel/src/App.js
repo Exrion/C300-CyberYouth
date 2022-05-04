@@ -14,7 +14,7 @@ import SettingsAccount from './components/settingsAccount.component';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" class="px-12">
       {/* Navigation Bar */}
       <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -51,53 +51,53 @@ function App() {
         </div>
       </nav>
 
-      <div class="grid grid-cols-5 gap-4">
-      <div class="col-span-2">
-      <div class="links rounded-lg "> 
       
-      <ul> 
-          <li className="nav-item">
-              <Link to={"/configAnnouncements"} className="nav-link">
-                Announcements
-              </Link>
-          </li>
-       
-          
-        
-          <li className="nav-item">
-              <Link to={"/configExchangeItems"} className="nav-link">
-                Exchange Items
-              </Link>
-          </li>
-        
-
-       
-          <li className="nav-item">
-              <Link to={"/configTiers"} className="nav-link">
-                Tiers
-              </Link>
-          </li>
-       
-
-
-       
-          <li className="nav-item">
-              <Link to={"/configTracks"} className="nav-link">
-                Tracks
-              </Link>
-          </li>
-       
-
-        
-          <li className="nav-item">
-              <Link to={"/configTrophies"} className="nav-link">
-                Trophies
-              </Link>
-          </li>
-       
-       </ul> 
-          </div>
+      <div class="flex flex-wrap text-2xl bg-gray-500">
+      
+        <div class="p-4 text-black bg-gray-100 ">
+                <li className="nav-item">
+                    <Link to={"/configAnnouncements"} className="nav-link">
+                      Announcements
+                    </Link>
+                </li>
         </div>
+            
+                
+        <div class="p-4 text-black bg-gray-100">
+                <li className="nav-item">
+                    <Link to={"/configExchangeItems"} className="nav-link">
+                      Exchange Items
+                    </Link>
+                </li>
+        </div>
+
+          <div class="p-4 text-black bg-gray-100">    
+                <li className="nav-item">
+                    <Link to={"/configTiers"} className="nav-link">
+                      Tiers
+                    </Link>
+                </li>
+          </div>
+            
+
+
+          <div class="p-4 text-black bg-gray-100">    
+                <li className="nav-item">
+                    <Link to={"/configTracks"} className="nav-link">
+                      Tracks
+                    </Link>
+                </li>
+          </div>
+            
+
+          <div class="p-4 text-black bg-gray-100">    
+                <li className="nav-item">
+                    <Link to={"/configTrophies"} className="nav-link">
+                      Trophies
+                    </Link>
+                </li>
+          </div>
+      
       </div>
 
       {/* Main Content */}
