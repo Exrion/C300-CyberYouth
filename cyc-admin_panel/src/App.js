@@ -1,15 +1,14 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from 'react-router-dom';
 import { FaCog } from "react-icons/fa";
 
 // Importing Components
-import Dashboard from './components/dashboard.componenet';
-import ConfigAnnouncements from './components/configAnnouncements.componenet';
-import ConfigExchangeItems from './components/configExchangeItems.componenet';
-import ConfigTiers from './components/configTiers.componenet';
-import ConfigTracks from './components/configTracks.componenet';
-import ConfigTrophies from './components/configTrophies.componenet';
+import Dashboard from './components/dashboard.component';
+import ConfigAnnouncements from './components/configAnnouncements.component';
+import ConfigExchangeItems from './components/configExchangeItems.component';
+import ConfigTiers from './components/configTiers.component';
+import ConfigTracks from './components/configTracks.component';
+import ConfigTrophies from './components/configTrophies.component';
 import SettingsAccount from './components/settingsAccount.component';
 
 function App() {
@@ -27,6 +26,8 @@ function App() {
               <span class="sr-only">Open user menu</span>
               <FaCog />
             </button>
+            
+            
             {/* Dropdown menu */}
             <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
@@ -56,47 +57,19 @@ function App() {
         </div>
       </nav>
 
-      <div>
-        {/* Configuration Items Flexbox */}
-        <div div class="flex flex-wrap text-l bg-gray-100 rounded p-4 " >
-          <div class="p-4 text-black bg-gray-100 ">
-            <Link to={"/configAnnouncements"} className="nav-link">
-              Announcements
-            </Link>
-          </div>
-          <div class="p-4 text-black bg-gray-100">
-            <Link to={"/configExchangeItems"} className="nav-link">
-              Exchange Items
-            </Link>
-          </div>
-          <div class="p-4 text-black bg-gray-100">
-            <Link to={"/configTiers"} className="nav-link">
-              Tiers
-            </Link>
-          </div>
-          <div class="p-4 text-black bg-gray-100">
-            <Link to={"/configTracks"} className="nav-link">
-              Tracks
-            </Link>
-          </div>
-          <div class="p-4 text-black bg-gray-100">
-            <Link to={"/configTrophies"} className="nav-link">
-              Trophies
-            </Link>
-          </div>
-        </div>
-      </div>
-
+      
+    
       {/* Main Content */}
       <div>
         <Routes>
-          <Route index component={<Dashboard />} />
-          <Route path='configAnnouncements' component={<ConfigAnnouncements />} />
-          <Route path='configExchangeItems' component={<ConfigExchangeItems />} />
-          <Route path='configTiers' component={<ConfigTiers />} />
-          <Route path='configTracks' component={<ConfigTracks />} />
-          <Route path='configTrophies' component={<ConfigTrophies />} />
-          <Route path='settingsAccount' component={<SettingsAccount />} />
+          <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
+          <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
+          <Route exact path='/configTiers' element={<ConfigTiers />} />
+          <Route exact path='/configTracks' element={<ConfigTracks />} />
+          <Route exact path='/configTrophies' element={<ConfigTrophies />} />
+          <Route exact path='/settingsAccount' element={<SettingsAccount />} />
+          <Route exact path='/dashboard' element={< Dashboard />}/>
+          <Route path='/' element={< Dashboard />}/>
         </Routes>
       </div>
     </div>

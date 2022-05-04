@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import React, { Component } from "react";
 
-export default class dashboard extends Component {
+
+
+export default class Dashboard extends Component {
     render() {
         return (
             <div>
                 {/* Configuration Items Flexbox */}
                 <div div class="flex flex-wrap text-l bg-gray-100 rounded p-4 " >
                     <div class="p-4 text-black bg-gray-100 ">
-                        <Link to={"/configAnnouncements"} className="nav-link">
+                        <Link to={"./configAnnouncements"} className="nav-link">
                             Announcements
                         </Link>
                     </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-export default class SettingAccount extends Component{
+export default class ConfigTrophies extends Component{
     render() {
         return (
             <div>
