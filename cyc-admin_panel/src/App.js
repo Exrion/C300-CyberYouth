@@ -22,9 +22,9 @@ function App() {
             <span class="self-center text-xl font-semibold whitespace-nowrap text-black">Cyber Youth Singapore</span>
           </Link>
           <div class="flex items-center md:order-2">
-            <button type="button" class="flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
+            <button type="button" class="hover:animate-spin flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
               <span class="sr-only">Open user menu</span>
-              <FaCog class="hover:animate-spin"/>
+              <FaCog/>
             </button>
                         
             {/* Dropdown menu */}
