@@ -24,10 +24,9 @@ function App() {
           <div class="flex items-center md:order-2">
             <button type="button" class="flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
               <span class="sr-only">Open user menu</span>
-              <FaCog />
+              <FaCog class="hover:animate-spin"/>
             </button>
-            
-            
+                        
             {/* Dropdown menu */}
             <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
@@ -40,10 +39,10 @@ function App() {
                 </div>
               </div>
               <ul class="p-4 space-y-2" aria-labelledby="dropdown">
-                <li>
+                <li class="hover:text-gray-600">
                   <Link to="/settingsAccount">Account Settings</Link>
                 </li>
-                <li>
+                <li class="hover:text-gray-600">
                   <button>Sign Out</button>
                 </li>
               </ul>
@@ -55,9 +54,7 @@ function App() {
             </button>
           </div>
         </div>
-      </nav>
-
-      
+      </nav>  
     
       {/* Main Content */}
       <div>
