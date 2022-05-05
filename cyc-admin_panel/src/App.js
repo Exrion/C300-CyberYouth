@@ -31,10 +31,13 @@ function App() {
             <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
                 <div>
+                  {/* User Profile Picture here */}
                   <img src={require('./images/navbar/pepe.png')} class="rounded-full object-scale-down h-20 w-20 border-solid" alt='user portrait' />
                 </div>
                 <div>
+                  {/* User's name here */}
                   <span class="block text-sm text-white">John Doe</span>
+                  {/* User email here */}
                   <span class="block text-sm font-medium text-gray-300 truncate">john.doe@gmail.com</span>
                 </div>
               </div>
