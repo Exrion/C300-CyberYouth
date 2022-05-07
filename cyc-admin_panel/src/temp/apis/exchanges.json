@@ -6,8 +6,8 @@
     "lemons_each": 200,
     "deliver_mode": "email",
     "stock": 20,
-    "created at": "2018-12-10T13:45:00.000Z",
-    "modified at": "2018-12-10T13:45:00.000Z"
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
   },
 
   {
@@ -17,8 +17,8 @@
     "lemons_each": 200,
     "deliver_mode": "email",
     "stock": 10,
-    "created at": "2018-12-10T13:45:00.000Z",
-    "modified at": "2018-12-10T13:45:00.000Z"
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
   },
   {
     "exchange_id": 3,
@@ -27,7 +27,7 @@
     "lemons_each": 200,
     "deliver_mode": "email",
     "stock": 40,
-    "created at": "2018-12-10T13:45:00.000Z",
-    "modified at": "2018-12-10T13:45:00.000Z"
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
   }
 ]
