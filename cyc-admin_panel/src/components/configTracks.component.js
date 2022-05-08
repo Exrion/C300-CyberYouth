@@ -7,13 +7,6 @@ export default class ConfigTracks extends Component{
         function HTTPGET_Tiers() {
             var axios = require('axios');
 
-            var config = {
-                method: 'get',
-                url: 'https://api.nest.cyberyouth.sg/api/tier',
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            };
 
             axios(config)
                 .then(function (response) {
@@ -30,7 +23,7 @@ export default class ConfigTracks extends Component{
         return (
             <div>
                 <p>Display a breadcrumb here</p>
-                <h1>Tiers</h1>
+                <h1>tracks</h1>
                 <JsonToTable json={HTTPGET_Tiers()} />
                 <JsonToTable json={tiersJson}/>
             </div>
