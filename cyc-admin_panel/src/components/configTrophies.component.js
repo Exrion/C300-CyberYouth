@@ -16,6 +16,12 @@ export default class ConfigTrophies extends Component{
 
         return (
             <div>
+                <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
+                    <Link to={"/addTrophies"} className="nav-link">
+                        Add Trophies
+                    </Link>
+                </button>
+
                 <p>Display a breadcrumb here</p>
                 <h1>trophies</h1>
                 <JsonToTable json={HTTPGET_Tiers()} />

@@ -13,6 +13,12 @@ export default class ConfigAnnouncements extends Component{
 
         return (
             <div>
+                <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
+                    <Link to={"/addAnnouncements"} className="nav-link">
+                        Add Announcements
+                    </Link>
+                </button>
+
                 <p>Display a breadcrumb here</p>
                 <h1>announcements</h1>
                 <JsonToTable json={HTTPGET_Tiers()} />

@@ -11,6 +11,11 @@ import ConfigTracks from './components/configTracks.component';
 import ConfigTrophies from './components/configTrophies.component';
 import SettingsAccount from './components/settingsAccount.component';
 import AddTiers from "./components/addTiers.component";
+import AddAnnouncements from "./components/addAnnouncements.component";
+import AddExchangeItems from "./components/addExchangeItems.component";
+import AddTracks from "./components/addTracks.component";
+import AddTrophies from "./components/addTrophies.component";
+
 
 
 function App() {
@@ -67,9 +72,13 @@ function App() {
           <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
           <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
           <Route exact path='/configTiers' element={<ConfigTiers />} />
-          <Route exact path="/addTiers" element={<AddTiers />} />
           <Route exact path='/configTracks' element={<ConfigTracks />} />
           <Route exact path='/configTrophies' element={<ConfigTrophies />} />
+          <Route exact path="/addTiers" element={<AddTiers />} />
+          <Route exact path="/addAnnouncements" element={<AddAnnouncements />} />
+          <Route exact path="/addTrophies" element={<AddTrophies />} />
+          <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
+          <Route exact path="/addTracks" element={<AddTracks />} />
           <Route exact path='/settingsAccount' element={<SettingsAccount />} />
           <Route exact path='/dashboard' element={< Dashboard />}/>
           <Route path='/' element={< Dashboard />}/>

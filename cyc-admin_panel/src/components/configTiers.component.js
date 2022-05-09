@@ -30,7 +30,7 @@ export default class ConfigTiers extends Component {
 
         return (
             <div>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
                         <Link to={"/addTiers"} className="nav-link">
                             Add New Tier
                         </Link>

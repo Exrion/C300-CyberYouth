@@ -15,6 +15,12 @@ export default class ConfigExchangeitems extends Component{
 
         return (
             <div>
+                <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
+                    <Link to={"/addExchangeItems"} className="nav-link">
+                        Add Exchange Items
+                    </Link>
+                </button>
+
                 <p>Display a breadcrumb here</p>
                 <h1>exchanges</h1>
                 <JsonToTable json={HTTPGET_Tiers()} />
