@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Rou, Link } from "react-router-dom";
 import { JsonToTable } from "react-json-to-table";
-import AddTiers from "./addTiers.component";
+
 
 export default class ConfigTiers extends Component {
     render() {
@@ -30,11 +30,11 @@ export default class ConfigTiers extends Component {
 
         return (
             <div>
-                    <li className="nav-item">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         <Link to={"/addTiers"} className="nav-link">
-                            Add Tiers
+                            Add New Tier
                         </Link>
-                    </li>
+                    </button>
 
 
 
