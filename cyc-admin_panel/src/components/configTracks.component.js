@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { JsonToTable } from "react-json-to-table";
-
+import { Link } from "react-router-dom";
 
 export default class ConfigTracks extends Component{
     render() {
