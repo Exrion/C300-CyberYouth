@@ -10,6 +10,8 @@ import ConfigTiers from './components/configTiers.component';
 import ConfigTracks from './components/configTracks.component';
 import ConfigTrophies from './components/configTrophies.component';
 import SettingsAccount from './components/settingsAccount.component';
+import AddTiers from "./components/addTiers.component";
+
 
 function App() {
   return (
@@ -65,6 +67,7 @@ function App() {
           <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
           <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
           <Route exact path='/configTiers' element={<ConfigTiers />} />
+          <Route exact path="/addTiers" element={<AddTiers />} />
           <Route exact path='/configTracks' element={<ConfigTracks />} />
           <Route exact path='/configTrophies' element={<ConfigTrophies />} />
           <Route exact path='/settingsAccount' element={<SettingsAccount />} />

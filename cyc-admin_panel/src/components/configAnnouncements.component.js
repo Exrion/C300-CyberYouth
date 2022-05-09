@@ -4,17 +4,9 @@ import { JsonToTable } from "react-json-to-table";
 export default class ConfigAnnouncements extends Component{
     render() {
         function HTTPGET_Tiers() {
-            var axios = require('axios');
-
+          
            
-            axios(config)
-                .then(function (response) {
-                    return JSON.stringify(response.data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    return null;
-                });
+           
         }
 
         const tiersJson = require('../temp/apis/announcements.json');
