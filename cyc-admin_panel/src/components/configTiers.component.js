@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { JsonToTable } from "react-json-to-table";
+
 
 export default class ConfigTiers extends Component {
     render() {
@@ -28,11 +30,24 @@ export default class ConfigTiers extends Component {
 
         return (
             <div>
+                    <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
+                        <Link to={"/addTiers"} className="nav-link">
+                            Add New Tier
+                        </Link>
+                    </button>
+
+
+
                 <p>Display a breadcrumb here</p>
                 <h1>Tiers</h1>
                 <JsonToTable json={HTTPGET_Tiers()} />
-                <JsonToTable json={tiersJson}/>
+                <JsonToTable json={tiersJson}/> 
+                
+                
+
             </div>
+
+            
         );
     }
 }
