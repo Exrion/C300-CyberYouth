@@ -6,7 +6,13 @@ export default class ConfigExchangeitems extends Component{
         function HTTPGET_Tiers() {
             var axios = require('axios');
 
-           
+            var config = {
+                method: 'get',
+                url: 'ADD_URL_HERE',
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                }
+            };
 
             axios(config)
                 .then(function (response) {
