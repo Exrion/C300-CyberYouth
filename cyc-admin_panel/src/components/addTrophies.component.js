@@ -6,7 +6,6 @@ export default class addTiers extends Component{
         
         return (
             
-
             <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>
 
