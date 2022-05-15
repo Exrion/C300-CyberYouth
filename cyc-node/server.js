@@ -33,6 +33,7 @@ require("./app/routes/trophy.routes")(app);
 require("./app/routes/tier.routes")(app);
 require("./app/routes/announcement.routes")(app);
 require("./app/routes/track.routes")(app);
+require("./app/routes/exchange.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

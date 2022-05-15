@@ -137,11 +137,11 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyDescription"
+                id="exchangeDescription"
                 required
-                value={this.state.trophyDescription}
-                onChange={this.onChangeTrophyDescription}
-                name="trophyDescription"
+                value={this.state.exchangeDescription}
+                onChange={this.onChangeExchangeDescription}
+                name="exchangeDescription"
               />
             </div>
             <div class="form-group mb-6">

@@ -12,8 +12,8 @@ exports.create = (req, res) => {
     return;
   }
 
-  //Create a trophy
-  const trophy = {
+  //Create a exchange
+  const exchange = {
     exchangeName: req.body.exchangeName,
     exchangeDescription: req.body.exchangeDescription,
     lemonsEach: req.body.lemonsEach,
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
   };
 
   
-  // Save Trophy in the database
+  // Save Exchange in the database
   Exchange.create(exchange)
     .then((data) => {
       res.send(data);
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Trophies from the database.
+// Retrieve all Exchanges from the database.
 exports.findAll = (req, res) => {
   const exchangeName = req.query.exchangeName;
   var condition = exchangeName
