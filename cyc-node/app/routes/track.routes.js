@@ -1,5 +1,5 @@
 module.exports = app => {
-    const tutorials = require("../controllers/tracks.controller.js");
+    const tracks = require("../controllers/track.controller.js");
     var router = require("express").Router();
     // Retrieve all Tutorials
     router.get("/", tracks.findAll);
@@ -10,3 +10,5 @@ module.exports = app => {
 
     app.use('/api/tracks', router);
   };
+
+

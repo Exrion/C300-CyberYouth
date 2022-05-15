@@ -86,11 +86,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-<<<<<<< HEAD
           message: `Cannot update Tutorial with id=${id}. Maybe Tracks was not found or req.body is empty!`
-=======
-          message: `Cannot update Trophy with id=${id}. Maybe Trophy was not found or req.body is empty!`,
->>>>>>> da91c6069f6ddfd0968600377ea007f2aaad9821
         });
       }
     })

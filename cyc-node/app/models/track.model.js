@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Tracks = sequelize.define("tracks", {
+    const Track = sequelize.define("track", {
         trackId: {
             type: Sequelize.INTEGER
         },
@@ -22,5 +22,5 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         }
     });
-    return Tracks;
+    return Track;
 }

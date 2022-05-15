@@ -16,8 +16,8 @@ export default class addTrophies extends Component {
       tierName: "",
       tierDescription: "",
       tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: "",
+      grapesNeeded: null,
+      lemonsAwarded: null,
       
     };
   }
@@ -80,7 +80,7 @@ export default class addTrophies extends Component {
       id: null,
       tierName: "",
       tierDescription: "",
-      tierIcon: null,
+      tierIcon: "",
       grapesNeeded: null,
       lemonsAwarded: null,
       //   created_at: null,
