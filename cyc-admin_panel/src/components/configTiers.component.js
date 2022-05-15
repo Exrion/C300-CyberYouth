@@ -49,12 +49,12 @@ export default class ConfigTiers extends Component {
                         </div>
                     </form>
                 </div>
-                <div class="grid grid-flow-row-dense gap-4 auto-rows-auto w-12/12">
-                {/* <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 grid-flow-row"> */}
+                <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-flow-row gap-4 w-12/12">
+                    {/* <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 grid-flow-row"> */}
                     {
                         items.map((item) => (
                             <Link
-                                class="p-4 group overflow-y-scroll w-auto h-80 flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
+                                class="p-4 h-auto group w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
                                 to=""
                             >
                                 <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-40 md:rounded-none md:rounded-l-lg" src={item.tier_icon} alt={item.tier_name} />
@@ -66,10 +66,14 @@ export default class ConfigTiers extends Component {
                                 </div>
                                 <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4">
                                     <div>
-                                        TEST
+                                        <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
+                                            Edit
+                                        </button>
                                     </div>
                                     <div>
-                                        TEST2
+                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                                            Delete
+                                        </button>
                                     </div>
                                 </div>
                             </Link>
