@@ -21,5 +21,7 @@ db.sequelize = sequelize;
 
 db.trophies = require("./trophy.model.js")(sequelize, Sequelize);
 db.tiers = require("./tier.model.js")(sequelize, Sequelize);
+db.exchanges = require("./exchange.model.js")(sequelize, Sequelize);
+
 
 module.exports = db;
