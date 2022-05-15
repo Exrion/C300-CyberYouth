@@ -1,6 +1,8 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import React, { Component } from "react";
+
 
 export default class ConfigTiers extends Component {
     constructor(props) {

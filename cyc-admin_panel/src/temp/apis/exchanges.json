@@ -1,0 +1,33 @@
+[
+  {
+    "exchange_id": 0,
+    "exchange_name": "Udemy credit",
+    "exchange_description": "$3 credits",
+    "lemons_each": 200,
+    "deliver_mode": "email",
+    "stock": 20,
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+  },
+
+  {
+    "exchange_id": 2,
+    "exchange_name": "Playstore credit",
+    "exchange_description": "$3 credits",
+    "lemons_each": 200,
+    "deliver_mode": "email",
+    "stock": 10,
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+  },
+  {
+    "exchange_id": 3,
+    "exchange_name": "Coursera credit",
+    "exchange_description": "$3 credits",
+    "lemons_each": 200,
+    "deliver_mode": "email",
+    "stock": 40,
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+  }
+]

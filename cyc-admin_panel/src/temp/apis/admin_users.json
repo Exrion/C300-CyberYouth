@@ -1,0 +1,27 @@
+[
+    {"adminuser_id": 1,
+    "username": "adam",
+    "password": "admin123",
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+    },
+
+    {"adminuser_id": 2,
+    "username": "mary",
+    "password": "admin123",
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+    },
+
+    {"adminuser_id": 3,
+    "username": "Ben",
+    "password": "admin123",
+    "created_at": "2018-12-10T13:45:00.000Z",
+    "modified_at": "2018-12-10T13:45:00.000Z"
+    }
+
+
+
+]
+    
+    
