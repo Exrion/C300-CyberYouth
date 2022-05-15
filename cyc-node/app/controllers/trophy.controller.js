@@ -19,7 +19,6 @@ exports.create = (req, res) => {
     totalProgress: req.body.totalProgress,
     totalLvl: req.body.totalLvl,
     trophyLemons: req.body.trophyLemons,
-    
   };
 
   
