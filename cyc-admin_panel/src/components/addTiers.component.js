@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TierDataService from "../services/tier.service";
-export default class addTrophies extends Component {
+export default class addTiers extends Component {
   constructor(props) {
     super(props);
     this.onChangeTierName = this.onChangeTierName.bind(this);
