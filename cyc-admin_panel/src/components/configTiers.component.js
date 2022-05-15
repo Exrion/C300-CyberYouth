@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 
@@ -56,7 +56,6 @@ export default class ConfigTiers extends Component {
                     </form>
                 </div>
                 <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-flow-row gap-4 w-12/12">
-                    {/* <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 grid-flow-row"> */}
                     {
                         items.map((item) => (
                             <Link
