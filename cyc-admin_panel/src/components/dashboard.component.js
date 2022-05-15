@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
         return (
             <div>
                 {/* Configuration Items Flexbox */}
-                <div div class="flex flex-wrap text-l bg-gray-100 rounded p-4 " >
+                <div div class="flex flex-wrap text-l bg-gray-100 rounded p-4 w-50" >
                     <div class="p-4 text-black bg-gray-100 ">
                         <Link to={"./configAnnouncements"} className="nav-link">
                         <img src={require('../images/dashboard/Announcement.png')} alt= "Announcement" class="h-50 w-50"></img>

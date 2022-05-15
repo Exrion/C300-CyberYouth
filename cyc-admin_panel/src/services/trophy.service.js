@@ -12,6 +12,11 @@ class TrophyDataService {
   update(id, data) {
     return http.put(`/trophies/${id}`, data);
   }
+<<<<<<< HEAD
+}
+export default new TrophyDataService();
+=======
 
 }
 export default new TrophyDataService();
+>>>>>>> 8948b5d28c491f605d10b78cbcb545cc4edebd39
