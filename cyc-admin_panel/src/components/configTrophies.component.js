@@ -9,7 +9,7 @@ export default class ConfigTrophies extends Component{
 
             var config = {
                 method: 'get',
-                url: 'ADD_URL_HERE',
+                url: 'localhost:8080/api/trophies',
                 headers: {
                     "Access-Control-Allow-Origin": "*"
                 }

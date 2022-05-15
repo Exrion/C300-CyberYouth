@@ -1,80 +1,115 @@
 const db = require("../models");
-const Trophy = db.trophies
+const Trophy = db.trophies;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Trophy
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.trophy_name && !req.body.trophy_description) {
+  if (!req.body.trophyName) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content can not be empty!",
     });
     return;
   }
 
   //Create a trophy
   const trophy = {
-    trophy_name: req.body.trophy_name,
-    trophy_description: req.body.trophy_description,
-    total_progress: req.body.total_progress,
-    total_lvl: req.body.total_lvl,
-    trophy_lemons: req.body.trophy_lemons,
-    created_at: req.body.created_at,
-    modified_at: req.body.modified_at
+    trophyName: req.body.trophyName,
+    trophyDescription: req.body.trophyDescription,
+    totalProgress: req.body.totalProgress,
+    totalLvl: req.body.totalLvl,
+    trophyLemons: req.body.trophyLemons,
   };
 
+  
   // Save Trophy in the database
   Trophy.create(trophy)
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Some error occurred while creating the Tutorial.",
       });
     });
-  
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Trophies from the database.
 exports.findAll = (req, res) => {
-  const trophy_name = req.query.trophy_name;
-  var condition = trophy_name ? { trophy_name: { [Op.like]: `%${trophy_name}%` } } : null;
+  const trophyName = req.query.trophyName;
+  var condition = trophyName
+    ? { trophyName: { [Op.like]: `%${trophyName}%` } }
+    : null;
 
   Trophy.findAll({ where: condition })
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving trophys.",
+      });
+    });
+};
+// Find a single Trophies with an id
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+
+  Trophy.findByPk(id)
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Trophies with id=${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving Trophies with id=" + id,
       });
     });
 };
 
-// Update a Tutorial by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
   Trophy.update(req.body, {
-    where: { id: id }
+    where: { id: id },
   })
-    .then(num => {
+    .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Tutorial was updated successfully."
+          message: "Trophy was updated successfully.",
         });
       } else {
         res.send({
+<<<<<<< HEAD
           message: `Cannot update Tutorial with id=${id}. Maybe Tracks was not found or req.body is empty!`
+=======
+          message: `Cannot update Trophy with id=${id}. Maybe Trophy was not found or req.body is empty!`,
+>>>>>>> da91c6069f6ddfd0968600377ea007f2aaad9821
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating Trophy with id=" + id,
+      });
+    });
+};
+
+exports.findAllPublished = (req, res) => {
+  Trophy.findAll()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials.",
       });
     });
 };
