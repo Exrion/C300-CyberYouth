@@ -1,27 +1,21 @@
 module.exports = (sequelize, Sequelize) => {
   const Trophy = sequelize.define("trophy", {
-    trophy_name: {
-      type: Sequelize.STRING
+    trophyName: {
+      type: Sequelize.STRING,
     },
-    trophy_description: {
-      type: Sequelize.STRING
+    trophyDescription: {
+      type: Sequelize.STRING,
     },
-    total_progress: {
-      type: Sequelize.INTEGER
+    totalProgress: {
+      type: Sequelize.INTEGER,
     },
-    total_lvl: {
-      type: Sequelize.INTEGER
+    totalLvl: {
+      type: Sequelize.INTEGER,
     },
-    trophy_lemons:{
-      type: Sequelize.INTEGER
+    trophyLemons: {
+      type: Sequelize.INTEGER,
     },
-    // created_at: {
-    //   type: Sequelize.DATE
-    // },
-    // modified_at: {
-    //   type: Sequelize.DATE
-    // }
+   
   });
   return Trophy;
-  
 };
