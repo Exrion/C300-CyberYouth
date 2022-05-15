@@ -1,58 +1,51 @@
 [
-  {
-    "tier_id": 1,
-    "tier_name": "Unborn Egg",
-    "tier_description": "Tier 1",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_1.png",
-    "grapes_needed": 3000,
-    "lemons_awarded": 400
-  },
-  {
-    "tier_id": 2,
-    "tier_name": "Sitting Duck",
-    "tier_description": "Tier 2",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_2.png",
-    "grapes_needed": 8000,
-    "lemons_awarded": 800
-  },
-  {
-    "tier_id": 3,
-    "tier_name": "Cyber Duckling",
-    "tier_description": "Tier 3",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_3.png",
-    "grapes_needed": 15000,
-    "lemons_awarded": 1200
-  },
-  {
-    "tier_id": 4,
-    "tier_name": "Hacker Quacker",
-    "tier_description": "Tier 4",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_4.png",
-    "grapes_needed": 25000,
-    "lemons_awarded": 2000
-  },
-  {
-    "tier_id": 5,
-    "tier_name": "Mama Duck",
-    "tier_description": "Tier 5",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_5.png",
-    "grapes_needed": 40000,
-    "lemons_awarded": 3000
-  },
-  {
-    "tier_id": 6,
-    "tier_name": "Flocker",
-    "tier_description": "Tier 6",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_6.png",
-    "grapes_needed": 60000,
-    "lemons_awarded": 5000
-  },
-  {
-    "tier_id": 7,
-    "tier_name": "Quackerman",
-    "tier_description": "Tier 7",
-    "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_7.png",
-    "grapes_needed": 100000,
-    "lemons_awarded": 8000
-  }
+    {
+        "tier_name": "Unborn Egg",
+        "tier_description": "Tier 1",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_1.png",
+        "grapes_needed": 3000,
+        "lemons_awarded": 400
+    },
+    {
+        "tier_name": "Sitting Duck",
+        "tier_description": "Tier 2",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_2.png",
+        "grapes_needed": 8000,
+        "lemons_awarded": 800
+    },
+    {
+        "tier_name": "Cyber Duckling",
+        "tier_description": "Tier 3",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_3.png",
+        "grapes_needed": 15000,
+        "lemons_awarded": 1200
+    },
+    {
+        "tier_name": "Hacker Quacker",
+        "tier_description": "Tier 4",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_4.png",
+        "grapes_needed": 25000,
+        "lemons_awarded": 2000
+    },
+    {
+        "tier_name": "Mama Duck",
+        "tier_description": "Tier 5",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_5.png",
+        "grapes_needed": 40000,
+        "lemons_awarded": 3000
+    },
+    {
+        "tier_name": "Flocker",
+        "tier_description": "Tier 6",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_6.png",
+        "grapes_needed": 60000,
+        "lemons_awarded": 5000
+    },
+    {
+        "tier_name": "Quackerman",
+        "tier_description": "Tier 7",
+        "tier_icon": "https://lem-nest-pub-res.s3.ap-southeast-1.amazonaws.com/icons/tiers/tier_7.png",
+        "grapes_needed": 100000,
+        "lemons_awarded": 8000
+    }
 ]

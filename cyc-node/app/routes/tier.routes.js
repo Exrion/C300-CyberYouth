@@ -1,13 +1,13 @@
 module.exports = app => {
-    const trophies = require("../controllers/tier.controller.js");
+    const tiers = require("../controllers/tier.controller.js");
   
     var router = require("express").Router();
   
     // Create a new Tier
-    router.post("/", tier.create);
+    router.post("/", tiers.create);
   
     // Retrieve all Tier
-    router.get("/", tier.findAll);
+    router.get("/", tiers.findAll);
   
     // // Retrieve a single Tier with id
     // router.get("/:id", trophies.findOne);
@@ -15,5 +15,5 @@ module.exports = app => {
     // // Update a Tier with id
     // router.put("/:id", trophies.update);
   
-    app.use('/api/tier', router);
+    app.use('/api/tiers', router);
   };

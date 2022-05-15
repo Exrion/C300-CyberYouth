@@ -19,7 +19,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tiers = require("./trophy.model.js")(sequelize, Sequelize);
+db.trophies = require("./trophy.model.js")(sequelize, Sequelize);
 db.tiers = require("./tier.model.js")(sequelize, Sequelize);
 
 module.exports = db;

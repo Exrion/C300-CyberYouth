@@ -2,7 +2,7 @@ const db = require("../models");
 const Tier = db.tiers
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Trophy
+// Create and Save a new Tier
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.tier_name && !req.body.tier_description) {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  //Create a trophy
+  //Create a tier
   const tier = {
     tier_name: req.body.tier_name,
     tier_description: req.body.tier_description,
@@ -37,8 +37,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Tiers from the database.
 exports.findAll = (req, res) => {
-  const trophy_name = req.query.trophy_name;
-  var condition = trophy_name ? { trophy_name: { [Op.like]: `%${trophy_name}%` } } : null;
+  const tier_name = req.query.tier_name;
+  var condition = tier_name ? { tier_name: { [Op.like]: `%${tier_name}%` } } : null;
 
   Tier.findAll({ where: condition })
     .then(data => {
