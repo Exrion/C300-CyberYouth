@@ -87,6 +87,8 @@ export default class addTrophies extends Component {
       //   modified_at: null
     });
   }
+
+  
   render() {
     return (
       <div className="submit-form">
@@ -251,3 +253,4 @@ export default class addTrophies extends Component {
     );
   }
 }
+

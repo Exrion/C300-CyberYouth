@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Tier
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.tier_name && !req.body.tier_description) {
+  if (!req.body.tierName && !req.body.tierDescription) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -14,11 +14,11 @@ exports.create = (req, res) => {
 
   //Create a tier
   const tier = {
-    tier_name: req.body.tier_name,
-    tier_description: req.body.tier_description,
-    tier_icon: req.body.tier_icon,
-    grapes_needed: req.body.grapes_needed,
-    lemons_awarded: req.body.lemons_awarded
+    tierName: req.body.tierName,
+    tierDescription: req.body.tierDescription,
+    tierIcon: req.body.tierIcon,
+    grapesNeeded: req.body.grapesNeeded,
+    lemonsAwarded: req.body.lemonsAwarded
   };
 
   // Save Tier in the database
@@ -37,8 +37,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Tiers from the database.
 exports.findAll = (req, res) => {
-  const tier_name = req.query.tier_name;
-  var condition = tier_name ? { tier_name: { [Op.like]: `%${tier_name}%` } } : null;
+  const tierName = req.query.tierName;
+  var condition = tierName ? { tierName: { [Op.like]: `%${tierName}%` } } : null;
 
   Tier.findAll({ where: condition })
     .then(data => {

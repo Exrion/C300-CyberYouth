@@ -1,18 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
   const Tier = sequelize.define("tier", {
-    tier_name: {
+    tierName: {
       type: Sequelize.STRING
     },
-    tier_description: {
+    tierDescription: {
       type: Sequelize.STRING
     },
-    tier_icon: {
+    tierIcon: {
       type: Sequelize.STRING
     },
-    grapes_needed: {
+    grapesNeeded: {
       type: Sequelize.INTEGER
     },
-    lemons_awarded:{
+    lemonsAwarded:{
       type: Sequelize.INTEGER
     },
   });
