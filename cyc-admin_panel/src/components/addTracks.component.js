@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TracksDataService from "../services/tracks.service";
+import TrackDataService from "../services/track.service";
 export default class addTracks extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +9,8 @@ export default class addTracks extends Component {
     this.onChangeTrackLink = this.onChangeTrackLink.bind(this);
     this.onChangeTrackTags = this.onChangeTrackTags.bind(this);
     this.onChangeTrackLemons = this.onChangeTrackLemons.bind(this);
+    this.onChangeCreatedAt = this.onChangeCreatedAt.bind(this);
+    this.onChangeModifiedAt = this.onChangeModifiedAt.bind(this);
 
     this.saveTrack = this.saveTrack.bind(this);
     this.newTrack = this.newTrack.bind(this);
@@ -20,6 +22,8 @@ export default class addTracks extends Component {
       trackLink: "",
       trackTags: "",
       trackLemons: "",
+      createdAt: "",
+      modifiedAt: "",
     };
   }
   onChangeTrackName(t){
@@ -42,7 +46,7 @@ export default class addTracks extends Component {
       trackLink: t.target.value
     })
   }
-  onChangeTrackTag(t){
+  onChangeTrackTags(t){
     this.setState({
       trackTags: t.target.value
     })
@@ -52,6 +56,16 @@ export default class addTracks extends Component {
       trackLemons: t.target.value
     })
   }
+  onChangeCreatedAt(t){
+    this.setState({
+      createdAt: t.target.value
+    })
+  }
+  onChangeModifiedAt(t){
+    this.setState({
+      modifiedAt: t.target.value
+    })
+  }
   saveTrack(){
     var data = {
       trackName: this.state.trackName,
@@ -59,9 +73,11 @@ export default class addTracks extends Component {
       trackProvider: this.state.trackProvider,
       trackLink: this.state.trackLink,
       trackTag: this.state.trackTag,
-      trackLemons: this.state.trackLemons
+      trackLemons: this.state.trackLemons,
+      createdAt: this.state.createdAt,
+      modifiedAt: this.state.modifiedAt
     };
-    TracksDataService.create(data)
+    TrackDataService.create(data)
       .then((response) => {
         this.setState({
           id: response.data.id,
@@ -69,7 +85,9 @@ export default class addTracks extends Component {
           trackDescription: response.data.trackDescription,
           trackProvider: response.data.trackProvider,
           trackLink: response.data.trackLink,
-          trackLemons: response.data.trackLemons
+          trackLemons: response.data.trackLemons,
+          createdAt: response.data.createdAt,
+          modifiedAt: response.data.modifiedAt,
         });
         console.log(response.data);
       })
@@ -85,7 +103,9 @@ export default class addTracks extends Component {
       trackProvider: "",
       trackLink: "",
       trackTags: "",
-      trackLemons: "",
+      trackLemons: null,
+      createdAt: null,
+      modifiedAt: null
     });
   }
     render() {
@@ -251,7 +271,58 @@ export default class addTracks extends Component {
                   name="trackLemons"
                 />
               </div>
-              <button onClick={this.saveTier} className="btn btn-success   w-full
+              <div class ="form-group mb-6">
+                <label htmlFor="createdAt">Created At</label>
+                <input 
+                  type="text"
+                  class="form-control block
+                  w-full
+                  px-3
+                  py-1.5
+                  text-base
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  id="createdAt"
+                  required
+                  value={this.state.createdAt}
+                  onChange={this.onChangeCreatedAt}
+                  name="createdAt"
+                />
+              </div>
+              <div class ="form-group mb-6">
+                <label htmlFor="modifiedAt">Modified At</label>
+                <input 
+                  type="text"
+                  class="form-control block
+                  w-full
+                  px-3
+                  py-1.5
+                  text-base
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  id="modifiedAt"
+                  required
+                  value={this.state.modifiedAt}
+                  onChange={this.onChangeModifiedAt}
+                  name="modifiedAt"
+                />
+              </div>
+
+              <button onClick={this.saveTrack} className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
