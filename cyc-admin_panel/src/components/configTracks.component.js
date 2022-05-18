@@ -1,68 +1,101 @@
 import React, { Component } from "react";
-import { JsonToTable } from "react-json-to-table";
+import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default class ConfigTracks extends Component{
-    render() {
-        function HTTPGET_Tiers() {
-            var axios = require('axios');
+    constructor(props) {
+        super(props);
 
-            var config = {
-                method: 'get',
-                url: 'ADD_URL_HERE',
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            };
+        this.state = {
+            items: [],
+            DataisLoaded: false
+        };
+    }
 
-            axios(config)
-            .then(function (response) {
-                return JSON.stringify(response.data);
+    componentDidMount() {
+        fetch(
+            "http://localhost:8080/api/tracks")
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
+                    items: json,
+                    DataisLoaded: true
+                });
             })
-            .catch(function (error) {
-                console.log(error);
-                return null;
-            });
-        }
+    }
 
-        const tiersJson = require('../temp/apis/tracks.json');
+    render() {
+        const { DataisLoaded, items } = this.state;
+        if (!DataisLoaded) return
+        <div>
+            <h1 class="flex-row flex content-center">
+                <svg role="status" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"></path>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"></path>
+                </svg>
+                Loading data....
+            </h1>
+        </div>
 
         return (
             <div>
-                <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-                <div class="container flex flex-wrap justify-between items-center mx-auto">
-                    <button class="bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded">
-                        <Link to={"/addTracks"} className="nav-link">
-                            Add New Tracks
-                        </Link>
-                    </button>
-                    <div class="flex justify-center">
-                        <div class="mb-3 xl:w-96">
-                            <div class="input-group relative flex flex-wrap items-stretch w-full mb-4 rounded">
-                            <input type="search" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                            <span class="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded" id="basic-addon2">
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                                </svg>
-                            </span>
-                            </div>
-                        </div>
-                        </div>
+                <h1 class="text-3xl w-12/12">Tracks</h1>
+                <div class="flex flex-row py-2 justify-between w-12/12">
+                    <div class="justify-start py-2">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-3 rounded-full">
+                            {/*TO ADDD LATER KE YING!!! :) */}
+                            <Link to="/addTracks">
+                                <FaPlus />
+                            </Link>
+
+                        </button>
                     </div>
-                </nav>
-
-
-
-                <p>Display a breadcrumb here</p>
-                <h1>Tiers</h1>
-                <JsonToTable json={HTTPGET_Tiers()} />
-                <JsonToTable json={tiersJson}/> 
-                
-                
-
+                    <form class="justify-end">
+                        <label htmlFor="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                        <div class="relative">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search entries" required />
+                        </div>
+                    </form>
+                </div>
+                <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-flow-row gap-4 w-12/12">
+                    {
+                        items.map((item) => (
+                            <div
+                                class="p-4 h-auto group w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
+                            >
+                                <div class="flex flex-col justify-between p-4 leading-normal mt-12 group-hover:hidden">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.trackName}</h5>
+                                    <p class="mb-3 font-normal">{item.trackDescription}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Total Provider: {item.totalProvider}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Total Level: {item.trackLink}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Track Tags: {item.trackTags}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Track Lemons: {item.trackLemons}</p>
+                                    
+                                </div>
+                                <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4">
+                                    <div>
+                                        <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
+                                            <Link to="">
+                                                Edit
+                                            </Link>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                                            <Link to="">
+                                                Delete
+                                            </Link>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-
-            
         );
     }
 }

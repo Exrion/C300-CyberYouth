@@ -101,7 +101,7 @@ export default class addAnnouncements extends Component {
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <form>
           <div class="form-group mb-6">
-              <label htmlFor="announcementTitle">Announcement Name</label>
+              <label htmlFor="announcementTitle">Announcement Title</label>
               <input
                 type="text"
                 class="form-control block
@@ -126,7 +126,7 @@ export default class addAnnouncements extends Component {
               />
             </div>
             <div class="form-group mb-6">
-              <label htmlFor="announcementType">Announcement Description</label>
+              <label htmlFor="announcementType">Announcement Type</label>
               <input
                 type="text"
                 class="form-control block
@@ -151,7 +151,7 @@ export default class addAnnouncements extends Component {
               />
             </div>
             <div class="form-group mb-6">
-              <label htmlFor="announcementBody">Announcement Icon</label>
+              <label htmlFor="announcementBody">Announcement Body</label>
               <input
                 type="text"
                 class="form-control block

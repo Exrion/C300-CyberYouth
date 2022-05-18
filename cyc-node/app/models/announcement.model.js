@@ -10,10 +10,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       announcementImg: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       announcementLink:{
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
     });
     return Announcement;
