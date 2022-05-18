@@ -100,13 +100,13 @@ export default class addTrophies extends Component {
             </button>
           </div>
         ) : (
-          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <form>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <label htmlFor="trophyName">Trophy Name</label>
               <input
                 type="text"
-                class="form-control block
+                className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -127,11 +127,11 @@ export default class addTrophies extends Component {
                 name="trophyName"
               />
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <label htmlFor="trophyDescription">Trophy Description</label>
               <input
                 type="text"
-                class="form-control block
+                className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -152,11 +152,11 @@ export default class addTrophies extends Component {
                 name="trophyDescription"
               />
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <label htmlFor="totalProgress">Total Progress</label>
               <input
                 type="text"
-                class="form-control block
+                className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -177,11 +177,11 @@ export default class addTrophies extends Component {
                 name="totalProgress"
               />
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <label htmlFor="totalLvl">Total Level</label>
               <input
                 type="text"
-                class="form-control block
+                className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -202,11 +202,11 @@ export default class addTrophies extends Component {
                 name="totalLvl"
               />
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <label htmlFor="trophyLemons">Trophy Lemons</label>
               <input
                 type="text"
-                class="form-control block
+                className="form-control block
                   w-full
                   px-3
                   py-1.5
