@@ -34,7 +34,7 @@ exports.create = (req, res) => {
     });
   
 };
-
+//It works for me-Bjorn
 // Retrieve all Tiers from the database.
 exports.findAll = (req, res) => {
   const tierName = req.query.tierName;
