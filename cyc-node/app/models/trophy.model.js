@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
     trophyDescription: {
       type: Sequelize.STRING,
     },
+    trophyIcon: {
+      type: Sequelize.STRING
+    },
     totalProgress: {
       type: Sequelize.INTEGER,
     },

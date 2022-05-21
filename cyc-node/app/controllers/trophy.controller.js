@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   const trophy = {
     trophyName: req.body.trophyName,
     trophyDescription: req.body.trophyDescription,
+    trophyIcon: req.body.trophyIcon,
     totalProgress: req.body.totalProgress,
     totalLvl: req.body.totalLvl,
     trophyLemons: req.body.trophyLemons,
