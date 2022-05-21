@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 const track = {
   trackName: req.body.trackName,
   trackDescription: req.body.trackDescription,
-  totalProvider: req.body.totalProvider,
+  trackProvider: req.body.trackProvider,
   trackLink: req.body.trackLink,
   trackTags: req.body.trackTags,
   trackLemons: req.body.trackLemons
@@ -57,8 +57,8 @@ exports.findAll = (req, res) => {
 };
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
-    const trackId = req.params.id;
-    Track.findByPk(trackId)
+    const id = req.params.id;
+    Track.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
@@ -76,7 +76,7 @@ exports.findOne = (req, res) => {
 };
 // Update a Tutorial by the id in the request
 exports.update = (req, res) => {
-    const trackId = req.params.id;
+    const id = req.params.id;
     Track.update(req.body, {
       where: { id: id }
     })

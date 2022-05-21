@@ -1,8 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Track = sequelize.define("track", {
-        trackId: {
-            type: Sequelize.INTEGER
-        },
+      
         trackName: {
             type: Sequelize.STRING
         },
