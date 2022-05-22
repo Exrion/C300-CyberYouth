@@ -10,7 +10,7 @@ module.exports = app => {
     // Update a Tutorial with id
     router.put("/:id", tracks.update);
 
-    router.post
+   
 
     app.use('/api/tracks', router);
   };
