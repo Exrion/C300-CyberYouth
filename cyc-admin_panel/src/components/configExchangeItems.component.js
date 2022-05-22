@@ -63,6 +63,7 @@ export default class ConfigExchangeitems extends Component{
                             <div
                                 class="p-4 group h-auto w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
                             >
+                                <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-40 md:rounded-none md:rounded-l-lg" src={item.exchangeImg} alt={item.exchangeName} />
                                 <div class="flex flex-col justify-between p-4 leading-normal mt-12 group-hover:hidden grow flex-1">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.exchangeName}</h5>
                                     <p class="mb-3 font-normal">{item.exchangeDescription}</p>

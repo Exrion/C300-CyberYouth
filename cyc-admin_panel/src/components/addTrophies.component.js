@@ -5,6 +5,7 @@ export default class addTrophies extends Component {
     super(props);
     this.onChangeTrophyName = this.onChangeTrophyName.bind(this);
     this.onChangeTrophyDescription = this.onChangeTrophyDescription.bind(this);
+    this.onChangeTrophyIcon = this.onChangeTrophyIcon.bind(this);
     this.onChangeTotalProgress = this.onChangeTotalProgress.bind(this);
     this.onChangeTotalLevel = this.onChangeTotalLevel.bind(this);
     this.onChangeTrophyLemons = this.onChangeTrophyLemons.bind(this);
@@ -15,6 +16,7 @@ export default class addTrophies extends Component {
       id: null,
       trophyName: "",
       trophyDescription: "",
+      trophyIcon: "",
       totalProgress: "",
       totalLvl: "",
       trophyLemons: "",
@@ -29,6 +31,11 @@ export default class addTrophies extends Component {
   onChangeTrophyDescription(e) {
     this.setState({
       trophyDescription: e.target.value,
+    });
+  }
+  onChangeTrophyIcon(e) {
+    this.setState({
+      trophyIcon: e.target.value,
     });
   }
   onChangeTotalProgress(e) {
@@ -50,11 +57,10 @@ export default class addTrophies extends Component {
     var data = {
       trophyName: this.state.trophyName,
       trophyDescription: this.state.trophyDescription,
+      trophyIcon: this.state.trophyIcon,
       totalProgress: this.state.totalProgress,
       totalLvl: this.state.totalLvl,
       trophyLemons: this.state.trophyLemons,
-      //   created_at: this.state.created_at,
-      //   modified_at: this.state.modified_at
     };
     TrophyDataService.create(data)
       .then((response) => {
@@ -62,12 +68,10 @@ export default class addTrophies extends Component {
           id: response.data.id,
           trophyName: response.data.trophyName,
           trophyDescription: response.data.trophyDescription,
+          trophyIcon: response.data.trophyIcon,
           totalProgress: response.data.totalProgress,
           totalLvl: response.data.totalLvl,
           trophyLemons: response.data.trophyLemons,
-          
-          //   created_at: response.data.created_at,
-          //   modified_at: response.data.modified_at
         });
         console.log(response.data);
       })
@@ -150,6 +154,31 @@ export default class addTrophies extends Component {
                 value={this.state.trophyDescription}
                 onChange={this.onChangeTrophyDescription}
                 name="trophyDescription"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trophyIcon">Trophy Icon</label>
+              <input
+                type="text"
+                class="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="trophyIcon"
+                required
+                value={this.state.trophyIcon}
+                onChange={this.onChangeTrophyIcon}
+                name="trophyIcon"
               />
             </div>
             <div className="form-group mb-6">

@@ -5,6 +5,7 @@ export default class addExchangeItems extends Component {
     super(props);
     this.onChangeExchangeName = this.onChangeExchangeName.bind(this);
     this.onChangeExchangeDescription = this.onChangeExchangeDescription.bind(this);
+    this.onChangeExchangeImg = this.onChangeExchangeImg.bind(this);
     this.onChangeLemonsEach = this.onChangeLemonsEach.bind(this);
     this.onChangeDeliveryMode = this.onChangeDeliveryMode.bind(this);
     this.onChangeExchangeStock = this.onChangeExchangeStock.bind(this);
@@ -15,6 +16,7 @@ export default class addExchangeItems extends Component {
       id: null,
       exchangeName: "",
       exchangeDescription: "",
+      exchangeImg: "",
       lemonsEach: null,
       deliveryMode: "",
       exchangeStock: null,
@@ -28,6 +30,11 @@ export default class addExchangeItems extends Component {
   onChangeExchangeDescription(e) {
     this.setState({
       exchangeDescription: e.target.value,
+    });
+  }
+  onChangeExchangeImg(e) {
+    this.setState({
+      exchangeImg: e.target.value,
     });
   }
   onChangeLemonsEach(e) {
@@ -49,6 +56,7 @@ export default class addExchangeItems extends Component {
     var data = {
       exchangeName: this.state.exchangeName,
       exchangeDescription: this.state.exchangeDescription,
+      exchangeImg: this.state.exchangeImg,
       lemonsEach: this.state.lemonsEach,
       deliveryMode: this.state.deliveryMode,
       exchangeStock: this.state.exchangeStock,
@@ -59,6 +67,7 @@ export default class addExchangeItems extends Component {
           id: response.data.id,
           exchangeName: response.data.exchangeName,
           exchangeDescription: response.data.exchangeDescription,
+          exchangeImg: response.data.exchangeImg,
           lemonsEach: response.data.lemonsEach,
           deliveryMode: response.data.deliveryMode,
           exchangeStock: response.data.exchangeStock,
@@ -74,6 +83,7 @@ export default class addExchangeItems extends Component {
       id: null,
       exchangeName: "",
       exchangeDescription: "",
+      exchangeImg: "",
       lemonsEach: null,
       deliveryMode: "",
       exchangeStock: null,
@@ -142,6 +152,31 @@ export default class addExchangeItems extends Component {
                 value={this.state.exchangeDescription}
                 onChange={this.onChangeExchangeDescription}
                 name="exchangeDescription"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="exchangeImg">Exchange Image</label>
+              <input
+                type="text"
+                class="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="exchangeImg"
+                required
+                value={this.state.exchangeImg}
+                onChange={this.onChangeExchangeImg}
+                name="exchangeImg"
               />
             </div>
             <div class="form-group mb-6">

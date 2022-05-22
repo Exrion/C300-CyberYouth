@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   const trophy = {
     trophyName: req.body.trophyName,
     trophyDescription: req.body.trophyDescription,
+    trophyIcon: req.body.trophyIcon,
     totalProgress: req.body.totalProgress,
     totalLvl: req.body.totalLvl,
     trophyLemons: req.body.trophyLemons,
@@ -30,7 +31,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial.",
+          err.message || "Some error occurred while creating the Trophy.",
       });
     });
 };

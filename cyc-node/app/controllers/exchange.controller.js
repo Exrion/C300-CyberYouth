@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   const exchange = {
     exchangeName: req.body.exchangeName,
     exchangeDescription: req.body.exchangeDescription,
+    exchangeImg: req.body.exchangeImg,
     lemonsEach: req.body.lemonsEach,
     deliveryMode: req.body.deliveryMode,
     exchangeStock: req.body.exchangeStock,

@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
     exchangeDescription: {
       type: Sequelize.STRING,
     },
+    exchangeImg: {
+      type: Sequelize.STRING,
+    },
     lemonsEach: {
       type: Sequelize.INTEGER,
     },
