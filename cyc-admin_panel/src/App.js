@@ -62,7 +62,7 @@ function App() {
       </nav>  
     
       {/* Main Content */}
-      <div class="flex items-center justify-center w-fit xl:px-4 md:px-4">
+      <div class="flex items-center justify-center max-w-fit xl:px-4 md:px-4">
         <Routes>
           <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
           <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />

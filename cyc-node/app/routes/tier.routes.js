@@ -14,6 +14,9 @@ module.exports = app => {
   
     // // Update a Tier with id
     // router.put("/:id", trophies.update);
+
+    // Delete a Tier with id
+    
   
     app.use('/api/tiers', router);
   };

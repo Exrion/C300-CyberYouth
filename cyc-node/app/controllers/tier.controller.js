@@ -76,3 +76,5 @@ exports.update = (req, res) => {
       });
     });
 };
+
+//Delete a Tier by id in the request

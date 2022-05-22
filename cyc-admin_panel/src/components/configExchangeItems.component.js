@@ -61,9 +61,9 @@ export default class ConfigExchangeitems extends Component{
                     {
                         items.map((item) => (
                             <div
-                                class="p-4 h-auto group w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
+                                class="p-4 group h-auto w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
                             >
-                                <div class="flex flex-col justify-between p-4 leading-normal mt-12 group-hover:hidden">
+                                <div class="flex flex-col justify-between p-4 leading-normal mt-12 group-hover:hidden grow flex-1">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.exchangeName}</h5>
                                     <p class="mb-3 font-normal">{item.exchangeDescription}</p>
                                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Lemons Each: {item.lemonsEach}</p>
@@ -71,7 +71,7 @@ export default class ConfigExchangeitems extends Component{
                                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Exchange Stock: {item.exchangeStock}</p>
                                     
                                 </div>
-                                <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4">
+                                <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4 grow flex-1">
                                     <div>
                                         <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
                                             <Link to="">
