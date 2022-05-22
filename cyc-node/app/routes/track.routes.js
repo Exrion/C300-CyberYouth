@@ -1,12 +1,16 @@
 module.exports = app => {
     const tracks = require("../controllers/track.controller.js");
     var router = require("express").Router();
+    // Create a new Tier
+    router.post("/", tracks.create);
     // Retrieve all Tutorials
     router.get("/", tracks.findAll);
     // Retrieve a single Tutorial with id
     router.get("/:id", tracks.findOne);
     // Update a Tutorial with id
     router.put("/:id", tracks.update);
+
+    router.post
 
     app.use('/api/tracks', router);
   };

@@ -1,5 +1,5 @@
 const db = require("../models");
-const Track = db.tracks
+const Track = db.tracks;
 const Op = db.Sequelize.Op;
 
 
