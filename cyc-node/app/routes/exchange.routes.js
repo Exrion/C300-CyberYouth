@@ -10,10 +10,10 @@ module.exports = (app) => {
   router.get("/", exchanges.findAll);
 
   // Retrieve a single Trophies with id
-  router.get("/:exchange_id", exchanges.findOne);
+  router.get("/:id", exchanges.findOne);
 
   // Update a Trophies with id
-  router.put("/:exchange_id", exchanges.update);
+  router.put("/:id", exchanges.update);
 
   app.use("/api/exchanges", router);
 };
