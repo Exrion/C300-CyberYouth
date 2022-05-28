@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import TrophyDataService from "../services/trophy.service";
-const Trophy = props => {
+const EditTrophy = props => {
   const { id }= useParams();
   let navigate = useNavigate();
   const initialTrophyState = {
@@ -34,27 +34,9 @@ const Trophy = props => {
     const { name, value } = event.target;
     setCurrentTrophy({ ...currentTrophy, [name]: value });
   };
-  const updatePublished = status => {
-    var data = {
-      id: currentTrophy.id,
-      trophyName: currentTrophy.trophyName,
-      trophyDescription: currentTrophy.trophyDescription,
-      trophyIcon: currentTrophy.trophyIcon,
-      totalProgress: currentTrophy.totalProgress,
-      totalLvl: currentTrophy.totalLvl,
-      trophyLemons: currentTrophy.trophyLemons,
-      
-    };
+  
 
-    TrophyDataService.update(currentTrophy.id, data)
-      .then(response => {
-        setCurrentTrophy({ ...currentTrophy, published: status });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
+    
   const updateTrophy = () => {
     TrophyDataService.update(currentTrophy.id, currentTrophy)
       .then(response => {
@@ -267,4 +249,4 @@ const Trophy = props => {
     );
   }
 
-export default Trophy;
+export default EditTrophy;

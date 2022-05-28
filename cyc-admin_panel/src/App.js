@@ -15,7 +15,7 @@ import AddAnnouncements from "./components/addAnnouncements.component";
 import AddExchangeItems from "./components/addExchangeItems.component";
 import AddTracks from "./components/addTracks.component";
 import AddTrophies from "./components/addTrophies.component";
-import EditTrophy from "./components/trophy.component";
+import EditTrophy from "./components/editTrophy.component";
 
 
 function App() {
