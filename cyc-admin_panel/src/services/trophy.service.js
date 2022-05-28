@@ -3,7 +3,7 @@ class TrophyDataService {
   getAll() {
     return http.get("/trophies");
   }
-  get(id) {
+  get(id) {console.log("here in trophy.service.js");
     return http.get(`/trophies/${id}`);
   }
   create(data) {
@@ -18,8 +18,8 @@ class TrophyDataService {
   deleteAll() {
     return http.delete(`/trophies`);
   }
-  findByTitle(title) {
-    return http.get(`/trophies?title=${title}`);
+  findByName(trophyName) {
+    return http.get(`/trophies?title=${trophyName}`);
   }
 }
 
