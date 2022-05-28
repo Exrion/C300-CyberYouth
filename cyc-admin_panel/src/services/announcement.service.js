@@ -18,8 +18,8 @@ class AnnouncementDataService {
   deleteAll() {
     return http.delete(`/announcements`);
   }
-  findByTitle(title) {
-    return http.get(`/announcements?title=${title}`);
+  findByAnnouncementTitle(announcementTitle) {
+    return http.get(`/announcements?title=${announcementTitle}`);
   }
 }
 
