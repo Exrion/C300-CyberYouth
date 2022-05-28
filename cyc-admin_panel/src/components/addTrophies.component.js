@@ -20,7 +20,7 @@ export default class addTrophies extends Component {
       totalProgress: "",
       totalLvl: "",
       trophyLemons: "",
-      
+      submitted: false
     };
   }
   onChangeTrophyName(e) {
@@ -72,6 +72,7 @@ export default class addTrophies extends Component {
           totalProgress: response.data.totalProgress,
           totalLvl: response.data.totalLvl,
           trophyLemons: response.data.trophyLemons,
+          submitted: true
         });
         console.log(response.data);
       })
@@ -84,11 +85,10 @@ export default class addTrophies extends Component {
       id: null,
       trophyName: "",
       trophyDescription: "",
-      totalProgress: null,
-      totalLvl: null,
-      trophyLemons: null,
-      //   created_at: null,
-      //   modified_at: null
+      totalProgress: "",
+      totalLvl: "",
+      trophyLemons: "",
+      submitted: false
     });
   }
 
