@@ -76,3 +76,28 @@ exports.update = (req, res) => {
       });
     });
 };
+
+//Delete an Announcement by id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Announcement.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Announcement was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Announcement with id=${id}. Maybe Announcement was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Announcement with id=" + id
+      });
+    });
+}

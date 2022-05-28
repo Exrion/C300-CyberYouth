@@ -15,5 +15,8 @@ module.exports = app => {
     // // Update a Announcement with id
     // router.put("/:id", announcements.update);
   
+    // Delete a Announcements with id
+    router.delete("/:id", announcements.delete);
+
     app.use('/api/announcements', router);
   };
