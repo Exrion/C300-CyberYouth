@@ -31,9 +31,9 @@ function App() {
           <div class="flex items-center md:order-2">
             <button type="button" class="hover:animate-spin flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
               <span class="sr-only">Open user menu</span>
-              <FaCog/>
+              <FaCog />
             </button>
-                        
+
             {/* Dropdown menu */}
             <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
@@ -59,8 +59,8 @@ function App() {
             </div>
           </div>
         </div>
-      </nav>  
-    
+      </nav>
+
       {/* Main Content */}
       <div class="flex items-center justify-center max-w-fit xl:px-4 md:px-4">
         <Routes>
@@ -75,8 +75,8 @@ function App() {
           <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
           <Route exact path="/addTracks" element={<AddTracks />} />
           <Route exact path='/settingsAccount' element={<SettingsAccount />} />
-          <Route exact path='/dashboard' element={< Dashboard />}/>
-          <Route path='/' element={< Dashboard />}/>
+          <Route exact path='/dashboard' element={< Dashboard />} />
+          <Route path='/' element={< Dashboard />} />
         </Routes>
       </div>
     </div>

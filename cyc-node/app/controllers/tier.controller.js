@@ -78,3 +78,26 @@ exports.update = (req, res) => {
 };
 
 //Delete a Tier by id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Tier.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Tier was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Tier with id=${id}. Maybe Tier was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Tier with id=" + id
+      });
+    });
+}
