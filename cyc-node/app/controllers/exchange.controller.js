@@ -98,6 +98,50 @@ exports.update = (req, res) => {
     });
 };
 
+
+// Delete a Exchange with the specified id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Exchange.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Exchange was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Exchange with id=${id}. Maybe Exchange was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Exchange with id=" + id
+      });
+    });
+};
+
+// Delete all Exchange from the database.
+exports.deleteAll = (req, res) => {
+  Exchange.destroy({
+    where: {},
+    truncate: false
+  })
+    .then(nums => {
+      res.send({ message: `${nums} Exchanges were deleted successfully!` });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all Exchanges."
+      });
+    });
+};
+
+
 exports.findAllPublished = (req, res) => {
   Exchange.findAll()
     .then((data) => {
