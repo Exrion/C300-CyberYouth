@@ -26,7 +26,7 @@ const track = {
 };
 
 
-// Save Tier in the database
+// Save Track in the database
 Track.create(track)
 .then(data => {
   res.send(data);
@@ -40,12 +40,12 @@ Track.create(track)
 
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Tracks from the database.
 exports.findAll = (req, res) => {
     const trackName = req.query.trackName;
     var condition = trackName ? { trackName: { [Op.like]: `%${trackName}%` } } : null;
     Track.findAll({ where: condition })
-      .then(data => {
+      .then((data) => {
         res.send(data);
       })
       .catch(err => {
@@ -55,11 +55,11 @@ exports.findAll = (req, res) => {
         });
       });
 };
-// Find a single Tutorial with an id
+// Find a single Tracks with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
     Track.findByPk(id)
-      .then(data => {
+      .then((data) => {
         if (data) {
           res.send(data);
         } else {
@@ -74,7 +74,7 @@ exports.findOne = (req, res) => {
         });
       });
 };
-// Update a Tutorial by the id in the request
+// Update a Track by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
     Track.update(req.body, {

@@ -3,12 +3,17 @@ module.exports = app => {
     var router = require("express").Router();
     // Create a new Tier
     router.post("/", tracks.create);
-    // Retrieve all Tutorials
+    // Retrieve all Track
     router.get("/", tracks.findAll);
-    // Retrieve a single Tutorial with id
+    // Retrieve a single Track with id
     router.get("/:id", tracks.findOne);
-    // Update a Tutorial with id
+    // Update a Track with id
     router.put("/:id", tracks.update);
+    // Delete a Tracks with id
+    // router.delete("/:id", tracks.delete);
+
+    // Delete all Tracks
+    // router.delete("/", tracks.deleteAll);
 
    
 
