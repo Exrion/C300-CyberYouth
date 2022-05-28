@@ -16,6 +16,7 @@ import AddExchangeItems from "./components/addExchangeItems.component";
 import AddTracks from "./components/addTracks.component";
 import AddTrophies from "./components/addTrophies.component";
 import EditTrophy from "./components/editTrophy.component";
+import EditAnnouncement from './components/editAnnouncemnts.component';
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
           <Route exact path='/settingsAccount' element={<SettingsAccount />} />
           <Route exact path='/dashboard' element={< Dashboard />}/>
           <Route exact path="/trophies/:id" element={<EditTrophy/>} />
+          <Route exact path="/announcement/:id" element={<EditAnnouncement/>} />
           <Route path='/' element={< Dashboard />}/>
           
         </Routes>

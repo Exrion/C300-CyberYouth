@@ -75,7 +75,7 @@ export default class ConfigAnnouncements extends Component{
                                 <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4 grow flex-1">
                                     <div>
                                         <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
-                                            <Link to="">
+                                            <Link to={"/announcement/" + item.id}>
                                                 Edit
                                             </Link>
                                         </button>
