@@ -78,7 +78,7 @@ const EditTrophy = props => {
            text-base
            font-normal
            text-gray-700
-           bg-white bg-clip-padding
+           bg-white bg-clip-paddingf
            border border-solid border-gray-300
            rounded
            transition
