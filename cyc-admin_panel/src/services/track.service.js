@@ -12,8 +12,8 @@ class TrackDataService {
   update(id, data) {
     return http.put(`/tracks/${id}`, data);
   }
-  findByTitle(title) {
-    return http.get(`/tracks?title=${title}`);
+  findByTrackName(trackName) {
+    return http.get(`/tracks?trackName=${trackName}`);
   }
 }
 
