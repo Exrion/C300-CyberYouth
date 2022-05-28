@@ -56,7 +56,7 @@ exports.findAll = (req, res) => {
 // Find a single Trophies with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
+  console.log("here in exchange.controller exports.findOne");
   Exchange.findByPk(id)
     .then((data) => {
       if (data) {
