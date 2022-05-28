@@ -17,6 +17,8 @@ import AddTracks from "./components/addTracks.component";
 import AddTrophies from "./components/addTrophies.component";
 import EditTrophy from "./components/editTrophy.component";
 import EditTrack from "./components/editTrack.component";
+import EditAnnouncement from './components/editAnnouncemnts.component';
+import EditExchangeItem from "./components/editExchangeItem.component";
 
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
               <span className="sr-only">Open user menu</span>
               <FaCog/>
             </button>
-                        
+
             {/* Dropdown menu */}
             <div className="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
               <div className="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
@@ -61,8 +63,8 @@ function App() {
             </div>
           </div>
         </div>
-      </nav>  
-    
+      </nav>
+
       {/* Main Content */}
       <div className="flex items-center justify-center max-w-fit xl:px-4 md:px-4">
         <Routes>
@@ -80,6 +82,8 @@ function App() {
           <Route exact path='/dashboard' element={< Dashboard />}/>
           <Route exact path="/trophies/:id" element={<EditTrophy/>} />
           <Route exact path="/tracks/:id" element={<EditTrack/>} />
+          <Route exact path="/announcement/:id" element={<EditAnnouncement/>} />
+          <Route exact path="/exchanges/:id" element={<EditExchangeItem/>} />
           <Route path='/' element={< Dashboard />}/>
           
         </Routes>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import AnnouncementDataService from "../services/announcement.service";
 
 export default class ConfigAnnouncements extends Component{
     constructor(props) {
@@ -22,6 +23,16 @@ export default class ConfigAnnouncements extends Component{
                     DataisLoaded: true
                 });
             })
+    }
+
+    deleteAnnouncement(id) {
+        AnnouncementDataService.delete(id)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     render() {
@@ -75,13 +86,13 @@ export default class ConfigAnnouncements extends Component{
                                 <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4 grow flex-1">
                                     <div>
                                         <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
-                                            <Link to="">
+                                            <Link to={"/announcement/" + item.id}>
                                                 Edit
                                             </Link>
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={this.deleteAnnouncement(item.id)}>
                                             <Link to="">
                                                 Delete
                                             </Link>

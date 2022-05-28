@@ -12,5 +12,8 @@ class ExchangeDataService {
   update(id, data) {
     return http.put(`/exchanges/${id}`, data);
   }
+  findByName(exchangeName) {
+    return http.get(`/exchanges?title=${exchangeName}`);
+  }
 }
 export default new ExchangeDataService();

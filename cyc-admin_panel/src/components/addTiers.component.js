@@ -12,13 +12,12 @@ export default class addTiers extends Component {
     this.saveTier = this.saveTier.bind(this);
     this.newTier = this.newTier.bind(this);
     this.state = {
-      id: null,
       tierName: "",
       tierDescription: "",
       tierIcon: "",
       grapesNeeded: "",
       lemonsAwarded: "",
-      
+      submitted: false
     };
   }
   onChangeTierName(e) {
@@ -52,9 +51,7 @@ export default class addTiers extends Component {
       tierDescription: this.state.tierDescription,
       tierIcon: this.state.tierIcon,
       grapesNeeded: this.state.grapesNeeded,
-      lemonsAwarded: this.state.lemonsAwarded,
-      //   created_at: this.state.created_at,
-      //   modified_at: this.state.modified_at
+      lemonsAwarded: this.state.lemonsAwarded
     };
     TierDataService.create(data)
       .then((response) => {
@@ -64,12 +61,10 @@ export default class addTiers extends Component {
           tierDescription: response.data.tierDescription,
           tierIcon: response.data.tierIcon,
           grapesNeeded: response.data.grapesNeeded,
-          lemonsAwarded: response.data.lemonsAwarded,
-          
-          //   created_at: response.data.created_at,
-          //   modified_at: response.data.modified_at
+          lemonsAwarded: response.data.lemonsAwarded
         });
         console.log(response.data);
+        this.setState.submitted = true;
       })
       .catch((e) => {
         console.log(e);
@@ -77,14 +72,11 @@ export default class addTiers extends Component {
   }
   newTier() {
     this.setState({
-      id: null,
       tierName: "",
       tierDescription: "",
       tierIcon: "",
       grapesNeeded: "",
-      lemonsAwarded: "",
-      //   created_at: null,
-      //   modified_at: null
+      lemonsAwarded: ""
     });
   }
   render() {
