@@ -19,6 +19,8 @@ import EditTrophy from "./components/editTrophy.component";
 import EditTrack from "./components/editTrack.component";
 import EditAnnouncement from './components/editAnnouncemnts.component';
 import EditExchangeItem from "./components/editExchangeItem.component";
+import EditTier from "./components/editTiers.component";
+
 
 
 function App() {
@@ -84,6 +86,7 @@ function App() {
           <Route exact path="/tracks/:id" element={<EditTrack/>} />
           <Route exact path="/announcement/:id" element={<EditAnnouncement/>} />
           <Route exact path="/exchanges/:id" element={<EditExchangeItem/>} />
+          <Route exact path="/tiers/:id" element={<EditTier/>} />
           <Route path='/' element={< Dashboard />}/>
           
         </Routes>

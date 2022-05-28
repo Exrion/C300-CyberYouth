@@ -18,8 +18,8 @@ class TierDataService {
   deleteAll() {
     return http.delete(`/tiers`);
   }
-  findByTitle(title) {
-    return http.get(`/tiers?title=${title}`);
+  findByTitle(tierName) {
+    return http.get(`/tiers?title=${tierName}`);
   }
 }
 

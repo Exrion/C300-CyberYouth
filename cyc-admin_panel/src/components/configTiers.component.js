@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
-import TierDataService from "../services/tier.service";
+// import TierDataService from "../services/tier.service";
 
 export default class ConfigTiers extends Component {
     constructor(props) {
@@ -27,15 +27,15 @@ export default class ConfigTiers extends Component {
             })
     }
 
-    deleteTier(id) {
-        TierDataService.delete(id)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
+    // deleteTier(id) {
+    //     TierDataService.remove(id)
+    //         .then(response => {
+    //             console.log(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
 
     render() {
         const { DataisLoaded, items } = this.state;
@@ -104,16 +104,16 @@ export default class ConfigTiers extends Component {
                                 <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4 grow flex-1">
                                     <div>
                                         <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
-                                            <Link to="">
+                                            <Link to={"/tiers/" + item.id}>
                                                 Edit
                                             </Link>
                                         </button>
                                     </div>
                                     <div>
                                         <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
-                                            <Link onClick={this.deleteTier(item.id)}>
+                                            {/* <Link onClick={this.deleteTier(item.id)}> */}
                                                 Delete
-                                            </Link>
+                                            {/* </Link> */}
                                         </button>
                                     </div>
                                 </div>
