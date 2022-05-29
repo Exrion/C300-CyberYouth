@@ -10,7 +10,7 @@ module.exports = app => {
     // Update a Track with id
     router.put("/:id", tracks.update);
     // Delete a Tracks with id
-    // router.delete("/:id", tracks.delete);
+    router.delete("/:id", tracks.delete);
 
     // Delete all Tracks
     // router.delete("/", tracks.deleteAll);
