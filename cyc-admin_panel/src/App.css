@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.hover-trigger .hover-target {
+  display: none;
+}
+
+.hover-trigger:hover .hover-target {
+  display: block;
+}

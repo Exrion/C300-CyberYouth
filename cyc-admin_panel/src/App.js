@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import { FaCog } from "react-icons/fa";
+import Tippy from '@tippyjs/react';
 
 // Importing Components
 import Dashboard from './components/dashboard.component';
@@ -31,14 +32,13 @@ function App() {
             <img src={require('./images/navbar/CYS-Favicon.png')} className="mr-3 h-6 sm:h-9" alt="CYS Logo" />
             <span className="self-center text-xl font-semibold whitespace-nowrap text-black">Cyber Youth Singapore</span>
           </Link>
-          <div className="flex items-center md:order-2">
-            <button type="button" className="hover:animate-spin flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
-              <span className="sr-only">Open user menu</span>
+          <div className="flex items-center md:order-2 relative hover-trigger">
+            <button type="button" className="hover:animate-spin flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" data-tippy-placement="bottom-start" data-template='dropdown-content'>
               <FaCog/>
             </button>
 
             {/* Dropdown menu */}
-            <div className="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
+            <div className="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown-content">
               <div className="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
                 <div>
                   {/* User Profile Picture here */}
