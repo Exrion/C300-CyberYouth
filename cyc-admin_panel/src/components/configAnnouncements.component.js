@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import AnnouncementDataService from "../services/announcement.service";
 
-export default class ConfigAnnouncements extends Component{
+export default class ConfigAnnouncements extends Component {
     constructor(props) {
         super(props);
 
@@ -50,7 +50,27 @@ export default class ConfigAnnouncements extends Component{
 
         return (
             <div>
-               
+                <div class="grid grid-cols-3 gap-5 auto-rows-max">
+                    {/* Search and add bar */}
+                    <div class="col-span-3">
+                        <div class="flex justify-between">
+
+                            <Link to="/addTiers">
+                                <FaPlus />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Main Content */}
+                    <div class="col-span-2">
+
+                    </div>
+
+                    {/* Sidebar */}
+                    <div class="col-span-1">
+
+                    </div>
+                </div>
             </div>
         );
     }

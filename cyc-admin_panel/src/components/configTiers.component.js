@@ -52,7 +52,7 @@ export default class ConfigTiers extends Component {
 
         return (
             <div>
-                
+                Tiers
             </div>
         );
     }

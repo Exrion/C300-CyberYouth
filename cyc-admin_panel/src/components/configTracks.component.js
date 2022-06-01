@@ -39,7 +39,7 @@ export default class ConfigTracks extends Component{
 
         return (
             <div>
-                
+                Tracks
             </div>
         );
     }

@@ -39,7 +39,7 @@ export default class ConfigTrophies extends Component {
 
         return (
             <div>
-                
+                Trophies
             </div>
         );
     }

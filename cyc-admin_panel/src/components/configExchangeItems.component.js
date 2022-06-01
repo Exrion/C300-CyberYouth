@@ -38,7 +38,7 @@ export default class ConfigExchangeitems extends Component{
 
         return (
             <div>
-                
+                Exchange
             </div>
         );
     }
