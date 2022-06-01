@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
-// import AnnouncementDataService from "../services/announcement.service";
+import AnnouncementDataService from "../services/announcement.service";
 
 export default class ConfigAnnouncements extends Component{
     constructor(props) {
@@ -25,15 +25,17 @@ export default class ConfigAnnouncements extends Component{
             })
     }
 
-    // deleteAnnouncement(id) {
-    //     AnnouncementDataService.delete(id)
-    //         .then(response => {
-    //             console.log(response.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // }
+    remove(id) {
+        console.log("Deleting");
+        AnnouncementDataService.remove(id)
+            .then(response => {
+                console.log(response.data);
+                window.location.reload(false);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
 
     render() {
         const { DataisLoaded, items } = this.state;
@@ -92,10 +94,10 @@ export default class ConfigAnnouncements extends Component{
                                         </button>
                                     </div>
                                     <div>
-                                        {/* <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={this.deleteAnnouncement(item.id)}> */}
-                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={() => { this.remove(item.id) }}>
+                                        {/* <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"> */}
 
-                                            <Link to="">
+                                            <Link to="/configAnnouncements/">
                                                 Delete
                                             </Link>
                                         </button>

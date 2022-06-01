@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import DataService from "../services/track.service";
 
 export default class ConfigTracks extends Component{
     constructor(props) {
@@ -22,6 +23,18 @@ export default class ConfigTracks extends Component{
                     DataisLoaded: true
                 });
             })
+    }
+
+    remove(id) {
+        console.log("Deleting");
+        DataService.remove(id)
+            .then(response => {
+                console.log(response.data);
+                window.location.reload(false);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     render() {
@@ -84,7 +97,7 @@ export default class ConfigTracks extends Component{
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={() => { this.remove(item.id) }}>                                            
                                             <Link to="">
                                                 Delete
                                             </Link>

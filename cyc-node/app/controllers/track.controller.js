@@ -98,3 +98,28 @@ exports.update = (req, res) => {
       });
   };
 
+
+//Delete a Track by id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Track.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Track was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Track with id=${id}. Maybe Track was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Track with id=" + id
+      });
+    });
+}
