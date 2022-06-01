@@ -5,14 +5,14 @@ import { FaFastForward, FaTrophy, FaLongArrowAltUp, FaStackExchange, FaVolumeUp,
 export default class Dashboard extends Component {
     render() {
         return (
-            <div class="flex-col flex space-y-10">
+            <div class="flex-col flex space-y-10 ml-5 mr-5">
 
                 <div class="flex justify-start">
-                    <h1 class="text-3xl ml-5 mr-5">Welcome, John Doe</h1>
+                    <h1 class="text-3xl">Welcome, John Doe</h1>
                 </div>
 
                 {/* Configuration Items Flexbox */}
-                <div class="ml-5 mr-5">
+                <div>
                     {/* Header */}
                     <div class="flex justify-start">
                         <h3 class="text-2xl bg-blue-600 p-2 px-10 text-white rounded-t-xl shadow">Configuration</h3>
@@ -95,7 +95,7 @@ export default class Dashboard extends Component {
                 </div>
 
                 {/* Users Flexbox */}
-                <div class="ml-5 mr-5">
+                <div>
                     {/* Header */}
                     <div class="flex justify-start">
                         <h3 class="text-2xl bg-blue-600 p-2 px-10 text-white rounded-t-xl shadow">Users</h3>

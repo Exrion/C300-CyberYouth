@@ -45,7 +45,7 @@ function App() {
         </nav>
 
         {/* Main Content */}
-        <div className="flex items-center justify-center max-w-fit py-2">
+        <div className="flex items-center justify-center w-full py-2">
           <Routes>
             <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
             <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
