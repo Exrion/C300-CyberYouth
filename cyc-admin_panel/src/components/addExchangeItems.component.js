@@ -4,7 +4,8 @@ export default class addExchangeItems extends Component {
   constructor(props) {
     super(props);
     this.onChangeExchangeName = this.onChangeExchangeName.bind(this);
-    this.onChangeExchangeDescription = this.onChangeExchangeDescription.bind(this);
+    this.onChangeExchangeDescription =
+      this.onChangeExchangeDescription.bind(this);
     this.onChangeExchangeImg = this.onChangeExchangeImg.bind(this);
     this.onChangeLemonsEach = this.onChangeLemonsEach.bind(this);
     this.onChangeDeliveryMode = this.onChangeDeliveryMode.bind(this);
@@ -38,9 +39,15 @@ export default class addExchangeItems extends Component {
     });
   }
   onChangeLemonsEach(e) {
-    this.setState({
-      lemonsEach: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        lemonsEach: e.target.value,
+      });
+    }
   }
   onChangeDeliveryMode(e) {
     this.setState({
@@ -90,7 +97,6 @@ export default class addExchangeItems extends Component {
     });
   }
 
-  
   render() {
     return (
       <div className="submit-form">
@@ -103,12 +109,12 @@ export default class addExchangeItems extends Component {
           </div>
         ) : (
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-          <form>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeName">Exchange Name</label>
-              <input
-                type="text"
-                class="form-control block
+            <form>
+              <div class="form-group mb-6">
+                <label htmlFor="exchangeName">Exchange Name</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -122,18 +128,20 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeName"
-                required
-                value={this.state.exchangeName}
-                onChange={this.onChangeExchangeName}
-                name="exchangeName"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeDescription">Exchange Description</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="exchangeName"
+                  required
+                  value={this.state.exchangeName}
+                  onChange={this.onChangeExchangeName}
+                  name="exchangeName"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="exchangeDescription">
+                  Exchange Description
+                </label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -147,18 +155,18 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeDescription"
-                required
-                value={this.state.exchangeDescription}
-                onChange={this.onChangeExchangeDescription}
-                name="exchangeDescription"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeImg">Exchange Image</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="exchangeDescription"
+                  required
+                  value={this.state.exchangeDescription}
+                  onChange={this.onChangeExchangeDescription}
+                  name="exchangeDescription"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="exchangeImg">Exchange Image</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -172,18 +180,18 @@ export default class addExchangeItems extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeImg"
-                required
-                value={this.state.exchangeImg}
-                onChange={this.onChangeExchangeImg}
-                name="exchangeImg"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="lemonsEach">Lemons Each</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="exchangeImg"
+                  required
+                  value={this.state.exchangeImg}
+                  onChange={this.onChangeExchangeImg}
+                  name="exchangeImg"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="lemonsEach">Lemons Each</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -197,18 +205,18 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="lemonsEach"
-                required
-                value={this.state.lemonsEach}
-                onChange={this.onChangeLemonsEach}
-                name="lemonsEach"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="deliveryMode">Delivery Mode</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="lemonsEach"
+                  required
+                  value={this.state.lemonsEach}
+                  onChange={this.onChangeLemonsEach}
+                  name="lemonsEach"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="deliveryMode">Delivery Mode</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -222,18 +230,18 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="deliveryMode"
-                required
-                value={this.state.deliveryMode}
-                onChange={this.onChangeDeliveryMode}
-                name="deliveryMode"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeStock">Exchange Stock</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="deliveryMode"
+                  required
+                  value={this.state.deliveryMode}
+                  onChange={this.onChangeDeliveryMode}
+                  name="deliveryMode"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="exchangeStock">Exchange Stock</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -247,14 +255,16 @@ export default class addExchangeItems extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeStock"
-                required
-                value={this.state.exchangeStock}
-                onChange={this.onChangeExchangeStock}
-                name="exchangeStock"
-              />
-            </div>
-            <button onClick={this.saveExchange} className="btn btn-success   w-full
+                  id="exchangeStock"
+                  required
+                  value={this.state.exchangeStock}
+                  onChange={this.onChangeExchangeStock}
+                  name="exchangeStock"
+                />
+              </div>
+              <button
+                onClick={this.saveExchange}
+                className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -270,9 +280,10 @@ export default class addExchangeItems extends Component {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
-              Submit
-            </button>
+                ease-in-out"
+              >
+                Submit
+              </button>
             </form>
           </div>
         )}
@@ -280,4 +291,3 @@ export default class addExchangeItems extends Component {
     );
   }
 }
-

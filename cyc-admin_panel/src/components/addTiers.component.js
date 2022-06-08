@@ -35,14 +35,26 @@ export default class addTiers extends Component {
     });
   }
   onChangeGrapesNeeded(e) {
-    this.setState({
-      grapesNeeded: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        grapesNeeded: e.target.value,
+      });
+    }
   }
   onChangeLemonsAwarded(e) {
-    this.setState({
-      lemonsAwarded: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        lemonsAwarded: e.target.value,
+      });
+    }
   }
   saveTier() {
     var data = {
@@ -50,7 +62,7 @@ export default class addTiers extends Component {
       tierDescription: this.state.tierDescription,
       tierIcon: this.state.tierIcon,
       grapesNeeded: this.state.grapesNeeded,
-      lemonsAwarded: this.state.lemonsAwarded
+      lemonsAwarded: this.state.lemonsAwarded,
     };
     TierDataService.create(data)
       .then((response) => {
@@ -60,7 +72,7 @@ export default class addTiers extends Component {
           tierDescription: response.data.tierDescription,
           tierIcon: response.data.tierIcon,
           grapesNeeded: response.data.grapesNeeded,
-          lemonsAwarded: response.data.lemonsAwarded
+          lemonsAwarded: response.data.lemonsAwarded,
         });
         console.log(response.data);
         this.setState.submitted = true;
@@ -75,7 +87,7 @@ export default class addTiers extends Component {
       tierDescription: "",
       tierIcon: "",
       grapesNeeded: "",
-      lemonsAwarded: ""
+      lemonsAwarded: "",
     });
   }
   render() {
@@ -90,12 +102,12 @@ export default class addTiers extends Component {
           </div>
         ) : (
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-          <form>
-          <div class="form-group mb-6">
-              <label htmlFor="tierName">Tier Name</label>
-              <input
-                type="text"
-                class="form-control block
+            <form>
+              <div class="form-group mb-6">
+                <label htmlFor="tierName">Tier Name</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -109,18 +121,18 @@ export default class addTiers extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="tierName"
-                required
-                value={this.state.tierName}
-                onChange={this.onChangeTierName}
-                name="tierName"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="tierDescription">Tier Description</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="tierName"
+                  required
+                  value={this.state.tierName}
+                  onChange={this.onChangeTierName}
+                  name="tierName"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="tierDescription">Tier Description</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -134,18 +146,18 @@ export default class addTiers extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="tierDescription"
-                required
-                value={this.state.tierDescription}
-                onChange={this.onChangeTierDescription}
-                name="tierDescription"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="tierIcon">Tier Icon</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="tierDescription"
+                  required
+                  value={this.state.tierDescription}
+                  onChange={this.onChangeTierDescription}
+                  name="tierDescription"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="tierIcon">Tier Icon</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -159,18 +171,18 @@ export default class addTiers extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="tierIcon"
-                required
-                value={this.state.tierIcon}
-                onChange={this.onChangeTierIcon}
-                name="tierIcon"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="grapesNeeded">Grapes Needed</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="tierIcon"
+                  required
+                  value={this.state.tierIcon}
+                  onChange={this.onChangeTierIcon}
+                  name="tierIcon"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="grapesNeeded">Grapes Needed</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -184,18 +196,18 @@ export default class addTiers extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="grapesNeeded"
-                required
-                value={this.state.grapesNeeded}
-                onChange={this.onChangeGrapesNeeded}
-                name="grapesNeeded"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="lemonsAwarded">Lemons Awarded</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="grapesNeeded"
+                  required
+                  value={this.state.grapesNeeded}
+                  onChange={this.onChangeGrapesNeeded}
+                  name="grapesNeeded"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="lemonsAwarded">Lemons Awarded</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -209,14 +221,16 @@ export default class addTiers extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="lemonsAwarded"
-                required
-                value={this.state.lemonsAwarded}
-                onChange={this.onChangeLemonsAwarded}
-                name="lemonsAwarded"
-              />
-            </div>
-            <button onClick={this.saveTier} className="btn btn-success   w-full
+                  id="lemonsAwarded"
+                  required
+                  value={this.state.lemonsAwarded}
+                  onChange={this.onChangeLemonsAwarded}
+                  name="lemonsAwarded"
+                />
+              </div>
+              <button
+                onClick={this.saveTier}
+                className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -232,9 +246,10 @@ export default class addTiers extends Component {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
-              Submit
-            </button>
+                ease-in-out"
+              >
+                Submit
+              </button>
             </form>
           </div>
         )}

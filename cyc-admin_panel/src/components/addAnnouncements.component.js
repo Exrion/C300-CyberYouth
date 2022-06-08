@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AnnouncementDataService from "../services/announcement.service";
+
 export default class addAnnouncements extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +15,10 @@ export default class addAnnouncements extends Component {
     this.state = {
       id: null,
       announcementTitle: "",
-      announcementType : "",
+      announcementType: "",
       announcementBody: "",
-      announcementImg : "",
+      announcementImg: "",
       announcementLink: "",
-      
     };
   }
   onChangeAnnouncementTitle(e) {
@@ -65,7 +65,7 @@ export default class addAnnouncements extends Component {
           announcementBody: response.data.announcementBody,
           announcementImg: response.data.announcementImg,
           announcementLink: response.data.announcementLink,
-          
+
           //   created_at: response.data.created_at,
           //   modified_at: response.data.modified_at
         });
@@ -87,6 +87,7 @@ export default class addAnnouncements extends Component {
       //   modified_at: null
     });
   }
+
   render() {
     return (
       <div className="submit-form">
@@ -99,12 +100,12 @@ export default class addAnnouncements extends Component {
           </div>
         ) : (
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-          <form>
-          <div class="form-group mb-6">
-              <label htmlFor="announcementTitle">Announcement Title</label>
-              <input
-                type="text"
-                class="form-control block
+            <form>
+              <div class="form-group mb-6">
+                <label htmlFor="announcementTitle">Announcement Title</label>
+                <input
+                  type="text"
+                  class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -118,18 +119,18 @@ export default class addAnnouncements extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementTitle"
-                required
-                value={this.state.announcementTitle}
-                onChange={this.onChangeAnnouncementTitle}
-                name="announcementTitle"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="announcementType">Announcement Type</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="announcementTitle"
+                  required
+                  value={this.state.announcementTitle}
+                  onChange={this.onChangeAnnouncementTitle}
+                  name="announcementTitle"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="announcementType">Announcement Type</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -143,18 +144,18 @@ export default class addAnnouncements extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementType"
-                required
-                value={this.state.announcementType}
-                onChange={this.onChangeAnnouncementType}
-                name="announcementType"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="announcementBody">Announcement Body</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="announcementType"
+                  required
+                  value={this.state.announcementType}
+                  onChange={this.onChangeAnnouncementType}
+                  name="announcementType"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="announcementBody">Announcement Body</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -168,18 +169,18 @@ export default class addAnnouncements extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementBody"
-                required
-                value={this.state.announcementBody}
-                onChange={this.onChangeAnnouncementBody}
-                name="announcementBody"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="announcementImg">Announcement Images</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="announcementBody"
+                  required
+                  value={this.state.announcementBody}
+                  onChange={this.onChangeAnnouncementBody}
+                  name="announcementBody"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="announcementImg">Announcement Images</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -193,18 +194,18 @@ export default class addAnnouncements extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementImg"
-                required
-                value={this.state.announcementImg}
-                onChange={this.onChangeAnnouncementImg}
-                name="announcementImg"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="announcementLink">Announcement Link</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="announcementImg"
+                  required
+                  value={this.state.announcementImg}
+                  onChange={this.onChangeAnnouncementImg}
+                  name="announcementImg"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="announcementLink">Announcement Link</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -218,14 +219,16 @@ export default class addAnnouncements extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementLink"
-                required
-                value={this.state.announcementLink}
-                onChange={this.onChangeAnnouncementLink}
-                name="announcementLink"
-              />
-            </div>
-            <button onClick={this.saveAnnouncement} className="btn btn-success   w-full
+                  id="announcementLink"
+                  required
+                  value={this.state.announcementLink}
+                  onChange={this.onChangeAnnouncementLink}
+                  name="announcementLink"
+                />
+              </div>
+              <button
+                onClick={this.saveAnnouncement}
+                className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -241,9 +244,10 @@ export default class addAnnouncements extends Component {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
-              Submit
-            </button>
+                ease-in-out"
+              >
+                Submit
+              </button>
             </form>
           </div>
         )}

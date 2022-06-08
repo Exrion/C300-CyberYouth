@@ -26,35 +26,41 @@ export default class addTracks extends Component {
       // modifiedAt: "",
     };
   }
-  onChangeTrackName(e){
+  onChangeTrackName(e) {
     this.setState({
       trackName: e.target.value,
     });
   }
-  onChangeTrackDescription(e){
+  onChangeTrackDescription(e) {
     this.setState({
       trackDescription: e.target.value,
     });
   }
-  onChangeTrackProvider(e){
+  onChangeTrackProvider(e) {
     this.setState({
       trackProvider: e.target.value,
-    })
+    });
   }
-  onChangeTrackLink(e){
+  onChangeTrackLink(e) {
     this.setState({
       trackLink: e.target.value,
-    })
+    });
   }
-  onChangeTrackTags(e){
+  onChangeTrackTags(e) {
     this.setState({
       trackTags: e.target.value,
-    })
+    });
   }
-  onChangeTrackLemons(e){
-    this.setState({
-      trackLemons: e.target.value,
-    })
+  onChangeTrackLemons(e) {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        trackLemons: e.target.value,
+      });
+    }
   }
   // onChangeCreatedAt(t){
   //   this.setState({
@@ -66,7 +72,7 @@ export default class addTracks extends Component {
   //     modifiedAt: t.target.value
   //   })
   // }
-  saveTrack(){
+  saveTrack() {
     var data = {
       trackName: this.state.trackName,
       trackDescription: this.state.trackDescription,
@@ -104,24 +110,24 @@ export default class addTracks extends Component {
       trackProvider: "",
       trackLink: "",
       trackTags: "",
-      trackLemons: null
+      trackLemons: null,
       // createdAt: null,
       // modifiedAt: null
     });
   }
-    render() {
-        return (
-          <div className="submit-form">
-            {this.state.submitted ? (
-              <div>
-                <h4>You submitted successfully!</h4>
-                <button className = "btn btn-success" onClick={this.newTrack}>
-                  Add
-                </button>
-              </div>
-            ) : (
-              <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-              <form>
+  render() {
+    return (
+      <div className="submit-form">
+        {this.state.submitted ? (
+          <div>
+            <h4>You submitted successfully!</h4>
+            <button className="btn btn-success" onClick={this.newTrack}>
+              Add
+            </button>
+          </div>
+        ) : (
+          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+            <form>
               <div class="form-group mb-6">
                 <label htmlFor="trackName">Track Name</label>
                 <input
@@ -147,9 +153,9 @@ export default class addTracks extends Component {
                   name="trackName"
                 />
               </div>
-              <div class ="form-group mb-6">
+              <div class="form-group mb-6">
                 <label htmlFor="trackDescription">Track Description</label>
-                <input 
+                <input
                   type="text"
                   class="form-control block
                   w-full
@@ -172,9 +178,9 @@ export default class addTracks extends Component {
                   name="trackDescription"
                 />
               </div>
-              <div class ="form-group mb-6">
+              <div class="form-group mb-6">
                 <label htmlFor="trackProvider">Track Provider</label>
-                <input 
+                <input
                   type="text"
                   class="form-control block
                   w-full
@@ -197,9 +203,9 @@ export default class addTracks extends Component {
                   name="trackProvider"
                 />
               </div>
-              <div class ="form-group mb-6">
+              <div class="form-group mb-6">
                 <label htmlFor="trackLink">Track Link</label>
-                <input 
+                <input
                   type="text"
                   class="form-control block
                   w-full
@@ -222,9 +228,9 @@ export default class addTracks extends Component {
                   name="trackLink"
                 />
               </div>
-              <div class ="form-group mb-6">
+              <div class="form-group mb-6">
                 <label htmlFor="trackTags">Track Tag</label>
-                <input 
+                <input
                   type="text"
                   class="form-control block
                   w-full
@@ -247,9 +253,9 @@ export default class addTracks extends Component {
                   name="trackTags"
                 />
               </div>
-              <div class ="form-group mb-6">
+              <div class="form-group mb-6">
                 <label htmlFor="trackLemons">Track Lemons</label>
-                <input 
+                <input
                   type="text"
                   class="form-control block
                   w-full
@@ -273,7 +279,9 @@ export default class addTracks extends Component {
                 />
               </div>
 
-              <button onClick={this.saveTrack} className="btn btn-success   w-full
+              <button
+                onClick={this.saveTrack}
+                className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -289,12 +297,13 @@ export default class addTracks extends Component {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
-              Submit
-            </button>
+                ease-in-out"
+              >
+                Submit
+              </button>
             </form>
           </div>
-          )}
+        )}
       </div>
     );
   }

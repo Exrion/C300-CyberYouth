@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TrophyDataService from "../services/trophy.service";
+
 export default class addTrophies extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,6 @@ export default class addTrophies extends Component {
     this.onChangeTotalProgress = this.onChangeTotalProgress.bind(this);
     this.onChangeTotalLevel = this.onChangeTotalLevel.bind(this);
     this.onChangeTrophyLemons = this.onChangeTrophyLemons.bind(this);
-
     this.saveTrophy = this.saveTrophy.bind(this);
     this.newTrophy = this.newTrophy.bind(this);
     this.state = {
@@ -20,9 +20,9 @@ export default class addTrophies extends Component {
       totalProgress: "",
       totalLvl: "",
       trophyLemons: "",
-      submitted: false
     };
   }
+
   onChangeTrophyName(e) {
     this.setState({
       trophyName: e.target.value,
@@ -39,19 +39,39 @@ export default class addTrophies extends Component {
     });
   }
   onChangeTotalProgress(e) {
-    this.setState({
-      totalProgress: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({ totalProgress: e.target.value });
+    }
+    // this.setState({
+    //   totalProgress: e.target.value,
+    // });
   }
   onChangeTotalLevel(e) {
-    this.setState({
-      totalLvl: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        totalLvl: e.target.value,
+      });
+    }
   }
+
   onChangeTrophyLemons(e) {
-    this.setState({
-      trophyLemons: e.target.value,
-    });
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({
+        trophyLemons: e.target.value,
+      });
+    }
   }
   saveTrophy() {
     var data = {
@@ -72,7 +92,7 @@ export default class addTrophies extends Component {
           totalProgress: response.data.totalProgress,
           totalLvl: response.data.totalLvl,
           trophyLemons: response.data.trophyLemons,
-          submitted: true
+          submitted: true,
         });
         console.log(response.data);
       })
@@ -88,11 +108,10 @@ export default class addTrophies extends Component {
       totalProgress: "",
       totalLvl: "",
       trophyLemons: "",
-      submitted: false
+      submitted: false,
     });
   }
 
-  
   render() {
     return (
       <div className="submit-form">
@@ -105,12 +124,12 @@ export default class addTrophies extends Component {
           </div>
         ) : (
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-          <form>
-            <div className="form-group mb-6">
-              <label htmlFor="trophyName">Trophy Name</label>
-              <input
-                type="text"
-                className="form-control block
+            <form>
+              <div className="form-group mb-6">
+                <label htmlFor="trophyName">Trophy Name</label>
+                <input
+                  type="text"
+                  className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -124,18 +143,18 @@ export default class addTrophies extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyName"
-                required
-                value={this.state.trophyName}
-                onChange={this.onChangeTrophyName}
-                name="trophyName"
-              />
-            </div>
-            <div className="form-group mb-6">
-              <label htmlFor="trophyDescription">Trophy Description</label>
-              <input
-                type="text"
-                className="form-control block
+                  id="trophyName"
+                  required
+                  value={this.state.trophyName}
+                  onChange={this.onChangeTrophyName}
+                  name="trophyName"
+                />
+              </div>
+              <div className="form-group mb-6">
+                <label htmlFor="trophyDescription">Trophy Description</label>
+                <input
+                  type="text"
+                  className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -149,18 +168,18 @@ export default class addTrophies extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyDescription"
-                required
-                value={this.state.trophyDescription}
-                onChange={this.onChangeTrophyDescription}
-                name="trophyDescription"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="trophyIcon">Trophy Icon</label>
-              <input
-                type="text"
-                class="form-control block
+                  id="trophyDescription"
+                  required
+                  value={this.state.trophyDescription}
+                  onChange={this.onChangeTrophyDescription}
+                  name="trophyDescription"
+                />
+              </div>
+              <div class="form-group mb-6">
+                <label htmlFor="trophyIcon">Trophy Icon</label>
+                <input
+                  type="text"
+                  class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -174,18 +193,18 @@ export default class addTrophies extends Component {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyIcon"
-                required
-                value={this.state.trophyIcon}
-                onChange={this.onChangeTrophyIcon}
-                name="trophyIcon"
-              />
-            </div>
-            <div className="form-group mb-6">
-              <label htmlFor="totalProgress">Total Progress</label>
-              <input
-                type="text"
-                className="form-control block
+                  id="trophyIcon"
+                  required
+                  value={this.state.trophyIcon}
+                  onChange={this.onChangeTrophyIcon}
+                  name="trophyIcon"
+                />
+              </div>
+              <div className="form-group mb-6">
+                <label htmlFor="totalProgress">Total Progress</label>
+                <input
+                  type="text"
+                  className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -199,18 +218,18 @@ export default class addTrophies extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="totalProgress"
-                required
-                value={this.state.totalProgress}
-                onChange={this.onChangeTotalProgress}
-                name="totalProgress"
-              />
-            </div>
-            <div className="form-group mb-6">
-              <label htmlFor="totalLvl">Total Level</label>
-              <input
-                type="text"
-                className="form-control block
+                  id="totalProgress"
+                  required
+                  value={this.state.totalProgress}
+                  onChange={this.onChangeTotalProgress}
+                  name="totalProgress"
+                />
+              </div>
+              <div className="form-group mb-6">
+                <label htmlFor="totalLvl">Total Level</label>
+                <input
+                  type="text"
+                  className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -224,18 +243,18 @@ export default class addTrophies extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="totalLvl"
-                required
-                value={this.state.totalLvl}
-                onChange={this.onChangeTotalLevel}
-                name="totalLvl"
-              />
-            </div>
-            <div className="form-group mb-6">
-              <label htmlFor="trophyLemons">Trophy Lemons</label>
-              <input
-                type="text"
-                className="form-control block
+                  id="totalLvl"
+                  required
+                  value={this.state.totalLvl}
+                  onChange={this.onChangeTotalLevel}
+                  name="totalLvl"
+                />
+              </div>
+              <div className="form-group mb-6">
+                <label htmlFor="trophyLemons">Trophy Lemons</label>
+                <input
+                  type="text"
+                  className="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -249,14 +268,17 @@ export default class addTrophies extends Component {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyLemons"
-                required
-                value={this.state.trophyLemons}
-                onChange={this.onChangeTrophyLemons}
-                name="trophyLemons"
-              />
-            </div>
-            <button onClick={this.saveTrophy} className="btn btn-success   w-full
+                  id="trophyLemons"
+                  required
+                  value={this.state.trophyLemons}
+                  onChange={this.onChangeTrophyLemons}
+                  //this.onChangeTrophyLemons
+                  name="trophyLemons"
+                />
+              </div>
+              <button
+                onClick={this.saveTrophy}
+                className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -272,9 +294,10 @@ export default class addTrophies extends Component {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
-              Submit
-            </button>
+                ease-in-out"
+              >
+                Submit
+              </button>
             </form>
           </div>
         )}
@@ -282,4 +305,3 @@ export default class addTrophies extends Component {
     );
   }
 }
-
