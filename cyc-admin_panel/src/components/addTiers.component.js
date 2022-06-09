@@ -15,8 +15,8 @@ export default class addTiers extends Component {
       tierName: "",
       tierDescription: "",
       tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: "",
+      grapesNeeded: 0,
+      lemonsAwarded: 0,
     };
   }
   onChangeTierName(e) {

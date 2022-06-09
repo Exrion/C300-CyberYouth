@@ -21,7 +21,7 @@ export default class addTracks extends Component {
       trackProvider: "",
       trackLink: "",
       trackTags: "",
-      trackLemons: "",
+      trackLemons: 0,
       // createdAt: "",
       // modifiedAt: "",
     };

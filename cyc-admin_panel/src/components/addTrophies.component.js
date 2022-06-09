@@ -17,9 +17,9 @@ export default class addTrophies extends Component {
       trophyName: "",
       trophyDescription: "",
       trophyIcon: "",
-      totalProgress: "",
-      totalLvl: "",
-      trophyLemons: "",
+      totalProgress: 0,
+      totalLvl: 0,
+      trophyLemons: 0,
     };
   }
 

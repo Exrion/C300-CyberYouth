@@ -18,9 +18,9 @@ export default class addExchangeItems extends Component {
       exchangeName: "",
       exchangeDescription: "",
       exchangeImg: "",
-      lemonsEach: null,
+      lemonsEach: 0,
       deliveryMode: "",
-      exchangeStock: null,
+      exchangeStock: 0,
     };
   }
   onChangeExchangeName(e) {
