@@ -111,13 +111,112 @@ export default class ConfigAnnouncements extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Title of the card
+                                                </div>
+                                                <div class="text-xs">
+                                                    Announcement Type
+                                                </div>
+                                                <div class="text-md py-5 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-blue-600">
+                                                    <a href="https://www.google.com/">Announcement Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Title of the card
+                                                </div>
+                                                <div class="text-xs">
+                                                    Announcement Type
+                                                </div>
+                                                <div class="text-md py-5 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-blue-600">
+                                                    <a href="https://www.google.com/">Announcement Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Title of the card
+                                                </div>
+                                                <div class="text-xs">
+                                                    Announcement Type
+                                                </div>
+                                                <div class="text-md py-5 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-blue-600">
+                                                    <a href="https://www.google.com/">Announcement Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {/* Sidebar */}
                         <div class="col-span-1 max-w-fit p-5">
                             <div>
                                 {/* Title */}
-                                <h2 class="text-2xl">
+                                <h2 class="text-2xl text-left">
                                     Announcements
                                 </h2>
                                 {/* Details */}

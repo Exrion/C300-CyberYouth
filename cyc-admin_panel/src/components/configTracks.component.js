@@ -38,8 +38,171 @@ export default class ConfigTracks extends Component{
         </div>
 
         return (
-            <div>
-                Tracks
+            <div class="xl:mx-5 md:mx-20 flex-1">
+                <div class="grid grid-cols-3 gap-5 grid-rows-2">
+                    {/* Search and add bar */}
+                    <div class="col-span-3">
+                        <div class="flex justify-between">
+                            {/* Add button */}
+                            <div>
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full">
+                                    <Link to="/addTiers">
+                                        <FaPlus />
+                                    </Link>
+                                </button>
+                            </div>
+
+                            {/* Search bar */}
+                            <div>
+                                <input type="search" id="default-search" class="block p-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search entries" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Main Content */}
+                <div class="col-span-3">
+                    <div class="grid grid-cols-5 grid-rows-1 divide-x-4 h-full">
+                        {/* Content */}
+                        <div class="col-span-4 px-5">
+                            {/* Content Grid */}
+                            <div class="flex-col flex space-y-5">
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Track Name
+                                                </div>
+                                                <div class="text-xs">
+                                                    Track Provider
+                                                </div>
+                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-slate-500 flex flex-col">
+                                                    <p>Track Lemons: 500</p>
+                                                    <p>Track Tags: Water, Earth, Fire, Air</p>
+                                                </div>
+                                                <div class="text-xs text-blue-600 py-1">
+                                                    <a href="https://www.google.com/">Track Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Track Name
+                                                </div>
+                                                <div class="text-xs">
+                                                    Track Provider
+                                                </div>
+                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-slate-500 flex flex-col">
+                                                    <p>Track Lemons: 500</p>
+                                                    <p>Track Tags: Water, Earth, Fire, Air</p>
+                                                </div>
+                                                <div class="text-xs text-blue-600 py-1">
+                                                    <a href="https://www.google.com/">Track Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Track Name
+                                                </div>
+                                                <div class="text-xs">
+                                                    Track Provider
+                                                </div>
+                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-slate-500 flex flex-col">
+                                                    <p>Track Lemons: 500</p>
+                                                    <p>Track Tags: Water, Earth, Fire, Air</p>
+                                                </div>
+                                                <div class="text-xs text-blue-600 py-1">
+                                                    <a href="https://www.google.com/">Track Link</a>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Sidebar */}
+                        <div class="col-span-1 max-w-fit p-5">
+                            <div>
+                                {/* Title */}
+                                <h2 class="text-2xl text-left">
+                                    Tracks
+                                </h2>
+                                {/* Details */}
+                                <div class="flex-col justify-start">
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
+                                    </div>
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
+                                    </div>
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
