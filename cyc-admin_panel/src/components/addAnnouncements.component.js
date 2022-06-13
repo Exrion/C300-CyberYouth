@@ -19,11 +19,11 @@ const addAnnouncements = () => {
   };
   const saveAnnouncement = () => {
     var data = {
-      announcementTitle: this.state.announcementTitle,
-      announcementType: this.state.announcementType,
-      announcementBody: this.state.announcementBody,
-      announcementImg: this.state.announcementImg,
-      announcementLink: this.state.announcementLink
+      announcementTitle: announcement.announcementTitle,
+      announcementType: announcement.announcementType,
+      announcementBody: announcement.announcementBody,
+      announcementImg: announcement.announcementImg,
+      announcementLink: announcement.announcementLink
     };
     AnnouncementDataService.create(data)
       .then(response => {
