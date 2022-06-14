@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TrophyDataService from "../services/trophy.service";
 
-const addTrophies = () => {
+const AddTrophies = () => {
   const initialTrophyState = {
     id: null,
     trophyName: "",
@@ -249,4 +249,4 @@ const addTrophies = () => {
     </div>
   );
 };
-export default addTrophies;
+export default AddTrophies;

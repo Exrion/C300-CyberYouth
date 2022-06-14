@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ExchangeDataService from "../services/exchange.service";
 
-const addExchangeItems = () => {
+const AddExchangeItems = () => {
   const initialExchangeItemState = {
     id: null,
     exchangeName: "",
@@ -252,4 +252,4 @@ const addExchangeItems = () => {
     </div>
   );
 };
-export default addExchangeItems;
+export default AddExchangeItems;

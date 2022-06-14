@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AnnouncementDataService from "../services/announcement.service";
 
-const addAnnouncements = () => {
+const AddAnnouncements = () => {
   const initialAnnouncementState = {
     id: null,
     announcementTitle: "",
@@ -212,4 +212,4 @@ const addAnnouncements = () => {
     </div>
   );
 };
-export default addAnnouncements;
+export default AddAnnouncements;
