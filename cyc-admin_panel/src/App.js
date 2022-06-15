@@ -34,7 +34,7 @@ function App() {
             </Link>
 
             {/* Account */}
-            <Link className="my-4 shadow bg-gray-100 rounded-full p-2 flex justify-center hover:bg-gray-200" to="/settingsAccount">
+            <Link className="my-4 shadow bg-gray-100 rounded-full p-2 flex justify-center hover:bg-gray-200 transition ease-in-out" to="/settingsAccount">
               {/* User Profile Picture here */}
               <img src={require('./images/navbar/pepe.png')} className="rounded-full object-scale-down h-9 w-9 border-solid" alt='user portrait' />
               {/* Username here */}

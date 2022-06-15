@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
                             </Link> */}
 
                             <Link to={"/configAnnouncements"}>
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-6 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-6 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaVolumeUp class="text-3xl" />
                                     </div>
@@ -47,7 +47,7 @@ export default class Dashboard extends Component {
 
 
                             <Link to={"/configExchangeItems"}>
-                                <div class="flex-col justify-center bg-slate-100 py-5 px-10 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-5 px-10 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaStackExchange class="text-3xl" />
                                     </div>
@@ -58,7 +58,7 @@ export default class Dashboard extends Component {
                             </Link>
 
                             <Link to={"/configTiers"}>
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-11 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-11 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaLongArrowAltUp class="text-3xl" />
                                     </div>
@@ -69,7 +69,7 @@ export default class Dashboard extends Component {
                             </Link>
 
                             <Link to={"/configTracks"}>
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-10 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-10 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaFastForward class="text-3xl" />
                                     </div>
@@ -80,7 +80,7 @@ export default class Dashboard extends Component {
                             </Link>
 
                             <Link to={"/configTrophies"}>
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-9 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-9 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaTrophy class="text-3xl" />
                                     </div>
@@ -106,7 +106,7 @@ export default class Dashboard extends Component {
                         <div class="grid content-start gap-x-6 p-6 w-max grid-flow-col grid-rows-1">
 
                             <Link to="/" class="place-self-stretch">
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-12 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-12 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaUser class="text-3xl" />
                                     </div>
@@ -117,7 +117,7 @@ export default class Dashboard extends Component {
                             </Link>
 
                             <Link to="/" class="place-self-stretch">
-                                <div class="flex-col justify-center bg-slate-100 py-8 px-7 rounded-xl hover:bg-gray-100">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-7 rounded-xl hover:bg-gray-200 transition ease-in-out">
                                     <div class="flex justify-center">
                                         <FaUserCog class="text-3xl" />
                                     </div>
