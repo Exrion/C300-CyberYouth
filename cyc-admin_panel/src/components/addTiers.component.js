@@ -1,102 +1,56 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TierDataService from "../services/tier.service";
-export default class addTiers extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTierName = this.onChangeTierName.bind(this);
-    this.onChangeTierDescription = this.onChangeTierDescription.bind(this);
-    this.onChangeTierIcon = this.onChangeTierIcon.bind(this);
-    this.onChangeGrapesNeeded = this.onChangeGrapesNeeded.bind(this);
-    this.onChangeLemonsAwarded = this.onChangeLemonsAwarded.bind(this);
 
-    this.saveTier = this.saveTier.bind(this);
-    this.newTier = this.newTier.bind(this);
-    this.state = {
-      tierName: "",
-      tierDescription: "",
-      tierIcon: "",
-      grapesNeeded: 0,
-      lemonsAwarded: 0,
-    };
-  }
-  onChangeTierName(e) {
-    this.setState({
-      tierName: e.target.value,
-    });
-  }
-  onChangeTierDescription(e) {
-    this.setState({
-      tierDescription: e.target.value,
-    });
-  }
-  onChangeTierIcon(e) {
-    this.setState({
-      tierIcon: e.target.value,
-    });
-  }
-  onChangeGrapesNeeded(e) {
-    const re = /^[0-9\b]+$/;
+const AddTiers = () => {
+  const initialTierState = {
+    tierName: "",
+    tierDescription: "",
+    tierIcon: "",
+    grapesNeeded: 0,
+    lemonsAwarded: 0,
+  };
 
-    // if value is not blank, then test the regex
-
-    if (e.target.value === "" || re.test(e.target.value)) {
-      this.setState({
-        grapesNeeded: e.target.value,
-      });
-    }
-  }
-  onChangeLemonsAwarded(e) {
-    const re = /^[0-9\b]+$/;
-
-    // if value is not blank, then test the regex
-
-    if (e.target.value === "" || re.test(e.target.value)) {
-      this.setState({
-        lemonsAwarded: e.target.value,
-      });
-    }
-  }
-  saveTier() {
+  const [tier, setTier] = useState(initialTierState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setTier({ ...tier, [name]: value });
+  };
+  const saveTier = () => {
     var data = {
-      tierName: this.state.tierName,
-      tierDescription: this.state.tierDescription,
-      tierIcon: this.state.tierIcon,
-      grapesNeeded: this.state.grapesNeeded,
-      lemonsAwarded: this.state.lemonsAwarded,
+      tierName: tier.tierName,
+      tierDescription: tier.tierDescription,
+      tierIcon: tier.tierIcon,
+      grapesNeeded: tier.grapesNeeded,
+      lemonsAwarded: tier.lemonsAwarded
     };
     TierDataService.create(data)
-      .then((response) => {
-        this.setState({
+      .then(response => {
+        setTier({
           id: response.data.id,
           tierName: response.data.tierName,
           tierDescription: response.data.tierDescription,
           tierIcon: response.data.tierIcon,
           grapesNeeded: response.data.grapesNeeded,
-          lemonsAwarded: response.data.lemonsAwarded,
+          lemonsAwarded: response.data.lemonsAwarded
         });
+        setSubmitted(true);
         console.log(response.data);
-        this.setState.submitted = true;
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
-  }
-  newTier() {
-    this.setState({
-      tierName: "",
-      tierDescription: "",
-      tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: "",
-    });
-  }
-  render() {
+  };
+  const newTier = () => {
+    setTier(initialTierState);
+    setSubmitted(false);
+  };
     return (
       <div className="submit-form">
-        {this.state.submitted ? (
+        {submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTier}>
+            <button className="btn btn-success" onClick={newTier}>
               Add
             </button>
           </div>
@@ -123,8 +77,8 @@ export default class addTiers extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="tierName"
                   required
-                  value={this.state.tierName}
-                  onChange={this.onChangeTierName}
+                  value={tier.tierName}
+                  onChange={handleInputChange}
                   name="tierName"
                 />
               </div>
@@ -148,8 +102,8 @@ export default class addTiers extends Component {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="tierDescription"
                   required
-                  value={this.state.tierDescription}
-                  onChange={this.onChangeTierDescription}
+                  value={tier.tierDescription}
+                  onChange={handleInputChange}
                   name="tierDescription"
                 />
               </div>
@@ -173,8 +127,8 @@ export default class addTiers extends Component {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="tierIcon"
                   required
-                  value={this.state.tierIcon}
-                  onChange={this.onChangeTierIcon}
+                  value={tier.tierIcon}
+                  onChange={handleInputChange}
                   name="tierIcon"
                 />
               </div>
@@ -198,8 +152,8 @@ export default class addTiers extends Component {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="grapesNeeded"
                   required
-                  value={this.state.grapesNeeded}
-                  onChange={this.onChangeGrapesNeeded}
+                  value={tier.grapesNeeded}
+                  onChange={handleInputChange}
                   name="grapesNeeded"
                 />
               </div>
@@ -223,13 +177,13 @@ export default class addTiers extends Component {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="lemonsAwarded"
                   required
-                  value={this.state.lemonsAwarded}
-                  onChange={this.onChangeLemonsAwarded}
+                  value={tier.lemonsAwarded}
+                  onChange={handleInputChange}
                   name="lemonsAwarded"
                 />
               </div>
               <button
-                onClick={this.saveTier}
+                onClick={saveTier}
                 className="btn btn-success   w-full
                 px-6
                 py-2.5
@@ -255,5 +209,5 @@ export default class addTiers extends Component {
         )}
       </div>
     );
-  }
-}
+  };
+  export default AddTiers;

@@ -1,127 +1,61 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TrackDataService from "../services/track.service";
-export default class addTracks extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTrackName = this.onChangeTrackName.bind(this);
-    this.onChangeTrackDescription = this.onChangeTrackDescription.bind(this);
-    this.onChangeTrackProvider = this.onChangeTrackProvider.bind(this);
-    this.onChangeTrackLink = this.onChangeTrackLink.bind(this);
-    this.onChangeTrackTags = this.onChangeTrackTags.bind(this);
-    this.onChangeTrackLemons = this.onChangeTrackLemons.bind(this);
-    // this.onChangeCreatedAt = this.onChangeCreatedAt.bind(this);
-    // this.onChangeModifiedAt = this.onChangeModifiedAt.bind(this);
 
-    this.saveTrack = this.saveTrack.bind(this);
-    this.newTrack = this.newTrack.bind(this);
-    this.state = {
-      id: null,
-      trackName: "",
-      trackDescription: "",
-      trackProvider: "",
-      trackLink: "",
-      trackTags: "",
-      trackLemons: 0,
-      // createdAt: "",
-      // modifiedAt: "",
-    };
-  }
-  onChangeTrackName(e) {
-    this.setState({
-      trackName: e.target.value,
-    });
-  }
-  onChangeTrackDescription(e) {
-    this.setState({
-      trackDescription: e.target.value,
-    });
-  }
-  onChangeTrackProvider(e) {
-    this.setState({
-      trackProvider: e.target.value,
-    });
-  }
-  onChangeTrackLink(e) {
-    this.setState({
-      trackLink: e.target.value,
-    });
-  }
-  onChangeTrackTags(e) {
-    this.setState({
-      trackTags: e.target.value,
-    });
-  }
-  onChangeTrackLemons(e) {
-    const re = /^[0-9\b]+$/;
+const AddTracks = () => {
+  const initialTrackState = {
+    id: null,
+    trackName: "",
+    trackDescription: "",
+    trackProvider: "",
+    trackLink: "",
+    trackTags: "",
+    trackLemons: null
+  };
 
-    // if value is not blank, then test the regex
-
-    if (e.target.value === "" || re.test(e.target.value)) {
-      this.setState({
-        trackLemons: e.target.value,
-      });
-    }
-  }
-  // onChangeCreatedAt(t){
-  //   this.setState({
-  //     createdAt: t.target.value
-  //   })
-  // }
-  // onChangeModifiedAt(t){
-  //   this.setState({
-  //     modifiedAt: t.target.value
-  //   })
-  // }
-  saveTrack() {
+  const [track, setTrack] = useState(initialTrackState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setTrack({ ...track, [name]: value });
+  };
+  const saveTrack = () => {
     var data = {
-      trackName: this.state.trackName,
-      trackDescription: this.state.trackDescription,
-      trackProvider: this.state.trackProvider,
-      trackLink: this.state.trackLink,
-      trackTags: this.state.trackTags,
-      trackLemons: this.state.trackLemons,
-      // createdAt: this.state.createdAt,
-      // modifiedAt: this.state.modifiedAt
+      trackName: track.trackName,
+      trackDescription: track.trackDescription,
+      trackProvider: track.trackProvider,
+      trackLink: track.trackLink,
+      trackTags: track.trackTags,
+      trackLemons: track.trackLemons
     };
     TrackDataService.create(data)
-      .then((response) => {
-        this.setState({
+      .then(response => {
+        setTrack({
           id: response.data.id,
           trackName: response.data.trackName,
           trackDescription: response.data.trackDescription,
           trackProvider: response.data.trackProvider,
           trackLink: response.data.trackLink,
           trackTags: response.data.trackTags,
-          trackLemons: response.data.trackLemons,
-          // createdAt: response.data.createdAt,
-          // modifiedAt: response.data.modifiedAt,
+          trackLemons: response.data.trackLemons
         });
+        setSubmitted(true);
         console.log(response.data);
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
-  }
-  newTrack() {
-    this.setState({
-      id: null,
-      trackName: "",
-      trackDescription: "",
-      trackProvider: "",
-      trackLink: "",
-      trackTags: "",
-      trackLemons: null,
-      // createdAt: null,
-      // modifiedAt: null
-    });
-  }
-  render() {
+  };
+  const newTrack = () => {
+    setTrack(initialTrackState);
+    setSubmitted(false);
+  };
+
     return (
       <div className="submit-form">
-        {this.state.submitted ? (
+        {submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTrack}>
+            <button className="btn btn-success" onClick={newTrack}>
               Add
             </button>
           </div>
@@ -148,8 +82,8 @@ export default class addTracks extends Component {
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackName"
                   required
-                  value={this.state.trackName}
-                  onChange={this.onChangeTrackName}
+                  value={track.trackName}
+                  onChange={handleInputChange}
                   name="trackName"
                 />
               </div>
@@ -173,8 +107,8 @@ export default class addTracks extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackDescription"
                   required
-                  value={this.state.trackDescription}
-                  onChange={this.onChangeTrackDescription}
+                  value={track.trackDescription}
+                  onChange={handleInputChange}
                   name="trackDescription"
                 />
               </div>
@@ -198,8 +132,8 @@ export default class addTracks extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackProvider"
                   required
-                  value={this.state.trackProvider}
-                  onChange={this.onChangeTrackProvider}
+                  value={track.trackProvider}
+                  onChange={handleInputChange}
                   name="trackProvider"
                 />
               </div>
@@ -223,8 +157,8 @@ export default class addTracks extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackLink"
                   required
-                  value={this.state.trackLink}
-                  onChange={this.onChangeTrackLink}
+                  value={track.trackLink}
+                  onChange={handleInputChange}
                   name="trackLink"
                 />
               </div>
@@ -248,8 +182,8 @@ export default class addTracks extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackTags"
                   required
-                  value={this.state.trackTags}
-                  onChange={this.onChangeTrackTags}
+                  value={track.trackTags}
+                  onChange={handleInputChange}
                   name="trackTags"
                 />
               </div>
@@ -273,14 +207,14 @@ export default class addTracks extends Component {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="trackLemons"
                   required
-                  value={this.state.trackLemons}
-                  onChange={this.onChangeTrackLemons}
+                  value={track.trackLemons}
+                  onChange={handleInputChange}
                   name="trackLemons"
                 />
               </div>
 
               <button
-                onClick={this.saveTrack}
+                onClick={saveTrack}
                 className="btn btn-success   w-full
                 px-6
                 py-2.5
@@ -306,5 +240,5 @@ export default class addTracks extends Component {
         )}
       </div>
     );
-  }
-}
+  };
+export default AddTracks;
