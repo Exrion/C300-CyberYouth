@@ -9,5 +9,9 @@ module.exports = {
   plugins: [
     require('flowbite/plugin'),
     require('@tailwindcss/line-clamp'),
+    require("@tailwindcss/forms")({
+      strategy: 'base', // only generate global styles
+      strategy: 'class', // only generate classes
+    }),
   ],
 }

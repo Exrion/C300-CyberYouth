@@ -131,7 +131,7 @@ export default class addExchangeItems extends Component {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="exchangeDescription">Exchange Description</label>
-              <input
+              <textarea
                 type="text"
                 class="form-control block
                   w-full
@@ -157,7 +157,7 @@ export default class addExchangeItems extends Component {
             <div class="form-group mb-6">
               <label htmlFor="exchangeImg">Exchange Image</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -182,7 +182,7 @@ export default class addExchangeItems extends Component {
             <div class="form-group mb-6">
               <label htmlFor="lemonsEach">Lemons Each</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                   w-full
                   px-3
@@ -232,7 +232,7 @@ export default class addExchangeItems extends Component {
             <div class="form-group mb-6">
               <label htmlFor="exchangeStock">Exchange Stock</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                   w-full
                   px-3

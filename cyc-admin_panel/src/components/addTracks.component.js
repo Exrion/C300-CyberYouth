@@ -149,7 +149,7 @@ export default class addTracks extends Component {
               </div>
               <div class ="form-group mb-6">
                 <label htmlFor="trackDescription">Track Description</label>
-                <input 
+                <textarea 
                   type="text"
                   class="form-control block
                   w-full
@@ -200,7 +200,7 @@ export default class addTracks extends Component {
               <div class ="form-group mb-6">
                 <label htmlFor="trackLink">Track Link</label>
                 <input 
-                  type="text"
+                  type="url"
                   class="form-control block
                   w-full
                   px-3
@@ -250,7 +250,7 @@ export default class addTracks extends Component {
               <div class ="form-group mb-6">
                 <label htmlFor="trackLemons">Track Lemons</label>
                 <input 
-                  type="text"
+                  type="number"
                   class="form-control block
                   w-full
                   px-3

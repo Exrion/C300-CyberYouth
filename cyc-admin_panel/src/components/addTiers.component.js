@@ -119,7 +119,7 @@ export default class addTiers extends Component {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="tierDescription">Tier Description</label>
-              <input
+              <textarea
                 type="text"
                 class="form-control block
                 w-full
@@ -145,7 +145,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="tierIcon">Tier Icon</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -170,7 +170,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="grapesNeeded">Grapes Needed</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                 w-full
                 px-3
@@ -195,7 +195,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="lemonsAwarded">Lemons Awarded</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                 w-full
                 px-3

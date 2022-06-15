@@ -46,7 +46,7 @@ export default class ConfigTracks extends Component{
                             {/* Add button */}
                             <div>
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full transition ease-in-out">
-                                    <Link to="/addTiers">
+                                    <Link to="/addTracks">
                                         <FaPlus />
                                     </Link>
                                 </button>

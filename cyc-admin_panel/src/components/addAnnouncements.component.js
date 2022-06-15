@@ -152,8 +152,8 @@ export default class addAnnouncements extends Component {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="announcementBody">Announcement Body</label>
-              <input
-                type="text"
+              <textarea
+                type="textarea"
                 class="form-control block
                 w-full
                 px-3
@@ -178,7 +178,7 @@ export default class addAnnouncements extends Component {
             <div class="form-group mb-6">
               <label htmlFor="announcementImg">Announcement Images</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -203,7 +203,7 @@ export default class addAnnouncements extends Component {
             <div class="form-group mb-6">
               <label htmlFor="announcementLink">Announcement Link</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3

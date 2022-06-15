@@ -133,7 +133,7 @@ export default class addTrophies extends Component {
             </div>
             <div className="form-group mb-6">
               <label htmlFor="trophyDescription">Trophy Description</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control block
                   w-full
@@ -159,7 +159,7 @@ export default class addTrophies extends Component {
             <div class="form-group mb-6">
               <label htmlFor="trophyIcon">Trophy Icon</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -184,7 +184,7 @@ export default class addTrophies extends Component {
             <div className="form-group mb-6">
               <label htmlFor="totalProgress">Total Progress</label>
               <input
-                type="text"
+                type="number"
                 className="form-control block
                   w-full
                   px-3
@@ -209,7 +209,7 @@ export default class addTrophies extends Component {
             <div className="form-group mb-6">
               <label htmlFor="totalLvl">Total Level</label>
               <input
-                type="text"
+                type="number"
                 className="form-control block
                   w-full
                   px-3
@@ -234,7 +234,7 @@ export default class addTrophies extends Component {
             <div className="form-group mb-6">
               <label htmlFor="trophyLemons">Trophy Lemons</label>
               <input
-                type="text"
+                type="number"
                 className="form-control block
                   w-full
                   px-3
