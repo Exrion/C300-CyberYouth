@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 // Importing Components
@@ -17,9 +18,18 @@ import AddTrophies from "./components/addTrophies.component";
 import EditTrophy from "./components/editTrophy.component";
 import EditAnnouncement from './components/editAnnouncemnts.component';
 import EditExchangeItem from "./components/editExchangeItem.component";
-
+import Login from "./components/Login/login.component";
 
 function App() {
+  //Login Token
+  const [token, setToken] = useState();
+
+  //Login Page
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
+  //Main Website
   return (
     <div className="App">
       <div className="xl:px-60">
