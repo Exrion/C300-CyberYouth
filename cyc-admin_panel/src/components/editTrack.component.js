@@ -216,6 +216,7 @@ const EditTrack = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Enter a number*"
                   id="trackLemons"
                   name="trackLemons"
                   value={currentTrack.trackLemons}

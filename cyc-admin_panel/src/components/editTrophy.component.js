@@ -166,6 +166,7 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Enter a number*"
                   id="totalProgress"
                   name="totalProgress"
                   value={currentTrophy.totalProgress}
@@ -191,6 +192,7 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Enter a number*"
                   id="totalLvl"
                   name="totalLvl"
                   value={currentTrophy.totalLvl}
@@ -216,6 +218,7 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  placeholder="Enter a number*"
                   id="trophyLemons"
                   name="trophyLemons"
                   value={currentTrophy.trophyLemons}
