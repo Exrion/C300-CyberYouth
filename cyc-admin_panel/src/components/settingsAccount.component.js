@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 
 export default class SettingAccount extends Component {
+    //Logout by clearing local storage
+    logout = () => {
+        localStorage.clear();
+        window.location.href = "/";
+    };
+
     render() {
         return (
             <div class="xl:mx-5 md:mx-20 flex-1">
@@ -47,7 +53,9 @@ export default class SettingAccount extends Component {
                                 Logout
                             </p>
                             <p class="text-md text-slate-700">Logout of account</p>
-                            <button class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <button class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                    onClick={this.logout}
+                                    >
                                 <p>Logout</p>
                             </button>
                         </div>
