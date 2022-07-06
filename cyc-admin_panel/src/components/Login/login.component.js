@@ -42,7 +42,7 @@ export default function Login({ setToken }) {
                         <input type="password" onChange={e => setPassword(e.target.value)} class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                     </label>
                     <div>
-                        <button type="submit" className="btn btn-success w-full px-6 py-2.5 bg-gray-100 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
+                        <button type="submit" className="btn btn-success w-full px-6 py-2.5 bg-gray-100 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out">Login</button>
                     </div>
                 </form>
             </div>
