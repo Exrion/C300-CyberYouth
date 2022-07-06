@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
@@ -11,11 +12,10 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 //Login Functionality
-app.use('/Login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
-});
+require("./app/routes/login.routes")(app);
+
+//Email Service
+require("./app/routes/email.routes")(app);
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
