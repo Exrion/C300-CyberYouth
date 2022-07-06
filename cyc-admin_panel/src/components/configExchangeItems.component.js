@@ -65,9 +65,9 @@ export default class ConfigExchangeitems extends Component {
                         {/* Content */}
                         <div class="col-span-4 px-5">
                             {/* Content Grid */}
-                            <div class="flex-col flex space-y-5">
+                            <ul class="flex-col flex space-y-5">
                                 {/* Card */}
-                                <div class="group rounded-xl shadow w-full h-full">
+                                <li class="group rounded-xl shadow w-full h-full">
                                     {/* Card Body */}
                                     <div class="grid grid-cols-3">
                                         <div class="col-span-1">
@@ -97,8 +97,8 @@ export default class ConfigExchangeitems extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>                                
+                                </li>
+                            </ul>                                
                         </div>
                         {/* Sidebar */}
                         <div class="col-span-1 max-w-fit p-5">
