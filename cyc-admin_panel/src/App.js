@@ -20,15 +20,18 @@ import EditAnnouncement from './components/editAnnouncemnts.component';
 import EditExchangeItem from "./components/editExchangeItem.component";
 import AboutUs from "./components/Footer/aboutus.component"
 import Contact from "./components/Footer/contact.component"
+//login imports
 import Login from "./components/Login/login.component";
+import useToken from "./components/App/useToken.component";
+
 
 function App() {
-  //Login Token
-  const [token, setToken] = useState();
+  //--- LOGIN FUNCTION---//
+  const { token, setToken } = useToken();
 
   //Login Page
   if (!token) {
-    return <Login setToken={setToken} />
+    return <Login setToken={setToken} />;
   }
 
   //Main Website
@@ -74,6 +77,7 @@ function App() {
             <Route exact path="/trophies/:id" element={<EditTrophy />} />
             <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
             <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
+            <Route exact path="/login" element={<Login />} />
             <Route path='/' element={< Dashboard />} />
             <Route exact path="/About_Us" element={<AboutUs />} />
             <Route exact path="/Contact" element={<Contact />} />

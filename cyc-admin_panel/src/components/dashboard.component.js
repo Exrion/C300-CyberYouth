@@ -3,6 +3,12 @@ import React, { Component } from "react";
 import { FaFastForward, FaTrophy, FaLongArrowAltUp, FaStackExchange, FaVolumeUp, FaUser, FaUserCog } from "react-icons/fa";
 
 export default class Dashboard extends Component {
+
+      //Logout by clearing local storage
+  logout = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
     render() {
         return (
             <div class="flex-col flex space-y-10 ml-5 mr-5">
@@ -10,7 +16,15 @@ export default class Dashboard extends Component {
                 <div class="flex justify-start">
                     <h1 class="text-3xl">Welcome, John Doe</h1>
                 </div>
-
+ {/*Logout Button */}
+ <div class="flex justify-end">
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded mr-2"
+            onClick={this.logout}
+          >
+            Logout
+          </button>
+        </div>
                 {/* Configuration Items Flexbox */}
                 <div>
                     {/* Header */}

@@ -11,11 +11,8 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-//Login Functionality
-require("./app/routes/login.routes")(app);
 
-//Email Service
-require("./app/routes/email.routes")(app);
+
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
@@ -41,6 +38,10 @@ require("./app/routes/tier.routes")(app);
 require("./app/routes/announcement.routes")(app);
 require("./app/routes/track.routes")(app);
 require("./app/routes/exchange.routes")(app);
+require("./app/routes/auth.routes")(app);
+require("./app/routes/account.routes")(app);
+//Email Service
+require("./app/routes/email.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
