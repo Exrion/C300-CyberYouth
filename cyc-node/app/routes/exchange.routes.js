@@ -15,8 +15,5 @@ module.exports = (app) => {
   // Update a Trophies with id
   router.put("/:id", exchanges.update);
 
-  // Delete a Tier with id
-  router.delete("/:id", exchanges.delete);
-
   app.use("/api/exchanges", router);
 };

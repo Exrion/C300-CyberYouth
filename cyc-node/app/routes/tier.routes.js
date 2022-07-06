@@ -1,4 +1,4 @@
-module.exports = (app) => {
+module.exports = app => {
     const tiers = require("../controllers/tier.controller.js");
   
     var router = require("express").Router();
@@ -10,7 +10,7 @@ module.exports = (app) => {
     router.get("/", tiers.findAll);
   
     // // Retrieve a single Tier with id
-    router.get("/:id", tiers.findOne);
+    // router.get("/:id", trophies.findOne);
   
     // Update a Tier with id
     router.put("/:id", tiers.update);

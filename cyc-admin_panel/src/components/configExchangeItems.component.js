@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import DataService from "../services/exchange.service";
-
-
-export default class ConfigExchangeitems extends Component{
+export default class ConfigExchangeitems extends Component {
     constructor(props) {
         super(props);
 
@@ -25,17 +22,6 @@ export default class ConfigExchangeitems extends Component{
                 });
             })
     }
-    remove(id) {
-        console.log("Deleting");
-        DataService.remove(id)
-            .then(response => {
-                console.log(response.data);
-                window.location.reload(false);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
 
     render() {
         const { DataisLoaded, items } = this.state;
@@ -51,60 +37,91 @@ export default class ConfigExchangeitems extends Component{
         </div>
 
         return (
-            <div>
-                <h1 class="text-3xl w-12/12">Exchange Items</h1>
-                <div class="flex flex-row py-2 justify-between w-12/12">
-                    <div class="justify-start py-2">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-3 rounded-full">
-                            <Link to="/addExchangeItems">
-                                <FaPlus />
-                            </Link>
-                        </button>
-                    </div>
-                    <form class="justify-end">
-                        <label htmlFor="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                        <div class="relative">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <div class="xl:mx-5 md:mx-20 flex-1">
+                <div class="grid grid-cols-3 gap-5 grid-rows-2">
+                    {/* Search and add bar */}
+                    <div class="col-span-3">
+                        <div class="flex justify-between">
+                            {/* Add button */}
+                            <div>
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full transition ease-in-out">
+                                    <Link to="/addExchangeItems">
+                                        <FaPlus />
+                                    </Link>
+                                </button>
                             </div>
-                            <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search entries" required />
+
+                            {/* Search bar */}
+                            <div>
+                                <input type="search" id="default-search" class="block p-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search entries" required />
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-flow-row gap-4 w-12/12">
-                    {
-                        items.map((item) => (
-                            <div
-                                class="p-4 group h-auto w-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100"
-                            >
-                                <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-40 md:rounded-none md:rounded-l-lg" src={item.exchangeImg} alt={item.exchangeName} />
-                                <div class="flex flex-col justify-between p-4 leading-normal mt-12 group-hover:hidden grow flex-1">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.exchangeName}</h5>
-                                    <p class="mb-3 font-normal">{item.exchangeDescription}</p>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Lemons Each: {item.lemonsEach}</p>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Delivery Mode: {item.deliveryMode}</p>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Exchange Stock: {item.exchangeStock}</p>
-                                    
-                                </div>
-                                <div class="hidden group-hover:flex group-hover:flex-col xl:px-12 md:px-16 sm:py-6 space-y-4 grow flex-1">
-                                    <div>
-                                        <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
-                                            <Link to={"/exchanges/" + item.id}>
-                                                Edit
-                                            </Link>
-                                        </button>
+
+                {/* Main Content */}
+                <div class="col-span-3">
+                    <div class="grid grid-cols-5 grid-rows-1 divide-x-4 h-full">
+                        {/* Content */}
+                        <div class="col-span-4 px-5">
+                            {/* Content Grid */}
+                            <div class="flex-col flex space-y-5">
+                                {/* Card */}
+                                <div class="group rounded-xl shadow w-full h-full">
+                                    {/* Card Body */}
+                                    <div class="grid grid-cols-3">
+                                        <div class="col-span-1">
+                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
+                                        </div>
+                                        <div class="col-span-2 p-5 grid grid-rows-5">
+                                            <div class="row-span-4">
+                                                <div class="text-xl font-semibold">
+                                                    Exchange Name
+                                                </div>
+                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
+                                                </div>
+                                                <div class="text-xs text-slate-500 flex flex-col pb-2">
+                                                    <p>Lemons Required: 500</p>
+                                                    <p>Delivery Mode: Mail</p>
+                                                    <p>Exchange Stock: 23</p>
+                                                </div>
+                                            </div>
+                                            <div class="row-span-1 flex justify-center">
+                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Edit
+                                                </Link>
+                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                    Delete
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={() => { this.remove(item.id) }}>                                            
-                                            <Link to="">
-                                                Delete
-                                            </Link>
-                                        </button>
+                                </div>
+                            </div>                                
+                        </div>
+                        {/* Sidebar */}
+                        <div class="col-span-1 max-w-fit p-5">
+                            <div>
+                                {/* Title */}
+                                <h2 class="text-2xl text-left">
+                                    Exchange Items
+                                </h2>
+                                {/* Details */}
+                                <div class="flex-col justify-start">
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
+                                    </div>
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
+                                    </div>
+                                    <div class="text-md py-1 mt-2 text-left">
+                                        <p>Lorem Ipsum</p>
                                     </div>
                                 </div>
                             </div>
-                        ))
-                    }
+                        </div>
+                    </div>
                 </div>
             </div>
         );

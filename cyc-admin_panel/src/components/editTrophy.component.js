@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 import TrophyDataService from "../services/trophy.service";
-const EditTrophy = (props) => {
-  const { id } = useParams();
+const EditTrophy = props => {
+  const { id }= useParams();
   let navigate = useNavigate();
   const initialTrophyState = {
     id: null,
@@ -11,98 +11,67 @@ const EditTrophy = (props) => {
     trophyIcon: "",
     totalProgress: "",
     totalLvl: "",
-    trophyLemons: "",
+    trophyLemons: ""
+    
   };
   const [currentTrophy, setCurrentTrophy] = useState(initialTrophyState);
   const [message, setMessage] = useState("");
-  const getTrophy = (id) => {
+  const getTrophy = id => {
     TrophyDataService.get(id)
-      .then((response) => {
+      .then(response => {
         setCurrentTrophy(response.data);
         console.log(response.data);
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
   };
   useEffect(() => {
-    if (id) getTrophy(id);
+    if (id)
+      getTrophy(id);
   }, [id]);
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const { name, value } = event.target;
     setCurrentTrophy({ ...currentTrophy, [name]: value });
   };
-  const handleInputChangeNumber = (event) => {
-    const re = /^[0-9\b]+$/;
+  
 
-    // if value is not blank, then test the regex
-
-    if (event.target.value === "" || re.test(event.target.value)) {
-      const { name, value } = event.target;
-      setCurrentTrophy({ ...currentTrophy, [name]: value });
-    }
-  };
-
+    
   const updateTrophy = () => {
     TrophyDataService.update(currentTrophy.id, currentTrophy)
-      .then((response) => {
+      .then(response => {
         console.log(response.data);
         setMessage("The Trophy was updated successfully!");
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
   };
   const deleteTrophy = () => {
     TrophyDataService.remove(currentTrophy.id)
-      .then((response) => {
+      .then(response => {
         console.log(response.data);
         navigate("/configTrophies");
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
   };
 
-  return (
-    <div>
-      {currentTrophy ? (
-        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+    return (
+      <div>
+        {currentTrophy ? (
+          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <div className="form-group mb-6">
-            <h4 className="form-group mb-6">
-              <b>EDIT Trophy</b>
-            </h4>
 
-            <form>
-              <div className="form-group mb-6">
-                <label htmlFor="trophyName">Trophy Name</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-paddingf
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trophyName"
-                  name="trophyName"
-                  value={currentTrophy.trophyName}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group mb-6">
-                <label htmlFor="trophyDescription">Trophy Description</label>
-                <input
-                  type="text"
-                  className="form-control block
+       <h4 className="form-group mb-6"><b>EDIT Trophy</b></h4>
+       
+       <form>
+         <div className="form-group mb-6">
+           <label htmlFor="trophyName">Trophy Name</label>
+           <input
+             type="text"
+             className="form-control block
            w-full
            px-3
            py-1.5
@@ -116,18 +85,17 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trophyDescription"
-                  name="trophyDescription"
-                  value={currentTrophy.trophyDescription}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="form-group mb-6">
-                <label htmlFor="trophyIcon">Trophy Icon</label>
-                <input
-                  type="text"
-                  className="form-control block
+             id="trophyName"
+             name="trophyName"
+             value={currentTrophy.trophyName}
+             onChange={handleInputChange}
+           />
+         </div>
+         <div className="form-group mb-6">
+           <label htmlFor="trophyDescription">Trophy Description</label>
+           <input
+             type="text"
+             className="form-control block
            w-full
            px-3
            py-1.5
@@ -141,18 +109,18 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trophyIcon"
-                  name="trophyIcon"
-                  value={currentTrophy.trophyIcon}
-                  onChange={handleInputChange}
-                />
-              </div>
+             id="trophyDescription"
+             name="trophyDescription"
+             value={currentTrophy.trophyDescription}
+             onChange={handleInputChange}
+           />
+         </div>
 
-              <div className="form-group mb-6">
-                <label htmlFor="totalProgress">Total Progress</label>
-                <input
-                  type="text"
-                  className="form-control block
+         <div className="form-group mb-6">
+           <label htmlFor="trophyIcon">Trophy Icon</label>
+           <input
+             type="text"
+             className="form-control block
            w-full
            px-3
            py-1.5
@@ -166,19 +134,18 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="totalProgress"
-                  name="totalProgress"
-                  value={currentTrophy.totalProgress}
-                  onChange={handleInputChangeNumber}
-                />
-              </div>
+             id="trophyIcon"
+             name="trophyIcon"
+             value={currentTrophy.trophyIcon}
+             onChange={handleInputChange}
+           />
+         </div>
 
-              <div className="form-group mb-6">
-                <label htmlFor="totalLevel">Total Level</label>
-                <input
-                  type="text"
-                  className="form-control block
+         <div className="form-group mb-6">
+         <label htmlFor="totalProgress">Total Progress</label>
+         <input
+           type="text"
+           className="form-control block
            w-full
            px-3
            py-1.5
@@ -192,19 +159,20 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="totalLvl"
-                  name="totalLvl"
-                  value={currentTrophy.totalLvl}
-                  onChange={handleInputChangeNumber}
-                />
-              </div>
+           id="totalProgress"
+           name = "totalProgress"
+           value={currentTrophy.totalProgress}
+           onChange={handleInputChange}
+         />
 
-              <div className="form-group mb-6">
-                <label htmlFor="trophyLemons">Trophy Lemons</label>
-                <input
-                  type="text"
-                  className="form-control block
+       </div>
+
+
+       <div className="form-group mb-6">
+         <label htmlFor="totalLevel">Total Level</label>
+         <input
+           type="text"
+           className="form-control block
            w-full
            px-3
            py-1.5
@@ -218,20 +186,48 @@ const EditTrophy = (props) => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="trophyLemons"
-                  name="trophyLemons"
-                  value={currentTrophy.trophyLemons}
-                  onChange={handleInputChangeNumber}
-                />
-              </div>
+           id="totalLevel"
+           name="totalLevel"
+           value={currentTrophy.totalLvl}
+           onChange={handleInputChange}
+         />
+
+       </div>
+
+
+       <div className="form-group mb-6">
+         <label htmlFor="trophyLemons">Trophy Lemons</label>
+         <input
+           type="text"
+           className="form-control block
+           w-full
+           px-3
+           py-1.5
+           text-base
+           font-normal
+           text-gray-700
+           bg-white bg-clip-padding
+           border border-solid border-gray-300
+           rounded
+           transition
+           ease-in-out
+           m-0
+           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+           id="trophyLemons"
+           name="trophyLemons"
+           value={currentTrophy.trophyLemons}
+           onChange={handleInputChange}
+         />
+       </div>
+
+
+
+              
             </form>
-          </div>
+        </div>
 
-          <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
-            onClick={deleteTrophy}
-          >
+            
+        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={deleteTrophy}>
             Delete
           </button>
           <button
@@ -250,7 +246,7 @@ const EditTrophy = (props) => {
         </div>
       )}
     </div>
-  );
-};
+    );
+  }
 
 export default EditTrophy;
