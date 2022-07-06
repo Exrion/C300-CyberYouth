@@ -3,16 +3,24 @@ import React, { Component } from "react";
 
 
 export default class SettingAccount extends Component{
-    render() {
-        return (
-            <div class="flex-col flex space-y-10">
-                
-                <div class="flex justify-start">
-                    <h1 class="text-3xl ml-5 mr-5">Account Settings</h1>
-                </div>
+    // render() {
+    //     function HTTPGET_Tiers() {
+            
 
-                
-            </div>
-        );
-    }
+          
+
+          
+    //     }
+
+    //     const tiersJson = require('../temp/apis/admin_users.json');
+
+    //     return (
+    //         <div>
+    //             <p>Display a breadcrumb here</p>
+    //             <h1>admin_users</h1>
+    //             <JsonToTable json={HTTPGET_Tiers()} />
+    //             <JsonToTable json={tiersJson}/>
+    //         </div>
+    //     );
+    // }
 }

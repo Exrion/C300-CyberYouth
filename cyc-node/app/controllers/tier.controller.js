@@ -52,6 +52,25 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+  Tier.findByPk(id)
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Tiers with id=${id}.`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Tier with id=" + id
+      });
+    });
+};
+
 // Update a Tier by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
