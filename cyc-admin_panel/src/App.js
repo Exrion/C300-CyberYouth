@@ -18,6 +18,8 @@ import AddTrophies from "./components/addTrophies.component";
 import EditTrophy from "./components/editTrophy.component";
 import EditAnnouncement from './components/editAnnouncemnts.component';
 import EditExchangeItem from "./components/editExchangeItem.component";
+import AboutUs from "./components/Footer/aboutus.component"
+import Contact from "./components/Footer/contact.component"
 import Login from "./components/Login/login.component";
 
 function App() {
@@ -25,7 +27,7 @@ function App() {
   const [token, setToken] = useState();
 
   //Login Page
-  if(!token) {
+  if (!token) {
     return <Login setToken={setToken} />
   }
 
@@ -73,9 +75,23 @@ function App() {
             <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
             <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
             <Route path='/' element={< Dashboard />} />
-
+            <Route exact path="/About_Us" element={<AboutUs />} />
+            <Route exact path="/Contact" element={<Contact />} />
           </Routes>
         </div>
+
+        <footer class="p-5 bg-white rounded-lg md:flex md:items-center md:justify-between md:p-6">
+          <span class="text-sm text-gray-500 sm:text-center">© 2022 C300 RP™. All Rights Reserved.
+          </span>
+          <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+            <li>
+              <Link to="/About_Us" class="mr-4 hover:underline md:mr-6 ">About</Link>
+            </li>
+            <li>
+              <Link to="/Contact" class="hover:underline">Contact</Link>
+            </li>
+          </ul>
+        </footer>
       </div>
     </div>
   );
