@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState,useEffect,useCallback } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 // Importing Components
@@ -23,12 +23,23 @@ import Contact from "./components/Footer/contact.component"
 //login imports
 import Login from "./components/Login/login.component";
 import useToken from "./components/App/useToken.component";
+import { FaWindows } from 'react-icons/fa';
 
 
 function App() {
+  
+  
+  //--- Get User from localstorage FUNCTION---// WIP TO DO
+  const [user, setUser] = useState([]);
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('token'));
+      if (user) {
+        setUser(user);
+    }
+  }, []);
+   
   //--- LOGIN FUNCTION---//
   const { token, setToken } = useToken();
-
   //Login Page
   if (!token) {
     return <Login setToken={setToken} />;
@@ -53,7 +64,9 @@ function App() {
               {/* User Profile Picture here */}
               <img src={require('./images/navbar/pepe.png')} className="rounded-full object-scale-down h-9 w-9 border-solid" alt='user portrait' />
               {/* Username here */}
-              <span className="text-slate-600 p-1 text-md">John Doe</span>
+              {/* WIP */}
+              <span className="text-slate-600 p-1 text-md">{user.username}</span>
+              {console.log(user)}
             </Link>
 
           </div>
@@ -62,6 +75,7 @@ function App() {
         {/* Main Content */}
         <div className="flex items-center justify-center w-full py-2">
           <Routes>
+            <Route exact path="/login" element={<Login />} />
             <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
             <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
             <Route exact path='/configTiers' element={<ConfigTiers />} />
@@ -77,10 +91,9 @@ function App() {
             <Route exact path="/trophies/:id" element={<EditTrophy />} />
             <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
             <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route path='/' element={< Dashboard />} />
             <Route exact path="/About_Us" element={<AboutUs />} />
             <Route exact path="/Contact" element={<Contact />} />
+            <Route path='/' element={< Dashboard />} />
           </Routes>
         </div>
 
