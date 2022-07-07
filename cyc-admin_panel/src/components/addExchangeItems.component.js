@@ -1,69 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ExchangeDataService from "../services/exchange.service";
-export default class addExchangeItems extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeExchangeName = this.onChangeExchangeName.bind(this);
-    this.onChangeExchangeDescription = this.onChangeExchangeDescription.bind(this);
-    this.onChangeExchangeImg = this.onChangeExchangeImg.bind(this);
-    this.onChangeLemonsEach = this.onChangeLemonsEach.bind(this);
-    this.onChangeDeliveryMode = this.onChangeDeliveryMode.bind(this);
-    this.onChangeExchangeStock = this.onChangeExchangeStock.bind(this);
 
-    this.saveExchange = this.saveExchange.bind(this);
-    this.newExchange = this.newExchange.bind(this);
-    this.state = {
-      id: null,
-      exchangeName: "",
-      exchangeDescription: "",
-      exchangeImg: "",
-      lemonsEach: null,
-      deliveryMode: "",
-      exchangeStock: null,
-    };
-  }
-  onChangeExchangeName(e) {
-    this.setState({
-      exchangeName: e.target.value,
-    });
-  }
-  onChangeExchangeDescription(e) {
-    this.setState({
-      exchangeDescription: e.target.value,
-    });
-  }
-  onChangeExchangeImg(e) {
-    this.setState({
-      exchangeImg: e.target.value,
-    });
-  }
-  onChangeLemonsEach(e) {
-    this.setState({
-      lemonsEach: e.target.value,
-    });
-  }
-  onChangeDeliveryMode(e) {
-    this.setState({
-      deliveryMode: e.target.value,
-    });
-  }
-  onChangeExchangeStock(e) {
-    this.setState({
-      exchangeStock: e.target.value,
-    });
-  }
-  saveExchange() {
+const AddExchangeItems = () => {
+  const initialExchangeItemState = {
+    id: null,
+    exchangeName: "",
+    exchangeDescription: "",
+    exchangeImg: "",
+    lemonsEach: 0,
+    deliveryMode: "",
+    exchangeStock: 0,
+  };
+
+  const [exchangeItem, setExchangeItem] = useState(initialExchangeItemState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setExchangeItem({ ...exchangeItem, [name]: value });
+  };
+  const handleInputChangeNumber = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      const { name, value } = event.target;
+      setExchangeItem({ ...exchangeItem, [name]: value });
+    }
+  };
+  const saveExchangeItem = () => {
     var data = {
-      exchangeName: this.state.exchangeName,
-      exchangeDescription: this.state.exchangeDescription,
-      exchangeImg: this.state.exchangeImg,
-      lemonsEach: this.state.lemonsEach,
-      deliveryMode: this.state.deliveryMode,
-      exchangeStock: this.state.exchangeStock,
+      exchangeName: exchangeItem.exchangeName,
+      exchangeDescription: exchangeItem.exchangeDescription,
+      exchangeImg: exchangeItem.exchangeImg,
+      lemonsEach: exchangeItem.lemonsEach,
+      deliveryMode: exchangeItem.deliveryMode,
+      exchangeStock: exchangeItem.exchangeStock,
     };
     ExchangeDataService.create(data)
       .then((response) => {
-        this.setState({
+        setExchangeItem({
           id: response.data.id,
           exchangeName: response.data.exchangeName,
           exchangeDescription: response.data.exchangeDescription,
@@ -72,26 +48,17 @@ export default class addExchangeItems extends Component {
           deliveryMode: response.data.deliveryMode,
           exchangeStock: response.data.exchangeStock,
         });
+        setSubmitted(true);
         console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-  newExchange() {
-    this.setState({
-      id: null,
-      exchangeName: "",
-      exchangeDescription: "",
-      exchangeImg: "",
-      lemonsEach: null,
-      deliveryMode: "",
-      exchangeStock: null,
-    });
-  }
-
-  
-  render() {
+  };
+  const newExchangeItem = () => {
+    setExchangeItem(initialExchangeItemState);
+    setSubmitted(false);
+  };
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -278,6 +245,7 @@ export default class addExchangeItems extends Component {
         )}
       </div>
     );
-  }
-}
+  
+};
+export default AddExchangeItems;
 

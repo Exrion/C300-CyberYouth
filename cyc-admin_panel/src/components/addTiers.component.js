@@ -1,85 +1,62 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TierDataService from "../services/tier.service";
-export default class addTiers extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTierName = this.onChangeTierName.bind(this);
-    this.onChangeTierDescription = this.onChangeTierDescription.bind(this);
-    this.onChangeTierIcon = this.onChangeTierIcon.bind(this);
-    this.onChangeGrapesNeeded = this.onChangeGrapesNeeded.bind(this);
-    this.onChangeLemonsAwarded = this.onChangeLemonsAwarded.bind(this);
 
-    this.saveTier = this.saveTier.bind(this);
-    this.newTier = this.newTier.bind(this);
-    this.state = {
-      tierName: "",
-      tierDescription: "",
-      tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: "",
-      submitted: false
-    };
-  }
-  onChangeTierName(e) {
-    this.setState({
-      tierName: e.target.value,
-    });
-  }
-  onChangeTierDescription(e) {
-    this.setState({
-      tierDescription: e.target.value,
-    });
-  }
-  onChangeTierIcon(e) {
-    this.setState({
-      tierIcon: e.target.value,
-    });
-  }
-  onChangeGrapesNeeded(e) {
-    this.setState({
-      grapesNeeded: e.target.value,
-    });
-  }
-  onChangeLemonsAwarded(e) {
-    this.setState({
-      lemonsAwarded: e.target.value,
-    });
-  }
-  saveTier() {
+const AddTiers = () => {
+  const initialTierState = {
+    tierName: "",
+    tierDescription: "",
+    tierIcon: "",
+    grapesNeeded: 0,
+    lemonsAwarded: 0,
+  };
+
+  const [tier, setTier] = useState(initialTierState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTier({ ...tier, [name]: value });
+  };
+
+  const handleInputChangeNumber = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      const { name, value } = event.target;
+      setTier({ ...tier, [name]: value });
+    }
+  };
+
+  const saveTier = () => {
     var data = {
-      tierName: this.state.tierName,
-      tierDescription: this.state.tierDescription,
-      tierIcon: this.state.tierIcon,
-      grapesNeeded: this.state.grapesNeeded,
-      lemonsAwarded: this.state.lemonsAwarded
+      tierName: tier.tierName,
+      tierDescription: tier.tierDescription,
+      tierIcon: tier.tierIcon,
+      grapesNeeded: tier.grapesNeeded,
+      lemonsAwarded: tier.lemonsAwarded,
     };
     TierDataService.create(data)
       .then((response) => {
-        this.setState({
+        setTier({
           id: response.data.id,
           tierName: response.data.tierName,
           tierDescription: response.data.tierDescription,
           tierIcon: response.data.tierIcon,
           grapesNeeded: response.data.grapesNeeded,
-          lemonsAwarded: response.data.lemonsAwarded
+          lemonsAwarded: response.data.lemonsAwarded,
         });
+        setSubmitted(true);
         console.log(response.data);
-        this.setState.submitted = true;
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-  newTier() {
-    this.setState({
-      tierName: "",
-      tierDescription: "",
-      tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: ""
-    });
-  }
-  render() {
+  };
+  const newTier = () => {
+    setTier(initialTierState);
+    setSubmitted(false);
+  };
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -241,5 +218,6 @@ export default class addTiers extends Component {
         )}
       </div>
     );
-  }
-}
+  
+};
+export default AddTiers;
