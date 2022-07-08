@@ -1,93 +1,52 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import AnnouncementDataService from "../services/announcement.service";
-export default class addAnnouncements extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeAnnouncementTitle = this.onChangeAnnouncementTitle.bind(this);
-    this.onChangeAnnouncementType = this.onChangeAnnouncementType.bind(this);
-    this.onChangeAnnouncementBody = this.onChangeAnnouncementBody.bind(this);
-    this.onChangeAnnouncementImg = this.onChangeAnnouncementImg.bind(this);
-    this.onChangeAnnouncementLink = this.onChangeAnnouncementLink.bind(this);
 
-    this.saveAnnouncement = this.saveAnnouncement.bind(this);
-    this.newAnnouncement = this.newAnnouncement.bind(this);
-    this.state = {
-      id: null,
-      announcementTitle: "",
-      announcementType : "",
-      announcementBody: "",
-      announcementImg : "",
-      announcementLink: "",
-      
-    };
-  }
-  onChangeAnnouncementTitle(e) {
-    this.setState({
-      announcementTitle: e.target.value,
-    });
-  }
-  onChangeAnnouncementType(e) {
-    this.setState({
-      announcementType: e.target.value,
-    });
-  }
-  onChangeAnnouncementBody(e) {
-    this.setState({
-      announcementBody: e.target.value,
-    });
-  }
-  onChangeAnnouncementImg(e) {
-    this.setState({
-      announcementImg: e.target.value,
-    });
-  }
-  onChangeAnnouncementLink(e) {
-    this.setState({
-      announcementLink: e.target.value,
-    });
-  }
-  saveAnnouncement() {
+const AddAnnouncements = () => {
+  const initialAnnouncementState = {
+    id: null,
+    announcementTitle: "",
+    announcementType: "",
+    announcementBody: "",
+    announcementImg: "",
+    announcementLink: "",
+  };
+
+  const [announcement, setAnnouncement] = useState(initialAnnouncementState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setAnnouncement({ ...announcement, [name]: value });
+  };
+  const saveAnnouncement = () => {
     var data = {
-      announcementTitle: this.state.announcementTitle,
-      announcementType: this.state.announcementType,
-      announcementBody: this.state.announcementBody,
-      announcementImg: this.state.announcementImg,
-      announcementLink: this.state.announcementLink,
-      //   created_at: this.state.created_at,
-      //   modified_at: this.state.modified_at
+      announcementTitle: announcement.announcementTitle,
+      announcementType: announcement.announcementType,
+      announcementBody: announcement.announcementBody,
+      announcementImg: announcement.announcementImg,
+      announcementLink: announcement.announcementLink
     };
     AnnouncementDataService.create(data)
-      .then((response) => {
-        this.setState({
+      .then(response => {
+        setAnnouncement({
           id: response.data.id,
           announcementTitle: response.data.announcementTitle,
           announcementType: response.data.announcementType,
           announcementBody: response.data.announcementBody,
           announcementImg: response.data.announcementImg,
-          announcementLink: response.data.announcementLink,
-          
-          //   created_at: response.data.created_at,
-          //   modified_at: response.data.modified_at
+          announcementLink: response.data.announcementLink
         });
+        setSubmitted(true);
         console.log(response.data);
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
-  }
-  newAnnouncement() {
-    this.setState({
-      id: null,
-      announcementTitle: "",
-      announcementType: "",
-      announcementBody: "",
-      announcementImg: "",
-      announcementLink: "",
-      //   created_at: null,
-      //   modified_at: null
-    });
-  }
-  render() {
+  };
+  const newAnnouncement = () => {
+    setAnnouncement(initialAnnouncementState);
+    setSubmitted(false);
+  };
+ 
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -249,5 +208,6 @@ export default class addAnnouncements extends Component {
         )}
       </div>
     );
-  }
-}
+  
+};
+export default AddAnnouncements;

@@ -1,70 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TrophyDataService from "../services/trophy.service";
-export default class addTrophies extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTrophyName = this.onChangeTrophyName.bind(this);
-    this.onChangeTrophyDescription = this.onChangeTrophyDescription.bind(this);
-    this.onChangeTrophyIcon = this.onChangeTrophyIcon.bind(this);
-    this.onChangeTotalProgress = this.onChangeTotalProgress.bind(this);
-    this.onChangeTotalLevel = this.onChangeTotalLevel.bind(this);
-    this.onChangeTrophyLemons = this.onChangeTrophyLemons.bind(this);
 
-    this.saveTrophy = this.saveTrophy.bind(this);
-    this.newTrophy = this.newTrophy.bind(this);
-    this.state = {
-      id: null,
-      trophyName: "",
-      trophyDescription: "",
-      trophyIcon: "",
-      totalProgress: "",
-      totalLvl: "",
-      trophyLemons: "",
-      submitted: false
-    };
-  }
-  onChangeTrophyName(e) {
-    this.setState({
-      trophyName: e.target.value,
-    });
-  }
-  onChangeTrophyDescription(e) {
-    this.setState({
-      trophyDescription: e.target.value,
-    });
-  }
-  onChangeTrophyIcon(e) {
-    this.setState({
-      trophyIcon: e.target.value,
-    });
-  }
-  onChangeTotalProgress(e) {
-    this.setState({
-      totalProgress: e.target.value,
-    });
-  }
-  onChangeTotalLevel(e) {
-    this.setState({
-      totalLvl: e.target.value,
-    });
-  }
-  onChangeTrophyLemons(e) {
-    this.setState({
-      trophyLemons: e.target.value,
-    });
-  }
-  saveTrophy() {
+const AddTrophies = () => {
+  const initialTrophyState = {
+    id: null,
+    trophyName: "",
+    trophyDescription: "",
+    trophyIcon: "",
+    totalProgress: 0,
+    totalLvl: 0,
+    trophyLemons: 0,
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTrophy({ ...trophy, [name]: value });
+  };
+
+  const [trophy, setTrophy] = useState(initialTrophyState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChangeNumber = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      const { name, value } = event.target;
+      setTrophy({ ...trophy, [name]: value });
+    }
+  };
+  const saveTrophy = () => {
     var data = {
-      trophyName: this.state.trophyName,
-      trophyDescription: this.state.trophyDescription,
-      trophyIcon: this.state.trophyIcon,
-      totalProgress: this.state.totalProgress,
-      totalLvl: this.state.totalLvl,
-      trophyLemons: this.state.trophyLemons,
+      trophyName: trophy.trophyName,
+      trophyDescription: trophy.trophyDescription,
+      trophyIcon: trophy.trophyIcon,
+      totalProgress: trophy.totalProgress,
+      totalLvl: trophy.totalLvl,
+      trophyLemons: trophy.trophyLemons,
     };
     TrophyDataService.create(data)
       .then((response) => {
-        this.setState({
+        setTrophy({
           id: response.data.id,
           trophyName: response.data.trophyName,
           trophyDescription: response.data.trophyDescription,
@@ -72,28 +47,19 @@ export default class addTrophies extends Component {
           totalProgress: response.data.totalProgress,
           totalLvl: response.data.totalLvl,
           trophyLemons: response.data.trophyLemons,
-          submitted: true
         });
+        setSubmitted(true);
         console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-  newTrophy() {
-    this.setState({
-      id: null,
-      trophyName: "",
-      trophyDescription: "",
-      totalProgress: "",
-      totalLvl: "",
-      trophyLemons: "",
-      submitted: false
-    });
-  }
+  };
+  const newTrophy = () => {
+    setTrophy(initialTrophyState);
+    setSubmitted(false);
+  };
 
-  
-  render() {
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -280,6 +246,6 @@ export default class addTrophies extends Component {
         )}
       </div>
     );
-  }
-}
-
+  };
+  export default AddTrophies;
+  

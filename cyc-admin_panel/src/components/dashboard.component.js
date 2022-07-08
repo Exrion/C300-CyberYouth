@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFastForward, FaTrophy, FaLongArrowAltUp, FaStackExchange, FaVolumeUp, FaUser, FaUserCog } from "react-icons/fa";
 
-export default class Dashboard extends Component {
-    render() {
-        return (
-            <div class="flex-col flex space-y-10 ml-5 mr-5">
+const Dashboard = () => {
+        //Retrieve user from localstorage
+        const [user, setUser] = useState([]);
 
-                <div class="flex justify-start">
-                    <h1 class="text-3xl">Welcome, John Doe</h1>
+        useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('token'));
+        if (user) {
+            setUser(user);
+        }
+        }, []);
+        
+        return (
+            
+            <div class="flex-col flex space-y-10 ml-5 mr-5">
+                
+                <div class="flex justify-start">      
+                    <h1 class="text-3xl">Welcome, {user.username}</h1>
                 </div>
+
+
                 {/* Configuration Items Flexbox */}
                 <div>
                     {/* Header */}
@@ -131,5 +143,7 @@ export default class Dashboard extends Component {
                 </div>
             </div>
         );
-    }
-}
+    };
+
+export default Dashboard
+
