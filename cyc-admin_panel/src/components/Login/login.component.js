@@ -10,7 +10,7 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
 }
-
+// TODO: send email after 3 failed login attemtpts
 export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
