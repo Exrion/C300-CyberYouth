@@ -25,7 +25,7 @@ export default function Login({ setToken }) {
     });
     setToken(token);
     //Login error messages
-    console.log(JSON.stringify(token));
+    
     if (!username && password) {
       setError(true);
       setErrorMessage("Enter a Username!");

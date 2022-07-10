@@ -26,27 +26,22 @@ import useToken from "./components/App/useToken.component";
 import { FaWindows } from 'react-icons/fa';
 
 
+
+
 function App() {
-  
-  
-  //--- Get User from localstorage FUNCTION---// WIP TO DO
-  const [user, setUser] = useState([]);
-    useEffect(() => {
-      const user = JSON.parse(localStorage.getItem('token'));
-      if (user) {
-        setUser(user);
-    }
-  }, []);
+
    
   //--- LOGIN FUNCTION---//
-  const { token, setToken } = useToken();
+  const { token, setToken } = useToken(); 
+  
   //Login Page
-  if (!token) {
+  if (!token) { //if not token no login, but user can input any token to login
     return <Login setToken={setToken} />;
   }
 
   //Main Website
-  return (
+  return ( //else login
+  
     <div className="App">
       <div className="xl:px-60">
         {/* Navigation Bar */}
@@ -65,8 +60,8 @@ function App() {
               <img src={require('./images/navbar/pepe.png')} className="rounded-full object-scale-down h-9 w-9 border-solid" alt='user portrait' />
               {/* Username here */}
               {/* WIP */}
-              <span className="text-slate-600 p-1 text-md">{user.username}</span>
-              {console.log(user)}
+              <span className="text-slate-600 p-1 text-md">{JSON.parse(localStorage.getItem('token')).username}</span>
+              
             </Link>
 
           </div>
