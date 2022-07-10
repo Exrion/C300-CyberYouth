@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 
 const SettingAccount = () => {
@@ -9,6 +9,15 @@ const SettingAccount = () => {
         window.location.href = "/";
          };
             
+         //Retrieve user from localstorage
+        const [user, setUser] = useState([]);
+
+        useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('token'));
+        if (user) {
+            setUser(user);
+        }
+        }, []);
     
         return (
             <div class="xl:mx-5 md:mx-20 flex-1">
@@ -25,8 +34,8 @@ const SettingAccount = () => {
                         <img src={require('../images/navbar/pepe.png')} className="rounded-full h-9 w-9 w-32 h-32 ease-in-out group-hover:brightness-95 hover:border-2" alt='user portrait' />
                         <div class="ml-20 flex flex-col">
                             <div>
-                                <p class="text-2xl text-bold text-left pb-2">John Doe</p>
-                                <p class="text-md text-bold text-left text-slate-600">john.doe@gmail.com</p>
+                                <p class="text-2xl text-bold text-left pb-2">{user.username}</p>
+                                <p class="text-md text-bold text-left text-slate-600">{user.email}</p>
                                 <p class="text-md text-bold text-left text-slate-600">21 July 1998</p>
                             </div>
                             <button class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
