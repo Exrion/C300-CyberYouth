@@ -10,8 +10,12 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
 }
-// TODO: send email after 3 failed login attemtpts
+
+localStorage.setItem('loginCount', "0");
 export default function Login({ setToken }) {
+  //Login Counter
+  
+
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
@@ -24,26 +28,46 @@ export default function Login({ setToken }) {
       password,
     });
     setToken(token);
+
+
+    // TODO: send email after 3 failed login attemtpts BJORN
+    if((Number(localStorage.getItem('loginCount'))) === 3)
+    {
+      console.log("3 login tries")
+      //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
+    }
+    //Login Counter adding
+    function addLoginCount()
+    {
+      let currentCount = Number(localStorage.getItem('loginCount'));
+      currentCount++;
+      localStorage.setItem('loginCount', currentCount.toString());
+    }
+
     //Login error messages
-    
     if (!username && password) {
       setError(true);
       setErrorMessage("Enter a Username!");
+      addLoginCount();
     } else if (username && !password) {
       setError(true);
       setErrorMessage("Enter a Password!");
+      addLoginCount();
     } else if (!username && !password) {
       setError(true);
       setErrorMessage("Enter a Username and Password!");
+      addLoginCount();
     } else if (
       JSON.stringify(token).includes("User Not found.") &&
       password?.length !== 0
     ) {
       setError(true);
       setErrorMessage("Enter a valid Username!");
+      addLoginCount();
     } else if (JSON.stringify(token).includes("Invalid Password")) {
       setError(true);
       setErrorMessage("Wrong Password!");
+      addLoginCount();
     }
   };
   
@@ -85,6 +109,7 @@ export default function Login({ setToken }) {
           </div>
         </form>
       </div>
+      
       {error ? <div>{errorMessage}</div> : <div></div>}
     </div>
   );

@@ -41,8 +41,9 @@ function App() {
 
   //Main Website
   return ( //else login
-  
+    
     <div className="App">
+      {localStorage.removeItem('loginCount')}
       <div className="xl:px-60">
         {/* Navigation Bar */}
         <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
