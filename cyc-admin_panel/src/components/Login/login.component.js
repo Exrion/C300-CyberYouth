@@ -1,6 +1,9 @@
 import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 
+import { useLinkedIn } from 'react-linkedin-login-oauth2';
+import linkedin from '../../images/login/linkedin.png';
+
 async function loginUser(credentials) {
   return fetch("http://localhost:8080/api/auth/signin", {
     method: "POST",
@@ -70,8 +73,19 @@ export default function Login({ setToken }) {
       addLoginCount();
     }
   };
-  
 
+  //Linkedin
+    const { linkedInLogin } = useLinkedIn({
+      clientId: '86vhj2q7ukf83q',
+      redirectUri: `${window.location.origin}/linkedin`, 
+      onSuccess: (code) => {
+        console.log(code);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+  
   return (
     <div className="grid place-items-center py-40">
       <div className="grid grid-rows place-content-center">
@@ -107,6 +121,12 @@ export default function Login({ setToken }) {
               Submit
             </button>
           </div>
+          <img
+            onClick={linkedInLogin}
+            src={linkedin}
+            alt="Sign in with Linked In"
+            style={{ maxWidth: '180px', cursor: 'pointer' }}
+          />
         </form>
       </div>
       
@@ -114,6 +134,7 @@ export default function Login({ setToken }) {
     </div>
   );
 }
+
 
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,

@@ -2,6 +2,9 @@ import './App.css';
 import { useState,useEffect,useCallback } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
+//Linkedin imports
+import { LinkedInCallback } from 'react-linkedin-login-oauth2';
+
 // Importing Components
 import Dashboard from './components/dashboard.component';
 import ConfigAnnouncements from './components/configAnnouncements.component';
@@ -27,16 +30,22 @@ import { FaWindows } from 'react-icons/fa';
 
 
 
-
 function App() {
 
    
   //--- LOGIN FUNCTION---//
   const { token, setToken } = useToken(); 
+
+  // return <LinkedInCallback />;
   
   //Login Page
   if (!token) { //if not token no login, but user can input any token to login
     return <Login setToken={setToken} />;
+  }
+
+  //Linkedin
+  else if (document.getElementById('linkedInLogin').clicked == true){
+    return <LinkedInCallback />;
   }
 
   //Main Website
