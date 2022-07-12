@@ -36,6 +36,8 @@ export default function Login({ setToken }) {
     // TODO: send email after 3 failed login attemtpts BJORN
     if((Number(localStorage.getItem('loginCount'))) === 3)
     {
+      if (JSON.stringify(token).includes("Invalid Password"))
+      {}
       console.log("3 login tries")
       //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
     }
