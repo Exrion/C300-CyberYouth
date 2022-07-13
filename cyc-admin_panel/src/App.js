@@ -43,10 +43,10 @@ function App() {
     return <Login setToken={setToken} />;
   }
 
-  //Linkedin
-  else if (document.getElementById('linkedInLogin').clicked == true){
-    return <LinkedInCallback />;
-  }
+  // //Linkedin
+  // else if (document.getElementById('linkedInLogin').clicked == true){
+  //   return <LinkedInCallback />;
+  // }
 
   //Main Website
   return ( //else login
