@@ -110,8 +110,7 @@ function App() {
               <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
               <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
               <Route exact path="/tiers/:id" element={<EditTier/>} />
-              <Route exact path="/track/:id" element={<EditTrack/>} />
-              <Route exact path="/trophy/:id" element={<EditTrophy/>} />
+              <Route exact path="/tracks/:id" element={<EditTrack/>} />
               <Route exact path="/About_Us" element={<AboutUs />} />
               <Route exact path="/Contact" element={<Contact />} />
               <Route path="/" element={<Dashboard />} />
