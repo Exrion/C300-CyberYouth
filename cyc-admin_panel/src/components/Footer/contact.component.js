@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
-export default class ConfigAnnouncements extends Component {
-    render() {
-        return (
-            <div>
-                Contact our team
-            </div>
-        );
-    }
+export default class Contact extends Component {
+  render() {
+    return <div>Contact our team</div>;
+  }
 }

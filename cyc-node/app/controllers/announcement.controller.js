@@ -1,5 +1,5 @@
 const db = require("../models");
-const Announcement = db.announcements
+const Announcement = db.announcements;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new announcement
@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.announcementTitle && !req.body.announcementType) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Content can not be empty!",
     });
     return;
   }
@@ -18,36 +18,37 @@ exports.create = (req, res) => {
     announcementType: req.body.announcementType,
     announcementBody: req.body.announcementBody,
     announcementImg: req.body.announcementImg,
-    announcementLink: req.body.announcementLink
+    announcementLink: req.body.announcementLink,
   };
 
   // Save Announcement in the database
   Announcement.create(announcement)
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Announcement."
+          err.message || "Some error occurred while creating the Announcement.",
       });
     });
-  
 };
 
 // Retrieve all Announcements from the database.
 exports.findAll = (req, res) => {
   const announcementTitle = req.query.announcementTitle;
-  var condition = announcementTitle ? { announcementTitle: { [Op.like]: `%${announcementTitle}%` } } : null;
+  var condition = announcementTitle
+    ? { announcementTitle: { [Op.like]: `%${announcementTitle}%` } }
+    : null;
 
   Announcement.findAll({ where: condition })
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving announcements."
+          err.message || "Some error occurred while retrieving announcements.",
       });
     });
 };
@@ -62,13 +63,13 @@ exports.findOne = (req, res) => {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Trophies with id=${id}.`
+          message: `Cannot find Trophies with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Trophies with id=" + id
+        message: "Error retrieving Trophies with id=" + id,
       });
     });
 };
@@ -87,39 +88,38 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Announcement with id=${id}. Maybe Tracks was not found or req.body is empty!`
+          message: `Cannot update Announcement with id=${id}. Maybe Announcement was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Announcement with id=" + id
+        message: "Error updating Announcement with id=" + id,
       });
     });
 };
-
 
 // Delete a Announcement with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
   Announcement.destroy({
-    where: { id: id }
+    where: { id: id },
   })
-    .then(num => {
+    .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Announcement was deleted successfully!"
+          message: "Announcement was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Announcement with id=${id}. Maybe Announcement was not found!`
+          message: `Cannot delete Announcement with id=${id}. Maybe Announcement was not found!`,
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Announcement with id=" + id
+        message: "Could not delete Announcement with id=" + id,
       });
     });
 };
@@ -128,19 +128,18 @@ exports.delete = (req, res) => {
 exports.deleteAll = (req, res) => {
   Announcement.destroy({
     where: {},
-    truncate: false
+    truncate: false,
   })
-    .then(nums => {
+    .then((nums) => {
       res.send({ message: `${nums} Trophies were deleted successfully!` });
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all trophies."
+          err.message || "Some error occurred while removing all trophies.",
       });
     });
 };
-
 
 exports.findAllPublished = (req, res) => {
   Announcement.findAll()

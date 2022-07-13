@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING,
     },
+    locked: {
+      type: Sequelize.BOOLEAN,
+    },
   });
   return Account;
 };

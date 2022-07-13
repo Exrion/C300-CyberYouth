@@ -26,6 +26,7 @@ import Contact from "./components/Footer/contact.component";
 //login imports
 import Login from "./components/Login/login.component";
 import useToken from "./components/App/useToken.component";
+import LockedOut from "./components/lockedOut.component";
 import { FaWindows } from "react-icons/fa";
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
 
   //Linkedin
   <button id="" onclick="console.log('Button clicked')">
-    return <Login setToken={setToken} />;
+    return <LinkedInCallback />;
   </button>;
 
   //Main Website
@@ -132,6 +133,7 @@ function App() {
             <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
             <Route exact path="/About_Us" element={<AboutUs />} />
             <Route exact path="/Contact" element={<Contact />} />
+            <Route exact path="/lockedOut" element={<LockedOut />} />
             <Route path="/" element={<Dashboard />} />
           </Routes>
         </div>

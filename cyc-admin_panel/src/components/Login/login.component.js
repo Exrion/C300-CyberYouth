@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 
-import { useLinkedIn } from 'react-linkedin-login-oauth2';
+import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 async function loginUser(credentials) {
   return fetch("http://localhost:8080/api/auth/signin", {
@@ -13,13 +13,23 @@ async function loginUser(credentials) {
   }).then((data) => data.json());
 }
 
-localStorage.setItem('loginCount', "0");
+async function lockaccountUser(credentials) {
+  return fetch("http://localhost:8080/api/auth/lockaccount", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
+
+localStorage.setItem("loginCount", "0");
 export default function Login({ setToken }) {
   //Login Counter
-  
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  let locked = false;
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -31,23 +41,30 @@ export default function Login({ setToken }) {
     });
     setToken(token);
 
-
     // TODO: send email after 3 failed login attemtpts BJORN
-    if((Number(localStorage.getItem('loginCount'))) === 3)
-    {
-      if (JSON.stringify(token).includes("Invalid Password"))
-      {}
-      console.log("3 login tries")
+    //ACOUNT LOCKED AFTER 3 failed attempts. Uses localstorage hence can be bypassed. Can store login count in backend instead for full solution.
+    //OR create a new logintries collumn within account table and if logintries returns > 3, account is locked.
+    if (Number(localStorage.getItem("loginCount")) >= 3) {
+      if (JSON.stringify(token).includes("Invalid Password")) {
+        let locked = true;
+        console.log(locked);
+        const token = await lockaccountUser({
+          username,
+          locked,
+        });
+        setToken(token);
+        console.log("3 login tries ACCOUNT LOCKED");
+      }
       //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
+      setErrorMessage("Try again later.");
     }
     //Login Counter adding
-    function addLoginCount()
-    {
-      let currentCount = Number(localStorage.getItem('loginCount'));
+    function addLoginCount() {
+      let currentCount = Number(localStorage.getItem("loginCount"));
       currentCount++;
-      localStorage.setItem('loginCount', currentCount.toString());
+      localStorage.setItem("loginCount", currentCount.toString());
     }
-
+    console.log(token);
     //Login error messages
     if (!username && password) {
       setError(true);
@@ -68,6 +85,11 @@ export default function Login({ setToken }) {
       setError(true);
       setErrorMessage("Enter a valid Username!");
       addLoginCount();
+    } else if (JSON.stringify(token).includes("Account is locked")) {
+      setError(true);
+      setErrorMessage(
+        "Your account has been locked due to suspicious activity, please contact an administrator"
+      );
     } else if (JSON.stringify(token).includes("Invalid Password")) {
       setError(true);
       setErrorMessage("Wrong Password!");
@@ -76,17 +98,17 @@ export default function Login({ setToken }) {
   };
 
   //Linkedin
-    const { linkedInLogin } = useLinkedIn({
-      clientId: '86vhj2q7ukf83q',
-      redirectUri: `${window.location.origin}/linkedin`, 
-      onSuccess: (code) => {
-        console.log(code);
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    });
-  
+  const { linkedInLogin } = useLinkedIn({
+    clientId: "86vhj2q7ukf83q",
+    redirectUri: `${window.location.origin}/linkedin`,
+    onSuccess: (code) => {
+      console.log(code);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   return (
     <div className="grid place-items-center py-40">
       <div className="grid grid-rows place-content-center">
@@ -122,18 +144,24 @@ export default function Login({ setToken }) {
               Login
             </button>
           </div>
-          <button class="flex flex-flow rounded-full shadow-lg p-2 hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out" onClick={linkedInLogin}>
-            <img src={require("../../images/login/linkedin.png")} className="mr-3 h-6 sm:h-9" alt="LinkedIn Login Icon" />
+          <button
+            class="flex flex-flow rounded-full shadow-lg p-2 hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
+            onClick={linkedInLogin}
+          >
+            <img
+              src={require("../../images/login/linkedin.png")}
+              className="mr-3 h-6 sm:h-9"
+              alt="LinkedIn Login Icon"
+            />
             <p class="mt-1">Sign in with LinkedIn</p>
           </button>
         </form>
       </div>
-      
+
       {error ? <div>{errorMessage}</div> : <div></div>}
     </div>
   );
 }
-
 
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,

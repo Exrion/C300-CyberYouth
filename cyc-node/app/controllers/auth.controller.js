@@ -11,6 +11,7 @@ exports.signup = (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
+    locked: false,
   })
     .then((account) => {
       if (req.body.roles) {
@@ -64,16 +65,46 @@ exports.signin = (req, res) => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
-        res.status(200).send({
-          id: account.id,
-          username: account.username,
-          email: account.email,
-          roles: authorities,
-          token: token,
-        });
+        if (account.locked) {
+          res.status(423).send({
+            accessToken: null,
+            message: "Account is locked",
+          });
+        } else {
+          res.status(200).send({
+            id: account.id,
+            username: account.username,
+            email: account.email,
+            roles: authorities,
+            locked: account.locked,
+            token: token,
+          });
+        }
       });
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
+    });
+};
+
+exports.lockaccount = (req, res) => {
+  Account.update(req.body, {
+    where: { username: req.body.username },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Account was updated successfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Account with username=${username}. Maybe Account was not found or req.body is empty!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Account with username=" + username,
+      });
     });
 };
