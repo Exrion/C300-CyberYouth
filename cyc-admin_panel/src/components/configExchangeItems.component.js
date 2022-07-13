@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import DataService from "../services/exchange.service";
+
+
 export default class ConfigExchangeitems extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +24,17 @@ export default class ConfigExchangeitems extends Component {
                     DataisLoaded: true
                 });
             })
+    }
+    remove(id) {
+        console.log("Deleting");
+        DataService.remove(id)
+            .then(response => {
+                console.log(response.data);
+                window.location.reload(false);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     render() {
@@ -66,39 +80,43 @@ export default class ConfigExchangeitems extends Component {
                         <div class="col-span-4 px-5">
                             {/* Content Grid */}
                             <ul class="flex-col flex space-y-5">
-                                {/* Card */}
-                                <li class="group rounded-xl shadow w-full h-full">
-                                    {/* Card Body */}
-                                    <div class="grid grid-cols-3">
-                                        <div class="col-span-1">
-                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
-                                        </div>
-                                        <div class="col-span-2 p-5 grid grid-rows-5">
-                                            <div class="row-span-4">
-                                                <div class="text-xl font-semibold">
-                                                    Exchange Name
+                                {
+                                    items.map((item) => (
+                                        < li class="group rounded-xl shadow w-full h-full" >
+                                            < div class="grid grid-cols-3" >
+                                                <div class="col-span-1">
+                                                    <img src={item.exchangeImg} class="rounded-l-xl h-full"></img>
                                                 </div>
-                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
-                                                </div>
-                                                <div class="text-xs text-slate-500 flex flex-col pb-2">
-                                                    <p>Lemons Required: 500</p>
-                                                    <p>Delivery Mode: Mail</p>
-                                                    <p>Exchange Stock: 23</p>
+                                                <div class="col-span-2 p-5 grid grid-rows-5">
+                                                    <div class="row-span-4">
+                                                        <div class="text-xl font-semibold">
+                                                            {item.exchangeName}
+                                                        </div>
+                                                        <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                            {item.exchangeDescription}
+                                                        </div>
+                                                        <div class="text-xs text-slate-500 flex flex-col pb-2">
+                                                            <p>Lemons Required: {item.lemonsEach}</p>
+                                                            <p>Delivery Mode: {item.deliveryMode}</p>
+                                                            <p>Exchange Stock: {item.exchangeStock}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-span-1 flex justify-center">
+                                                        <Link to={"/exchanges/" + item.id} class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                            Edit
+                                                        </Link>
+                                                        <button onClick={() => { this.remove(item.id) }} class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                            <Link to="">
+                                                                Delete
+                                                            </Link>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row-span-1 flex justify-center">
-                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                                                    Edit
-                                                </Link>
-                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                                                    Delete
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>                                
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                         {/* Sidebar */}
                         <div class="col-span-1 max-w-fit p-5">
@@ -110,20 +128,17 @@ export default class ConfigExchangeitems extends Component {
                                 {/* Details */}
                                 <div class="flex-col justify-start">
                                     <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
+                                        <p>Exchange Items management page</p>
                                     </div>
                                     <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
-                                    </div>
-                                    <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
+                                        <p>{items.length} Entries</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div >
+                </div >
+            </div >
         );
     }
 }

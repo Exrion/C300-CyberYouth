@@ -60,73 +60,23 @@ const AddTrophies = () => {
     setSubmitted(false);
   };
 
-    return (
-      <div className="submit-form">
-        {this.state.submitted ? (
-          <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTrophy}>
-              Add
-            </button>
-          </div>
-        ) : (
-          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  return (
+    <div className="submit-form">
+      {submitted ? (
+        <div>
+          <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newTrophy}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <form>
             <div className="form-group mb-6">
               <label htmlFor="trophyName">Trophy Name</label>
               <input
                 type="text"
                 className="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyName"
-                required
-                value={this.state.trophyName}
-                onChange={this.onChangeTrophyName}
-                name="trophyName"
-              />
-            </div>
-            <div className="form-group mb-6">
-              <label htmlFor="trophyDescription">Trophy Description</label>
-              <textarea
-                type="text"
-                className="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="trophyDescription"
-                required
-                value={this.state.trophyDescription}
-                onChange={this.onChangeTrophyDescription}
-                name="trophyDescription"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="trophyIcon">Trophy Icon</label>
-              <input
-                type="url"
-                class="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -140,10 +90,60 @@ const AddTrophies = () => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="trophyName"
+                required
+                value={trophy.trophyName}
+                onChange={handleInputChange}
+                name="trophyName"
+              />
+            </div>
+            <div className="form-group mb-6">
+              <label htmlFor="trophyDescription">Trophy Description</label>
+              <input
+                type="text"
+                className="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="trophyDescription"
+                required
+                value={trophy.trophyDescription}
+                onChange={handleInputChange}
+                name="trophyDescription"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trophyIcon">Trophy Icon</label>
+              <input
+                type="text"
+                class="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="trophyIcon"
                 required
-                value={this.state.trophyIcon}
-                onChange={this.onChangeTrophyIcon}
+                value={trophy.trophyIcon}
+                onChange={handleInputChange}
                 name="trophyIcon"
               />
             </div>
@@ -152,23 +152,24 @@ const AddTrophies = () => {
               <input
                 type="number"
                 className="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="totalProgress"
                 required
-                value={this.state.totalProgress}
-                onChange={this.onChangeTotalProgress}
+                value={trophy.totalProgress}
+                onChange={handleInputChangeNumber}
                 name="totalProgress"
               />
             </div>
@@ -177,23 +178,24 @@ const AddTrophies = () => {
               <input
                 type="number"
                 className="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="totalLvl"
                 required
-                value={this.state.totalLvl}
-                onChange={this.onChangeTotalLevel}
+                value={trophy.totalLvl}
+                onChange={handleInputChangeNumber}
                 name="totalLvl"
               />
             </div>
@@ -202,50 +204,53 @@ const AddTrophies = () => {
               <input
                 type="number"
                 className="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="trophyLemons"
                 required
-                value={this.state.trophyLemons}
-                onChange={this.onChangeTrophyLemons}
+                value={trophy.trophyLemons}
+                onChange={handleInputChangeNumber}
                 name="trophyLemons"
               />
             </div>
-            <button onClick={this.saveTrophy} className="btn btn-success   w-full
-                px-6
-                py-2.5
-                bg-gray-100
-                text-black
-                font-medium
-                text-xs
-                leading-tight
-                uppercase
-                rounded
-                shadow-md
-                hover:bg-gray-200 hover:shadow-lg
-                focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0
-                active:bg-gray-100 active:shadow-lg
-                transition
-                duration-150
-                ease-in-out">
+            <button
+              onClick={saveTrophy}
+              className="btn btn-success   w-full
+              px-6
+              py-2.5
+              bg-gray-100
+              text-black
+              font-medium
+              text-xs
+              leading-tight
+              uppercase
+              rounded
+              shadow-md
+              hover:bg-gray-200 hover:shadow-lg
+              focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0
+              active:bg-gray-100 active:shadow-lg
+              transition
+              duration-150
+              ease-in-out"
+            >
               Submit
             </button>
-            </form>
-          </div>
-        )}
-      </div>
-    );
-  };
-  export default AddTrophies;
-  
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+export default AddTrophies;

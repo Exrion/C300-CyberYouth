@@ -62,24 +62,23 @@ const AddTracks = () => {
     setSubmitted(false);
   };
 
-    
-        return (
-          <div className="submit-form">
-            {this.state.submitted ? (
-              <div>
-                <h4>You submitted successfully!</h4>
-                <button className = "btn btn-success" onClick={this.newTrack}>
-                  Add
-                </button>
-              </div>
-            ) : (
-              <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-              <form>
-              <div class="form-group mb-6">
-                <label htmlFor="trackName">Track Name</label>
-                <input
-                  type="text"
-                  class="form-control block
+  return (
+    <div className="submit-form">
+      {submitted ? (
+        <div>
+          <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newTrack}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+          <form>
+            <div class="form-group mb-6">
+              <label htmlFor="trackName">Track Name</label>
+              <input
+                type="text"
+                class="form-control block
                     w-full
                     px-3
                     py-1.5
@@ -93,18 +92,18 @@ const AddTracks = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackName"
-                  required
-                  value={this.state.trackName}
-                  onChange={this.onChangeTrackName}
-                  name="trackName"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="trackDescription">Track Description</label>
-                <textarea 
-                  type="text"
-                  class="form-control block
+                id="trackName"
+                required
+                value={track.trackName}
+                onChange={handleInputChange}
+                name="trackName"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trackDescription">Track Description</label>
+              <input
+                type="text"
+                class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -118,18 +117,18 @@ const AddTracks = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackDescription"
-                  required
-                  value={this.state.trackDescription}
-                  onChange={this.onChangeTrackDescription}
-                  name="trackDescription"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="trackProvider">Track Provider</label>
-                <input 
-                  type="text"
-                  class="form-control block
+                id="trackDescription"
+                required
+                value={track.trackDescription}
+                onChange={handleInputChange}
+                name="trackDescription"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trackProvider">Track Provider</label>
+              <input
+                type="text"
+                class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -143,18 +142,18 @@ const AddTracks = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackProvider"
-                  required
-                  value={this.state.trackProvider}
-                  onChange={this.onChangeTrackProvider}
-                  name="trackProvider"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="trackLink">Track Link</label>
-                <input 
-                  type="url"
-                  class="form-control block
+                id="trackProvider"
+                required
+                value={track.trackProvider}
+                onChange={handleInputChange}
+                name="trackProvider"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trackLink">Track Link</label>
+              <input
+                type="text"
+                class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -168,18 +167,18 @@ const AddTracks = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackLink"
-                  required
-                  value={this.state.trackLink}
-                  onChange={this.onChangeTrackLink}
-                  name="trackLink"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="trackTags">Track Tag</label>
-                <input 
-                  type="text"
-                  class="form-control block
+                id="trackLink"
+                required
+                value={track.trackLink}
+                onChange={handleInputChange}
+                name="trackLink"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trackTags">Track Tag</label>
+              <input
+                type="text"
+                class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -193,18 +192,18 @@ const AddTracks = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackTags"
-                  required
-                  value={this.state.trackTags}
-                  onChange={this.onChangeTrackTags}
-                  name="trackTags"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="trackLemons">Track Lemons</label>
-                <input 
-                  type="number"
-                  class="form-control block
+                id="trackTags"
+                required
+                value={track.trackTags}
+                onChange={handleInputChange}
+                name="trackTags"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="trackLemons">Track Lemons</label>
+              <input
+                type="text"
+                class="form-control block
                   w-full
                   px-3
                   py-1.5
@@ -218,15 +217,18 @@ const AddTracks = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="trackLemons"
-                  required
-                  value={this.state.trackLemons}
-                  onChange={this.onChangeTrackLemons}
-                  name="trackLemons"
-                />
-              </div>
+                placeholder="Enter a number*"
+                id="trackLemons"
+                required
+                value={track.trackLemons}
+                onChange={handleInputChangeNumber}
+                name="trackLemons"
+              />
+            </div>
 
-              <button onClick={this.saveTrack} className="btn btn-success   w-full
+            <button
+              onClick={saveTrack}
+              className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -242,14 +244,14 @@ const AddTracks = () => {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
+                ease-in-out"
+            >
               Submit
             </button>
-            </form>
-          </div>
-          )}
-      </div>
-    );
-  
+          </form>
+        </div>
+      )}
+    </div>
+  );
 };
 export default AddTracks;
