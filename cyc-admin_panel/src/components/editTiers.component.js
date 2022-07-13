@@ -5,6 +5,7 @@ const EditTier = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
   const initialTierState = {
+    id: null,
     tierName: "",
     tierDescription: "",
     tierIcon: "",

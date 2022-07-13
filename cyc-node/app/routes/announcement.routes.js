@@ -21,8 +21,6 @@ module.exports = app => {
     // Delete all Announcements
     router.delete("/", announcements.deleteAll);
   
-    // Delete a Announcements with id
-    router.delete("/:id", announcements.delete);
 
     app.use('/api/announcements', router);
   };
