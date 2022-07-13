@@ -91,40 +91,44 @@ export default class ConfigTracks extends Component {
             <div class="col-span-4 px-5">
               {/* Content Grid */}
               <ul class="flex-col flex space-y-5">
-                {/* Card */}
-                <li class="group rounded-xl shadow w-full h-full">
-                  {/* Card Body */}
-                  <div class="grid">
-                    <div class="col-span-2 p-5 grid grid-rows-5">
-                      <div class="row-span-4">
-                        <div class="text-xl font-semibold">
-                          Track Name
-                        </div>
-                        <div class="text-xs">
-                          Track Provider
-                        </div>
-                        <div class="text-md py-3 line-clamp-5 text-ellipsis">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
-                        </div>
-                        <div class="text-xs text-slate-500 flex flex-col">
-                          <p>Track Lemons: 500</p>
-                          <p>Track Tags: Water, Earth, Fire, Air</p>
-                        </div>
-                        <div class="text-xs text-blue-600 py-1">
-                          <a href="https://www.google.com/">Track Link</a>
+                {
+                  items.map((item) => (
+                    < li class="group rounded-xl shadow w-full h-full" >
+                      < div class="grid" >
+                        <div class="col-span-2 p-5 grid grid-rows-5">
+                          <div class="row-span-4">
+                            <div class="text-xl font-semibold">
+                              {item.trackName}
+                            </div>
+                            <div class="text-xs">
+                              {item.trackProvider}
+                            </div>
+                            <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                              {item.exchangeDescription}
+                            </div>
+                            <div class="text-xs text-slate-500 flex flex-col">
+                              <p>Track Lemons: {item.trackLemons}</p>
+                              <p>Track Tags: {item.trackTags}</p>
+                            </div>
+                            <div class="text-xs text-blue-600 py-1">
+                              <a href={item.trackLink}>Track Link</a>
+                            </div>
+                          </div>
+                          <div class="row-span-1 flex justify-center">
+                            <Link to={"/tracks/" + item.id} class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                              Edit
+                            </Link>
+                            <button onClick={() => { this.remove(item.id) }} class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                              <Link to="">
+                                Delete
+                              </Link>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                      <div class="row-span-1 flex justify-center">
-                        <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                          Edit
-                        </Link>
-                        <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                          Delete
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
             {/* Sidebar */}
@@ -137,20 +141,17 @@ export default class ConfigTracks extends Component {
                 {/* Details */}
                 <div class="flex-col justify-start">
                   <div class="text-md py-1 mt-2 text-left">
-                    <p>Lorem Ipsum</p>
+                    <p>Tracks management page</p>
                   </div>
                   <div class="text-md py-1 mt-2 text-left">
-                    <p>Lorem Ipsum</p>
-                  </div>
-                  <div class="text-md py-1 mt-2 text-left">
-                    <p>Lorem Ipsum</p>
+                    <p>{items.length} Entries</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div >
+        </div >
+      </div >
 
     );
   }

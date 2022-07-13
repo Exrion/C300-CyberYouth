@@ -82,38 +82,42 @@ export default class ConfigTrophies extends Component {
                         <div class="col-span-4 px-5">
                             {/* Content Grid */}
                             <ul class="flex-col flex space-y-5">
-                                {/* Card */}
-                                <li class="group rounded-xl shadow w-full h-full">
-                                    {/* Card Body */}
-                                    <div class="grid grid-cols-3">
-                                        <div class="col-span-1">
-                                            <img src="https://picsum.photos/200/300" class="rounded-l-xl h-full"></img>
-                                        </div>
-                                        <div class="col-span-2 p-5 grid grid-rows-5">
-                                            <div class="row-span-4">
-                                                <div class="text-xl font-semibold">
-                                                    Trophy Name
+                                {
+                                    items.map((item) => (
+                                        <li class="group rounded-xl shadow w-full h-full">
+                                            <div class="grid grid-cols-3">
+                                                <div class="col-span-1">
+                                                    <img src={item.trophyIcon} class="rounded-l-xl h-full"></img>
                                                 </div>
-                                                <div class="text-md py-3 line-clamp-5 text-ellipsis">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis sem luctus arcu euismod rutrum. Aenean dignissim diam vel metus convallis commodo. Curabitur eu nisl ut lorem commodo aliquam.
-                                                </div>
-                                                <div class="text-xs text-slate-500 flex flex-col pb-2">
-                                                    <p>Trophy Lemons: 600</p>
-                                                    <p>Total Progress: 99%</p>
-                                                    <p>Total Level: 42</p>
+                                                <div class="col-span-2 p-5 grid grid-rows-5">
+                                                    <div class="row-span-4">
+                                                        <div class="text-xl font-semibold">
+                                                            {item.trophyName}
+                                                        </div>
+                                                        <div class="text-md py-3 line-clamp-5 text-ellipsis">
+                                                            {item.trophyDescription}
+                                                        </div>
+                                                        <div class="text-xs text-slate-500 flex flex-col pb-2">
+                                                            <p>Trophy Lemons: {item.trophyLemons}</p>
+                                                            <p>Total Progress: {item.totalProgress}%</p>
+                                                            <p>Total Level: {item.totalLvl}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-span-1 flex justify-center">
+                                                        <Link to={"/trophies/" + item.id} class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                            Edit
+                                                        </Link>
+                                                        <button onClick={() => { this.remove(item.id) }} class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                            <Link to="">
+                                                                Delete
+                                                            </Link>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row-span-1 flex justify-center">
-                                                <Link to="/" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                                                    Edit
-                                                </Link>
-                                                <Link to="/" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 transition ease-in-out focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                                                    Delete
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </div>
                         {/* Sidebar */}
@@ -126,13 +130,10 @@ export default class ConfigTrophies extends Component {
                                 {/* Details */}
                                 <div class="flex-col justify-start">
                                     <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
+                                        <p>Trophies management page</p>
                                     </div>
                                     <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
-                                    </div>
-                                    <div class="text-md py-1 mt-2 text-left">
-                                        <p>Lorem Ipsum</p>
+                                        <p>{items.length} Entries</p>
                                     </div>
                                 </div>
                             </div>
