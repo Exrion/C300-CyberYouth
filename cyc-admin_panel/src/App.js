@@ -1,5 +1,5 @@
 import './App.css';
-import { useState,useEffect,useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 //Linkedin imports
@@ -26,31 +26,28 @@ import Contact from "./components/Footer/contact.component"
 //login imports
 import Login from "./components/Login/login.component";
 import useToken from "./components/App/useToken.component";
-import { FaWindows } from 'react-icons/fa';
-
-
 
 function App() {
 
-   
+
   //--- LOGIN FUNCTION---//
-  const { token, setToken } = useToken(); 
+  const { token, setToken } = useToken();
 
   // return <LinkedInCallback />;
-  
+
   //Login Page
   if (!token) { //if not token no login, but user can input any token to login
     return <Login setToken={setToken} />;
   }
 
-  // //Linkedin
-  // else if (document.getElementById('linkedInLogin').clicked == true){
-  //   return <LinkedInCallback />;
-  // }
+  //Linkedin
+  <button id="" onclick="console.log('Button clicked')">
+    return <LinkedInCallback />;
+  </button>;
 
   //Main Website
   return ( //else login
-    
+
     <div className="App">
       {localStorage.removeItem('loginCount')}
       <div className="xl:px-60">
@@ -71,7 +68,7 @@ function App() {
               {/* Username here */}
               {/* WIP */}
               <span className="text-slate-600 p-1 text-md">{JSON.parse(localStorage.getItem('token')).username}</span>
-              
+
             </Link>
 
           </div>
