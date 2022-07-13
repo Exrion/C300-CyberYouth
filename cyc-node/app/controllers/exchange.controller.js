@@ -12,17 +12,18 @@ exports.create = (req, res) => {
     return;
   }
 
-  //Create a trophy
-  const trophy = {
+  //Create a exchange
+  const exchange = {
     exchangeName: req.body.exchangeName,
     exchangeDescription: req.body.exchangeDescription,
+    exchangeImg: req.body.exchangeImg,
     lemonsEach: req.body.lemonsEach,
     deliveryMode: req.body.deliveryMode,
     exchangeStock: req.body.exchangeStock,
   };
 
   
-  // Save Trophy in the database
+  // Save Exchange in the database
   Exchange.create(exchange)
     .then((data) => {
       res.send(data);
@@ -35,7 +36,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Trophies from the database.
+// Retrieve all Exchanges from the database.
 exports.findAll = (req, res) => {
   const exchangeName = req.query.exchangeName;
   var condition = exchangeName
@@ -55,7 +56,7 @@ exports.findAll = (req, res) => {
 // Find a single Trophies with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
+  console.log("here in exchange.controller exports.findOne");
   Exchange.findByPk(id)
     .then((data) => {
       if (data) {

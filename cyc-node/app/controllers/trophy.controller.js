@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   const trophy = {
     trophyName: req.body.trophyName,
     trophyDescription: req.body.trophyDescription,
+    trophyIcon: req.body.trophyIcon,
     totalProgress: req.body.totalProgress,
     totalLvl: req.body.totalLvl,
     trophyLemons: req.body.trophyLemons,
@@ -30,7 +31,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial.",
+          err.message || "Some error occurred while creating the Trophy.",
       });
     });
 };
@@ -52,27 +53,28 @@ exports.findAll = (req, res) => {
       });
     });
 };
-// Find a single Trophies with an id
+// Find a single Trophy with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
+  console.log("here in trophy.controller exports.findOne");
   Trophy.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Trophies with id=${id}.`,
+          message: `Cannot find Trophies with id=${id}.`
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Trophies with id=" + id,
+        message: "Error retrieving Trophies with id=" + id
       });
     });
 };
 
+// Update a Trophy by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
@@ -86,16 +88,60 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Trophy with id=${id}. Maybe Trophy was not found or req.body is empty!`,
+          message: `Cannot update Trophy with id=${id}. Maybe Tracks was not found or req.body is empty!`
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Trophy with id=" + id,
+        message: "Error updating Trophy with id=" + id
       });
     });
 };
+
+
+// Delete a Trophy with the specified id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Trophy.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Trophy was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Trophy with id=${id}. Maybe Trophy was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Trophy with id=" + id
+      });
+    });
+};
+
+// Delete all Tutorials from the database.
+exports.deleteAll = (req, res) => {
+  Trophy.destroy({
+    where: {},
+    truncate: false
+  })
+    .then(nums => {
+      res.send({ message: `${nums} Trophies were deleted successfully!` });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all trophies."
+      });
+    });
+};
+
 
 exports.findAllPublished = (req, res) => {
   Trophy.findAll()
@@ -105,7 +151,7 @@ exports.findAllPublished = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials.",
+          err.message || "Some error occurred while retrieving Trophies.",
       });
     });
 };

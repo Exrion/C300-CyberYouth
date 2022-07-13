@@ -1,46 +1,149 @@
 import { Link } from "react-router-dom";
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { FaFastForward, FaTrophy, FaLongArrowAltUp, FaStackExchange, FaVolumeUp, FaUser, FaUserCog } from "react-icons/fa";
 
+const Dashboard = () => {
+        //Retrieve user from localstorage
+        const [user, setUser] = useState([]);
 
-
-export default class Dashboard extends Component {
-    render() {
+        useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('token'));
+        if (user) {
+            setUser(user);
+        }
+        }, []);
+        
         return (
-            <div>
+            
+            <div class="flex-col flex space-y-10 ml-5 mr-5">
+                
+                <div class="flex justify-start">      
+                    <h1 class="text-3xl">Welcome, {user.username}</h1>
+                </div>
+
+
                 {/* Configuration Items Flexbox */}
-                <div div class="flex flex-wrap text-l bg-gray-100 rounded p-4 w-50" >
-                    <div class="p-4 text-black bg-gray-100 ">
-                        <Link to={"./configAnnouncements"} className="nav-link">
-                        <img src={require('../images/dashboard/Announcement.png')} alt= "Announcement" class="h-50 w-50"></img>
-                            Announcements
-                        </Link>
+                <div>
+                    {/* Header */}
+                    <div class="flex justify-start">
+                        <h3 class="text-2xl bg-blue-600 p-2 px-10 text-white rounded-t-xl shadow">Configuration</h3>
                     </div>
-                    <div class="p-4 text-black bg-gray-100">
-                        <Link to={"/configExchangeItems"} className="nav-link">
-                        <img src={require('../images/dashboard/Gift.png')} alt= "Exchange Item" class="h-50 w-50 "></img>
-                            Exchange Items
-                        </Link>
+
+                    {/* Content */}
+                    <div class="shadow">
+                        <div class="grid content-start gap-x-6 p-6 w-max grid-flow-col grid-rows-1">
+
+                            {/* TEMPLATE */}
+                            {/* <Link to="/ConfigTracks">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-10 rounded-xl hover:bg-gray-100">
+                                    <div class="flex justify-center">
+                                        <FaFastForward class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Tracks
+                                    </div>
+                                </div>
+                            </Link> */}
+
+                            <Link to={"/configAnnouncements"}>
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-6 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaVolumeUp class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Announcements
+                                    </div>
+                                </div>
+                            </Link>
+
+
+                            <Link to={"/configExchangeItems"}>
+                                <div class="flex-col justify-center bg-slate-100 py-5 px-10 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaStackExchange class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center flex-wrap w-20">
+                                        Exchange Items
+                                    </div>
+                                </div>
+                            </Link>
+
+                            <Link to={"/configTiers"}>
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-11 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaLongArrowAltUp class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Tiers
+                                    </div>
+                                </div>
+                            </Link>
+
+                            <Link to={"/configTracks"}>
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-10 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaFastForward class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Tracks
+                                    </div>
+                                </div>
+                            </Link>
+
+                            <Link to={"/configTrophies"}>
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-9 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaTrophy class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Trophies
+                                    </div>
+                                </div>
+                            </Link>
+
+                        </div>
                     </div>
-                    <div class="p-4 text-black bg-gray-100">
-                        <Link to={"/configTiers"} className="nav-link">
-                        <img src={require('../images/dashboard/Tiers.png')} alt= "Tiers" class="h-50 w-50 content-center"></img>
-                            Tiers
-                        </Link>
+                </div>
+
+                {/* Users Flexbox */}
+                <div>
+                    {/* Header */}
+                    <div class="flex justify-start">
+                        <h3 class="text-2xl bg-blue-600 p-2 px-10 text-white rounded-t-xl shadow">Users</h3>
                     </div>
-                    <div class="p-4 text-black bg-gray-100">
-                        <Link to={"/configTracks"} className="nav-link">
-                        <img src={require('../images/dashboard/Tracks.png')} alt= "Tracks" class="h-50 w-50"></img>
-                            Tracks
-                        </Link>
-                    </div>
-                    <div class="p-4 text-black bg-gray-100">
-                        <Link to={"/configTrophies"} className="nav-link">
-                        <img src={require('../images/dashboard/Trophies.png')} alt= "Trophies" class="h-50 w-50 content-center"></img>
-                            Trophies
-                        </Link>
+
+                    {/* Content */}
+                    <div class="shadow">
+                        <div class="grid content-start gap-x-6 p-6 w-max grid-flow-col grid-rows-1">
+
+                            <Link to="/" class="place-self-stretch">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-12 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaUser class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Users
+                                    </div>
+                                </div>
+                            </Link>
+
+                            <Link to="/" class="place-self-stretch">
+                                <div class="flex-col justify-center bg-slate-100 py-8 px-7 rounded-xl hover:bg-gray-200 transition ease-in-out">
+                                    <div class="flex justify-center">
+                                        <FaUserCog class="text-3xl" />
+                                    </div>
+                                    <div class="flex justify-center">
+                                        Permissions
+                                    </div>
+                                </div>
+                            </Link>
+
+                        </div>
                     </div>
                 </div>
             </div>
         );
-    }
-}
+    };
+
+export default Dashboard
+

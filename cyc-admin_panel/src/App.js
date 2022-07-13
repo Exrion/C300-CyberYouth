@@ -1,6 +1,9 @@
 import './App.css';
+import { useState,useEffect,useCallback } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { FaCog } from "react-icons/fa";
+
+//Linkedin imports
+import { LinkedInCallback } from 'react-linkedin-login-oauth2';
 
 // Importing Components
 import Dashboard from './components/dashboard.component';
@@ -15,69 +18,102 @@ import AddAnnouncements from "./components/addAnnouncements.component";
 import AddExchangeItems from "./components/addExchangeItems.component";
 import AddTracks from "./components/addTracks.component";
 import AddTrophies from "./components/addTrophies.component";
+import EditTrophy from "./components/editTrophy.component";
+import EditAnnouncement from './components/editAnnouncemnts.component';
+import EditExchangeItem from "./components/editExchangeItem.component";
+import AboutUs from "./components/Footer/aboutus.component"
+import Contact from "./components/Footer/contact.component"
+//login imports
+import Login from "./components/Login/login.component";
+import useToken from "./components/App/useToken.component";
+import { FaWindows } from 'react-icons/fa';
 
 
 
 function App() {
-  return (
-    <div className="App" class="xl:px-60">
-      {/* Navigation Bar */}
-      <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-        <div class="container flex flex-wrap justify-between items-center mx-auto">
-          <Link to="/" class="flex items-center">
-            <img src={require('./images/navbar/CYS-Favicon.png')} class="mr-3 h-6 sm:h-9" alt="CYS Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap text-black">Cyber Youth Singapore</span>
-          </Link>
-          <div class="flex items-center md:order-2">
-            <button type="button" class="hover:animate-spin flex mr-3 text-sm bg-gray-100 rounded-3xl p-3 md:mr-0 hover:bg-gray-400" id="user-menu-button" data-dropdown-toggle="dropdown">
-              <span class="sr-only">Open user menu</span>
-              <FaCog/>
-            </button>
-                        
-            {/* Dropdown menu */}
-            <div class="hidden z-50 my-4 text-base list-none divide-y divide-gray-100 shadow bg-gray-100 rounded" id="dropdown">
-              <div class="py-5 px-8 flex space-x-5 bg-gradient-to-b from-blue-900 via-blue-700 to-gray-100 rounded-t">
-                <div>
-                  {/* User Profile Picture here */}
-                  <img src={require('./images/navbar/pepe.png')} class="rounded-full object-scale-down h-20 w-20 border-solid" alt='user portrait' />
-                </div>
-                <div>
-                  {/* User's name here */}
-                  <span class="block text-sm text-white">John Doe</span>
-                  {/* User email here */}
-                  <span class="block text-sm font-medium text-gray-300 truncate">john.doe@gmail.com</span>
-                </div>
-              </div>
-              <ul class="p-4 space-y-2" aria-labelledby="dropdown">
-                <li class="hover:text-gray-600">
-                  <Link to="/settingsAccount">Account Settings</Link>
-                </li>
-                <li class="hover:text-gray-600">
-                  <button>Sign Out</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>  
+
+   
+  //--- LOGIN FUNCTION---//
+  const { token, setToken } = useToken(); 
+
+  // return <LinkedInCallback />;
+  
+  //Login Page
+  if (!token) { //if not token no login, but user can input any token to login
+    return <Login setToken={setToken} />;
+  }
+
+  //Linkedin
+  else if (document.getElementById('linkedInLogin').clicked == true){
+    return <LinkedInCallback />;
+  }
+
+  //Main Website
+  return ( //else login
     
-      {/* Main Content */}
-      <div class="flex items-center justify-center w-fit xl:px-4 md:px-4">
-        <Routes>
-          <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
-          <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
-          <Route exact path='/configTiers' element={<ConfigTiers />} />
-          <Route exact path='/configTracks' element={<ConfigTracks />} />
-          <Route exact path='/configTrophies' element={<ConfigTrophies />} />
-          <Route exact path="/addTiers" element={<AddTiers />} />
-          <Route exact path="/addAnnouncements" element={<AddAnnouncements />} />
-          <Route exact path="/addTrophies" element={<AddTrophies />} />
-          <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
-          <Route exact path="/addTracks" element={<AddTracks />} />
-          <Route exact path='/settingsAccount' element={<SettingsAccount />} />
-          <Route exact path='/dashboard' element={< Dashboard />}/>
-          <Route path='/' element={< Dashboard />}/>
-        </Routes>
+    <div className="App">
+      {localStorage.removeItem('loginCount')}
+      <div className="xl:px-60">
+        {/* Navigation Bar */}
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+          <div className="container flex flex-wrap justify-between items-center mx-auto">
+
+            {/* CYC Logo */}
+            <Link to="/" className="flex items-center">
+              <img src={require('./images/navbar/CYS-Favicon.png')} className="mr-3 h-6 sm:h-9" alt="CYS Logo" />
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-black">Cyber Youth Singapore</span>
+            </Link>
+
+            {/* Account */}
+            <Link className="my-4 shadow bg-gray-100 rounded-full p-2 flex justify-center hover:bg-gray-200 transition ease-in-out" to="/settingsAccount">
+              {/* User Profile Picture here */}
+              <img src={require('./images/navbar/pepe.png')} className="rounded-full object-scale-down h-9 w-9 border-solid" alt='user portrait' />
+              {/* Username here */}
+              {/* WIP */}
+              <span className="text-slate-600 p-1 text-md">{JSON.parse(localStorage.getItem('token')).username}</span>
+              
+            </Link>
+
+          </div>
+        </nav>
+
+        {/* Main Content */}
+        <div className="flex items-center justify-center w-full py-2">
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path='/configAnnouncements' element={<ConfigAnnouncements />} />
+            <Route exact path='/configExchangeItems' element={<ConfigExchangeItems />} />
+            <Route exact path='/configTiers' element={<ConfigTiers />} />
+            <Route exact path='/configTracks' element={<ConfigTracks />} />
+            <Route exact path='/configTrophies' element={<ConfigTrophies />} />
+            <Route exact path="/addTiers" element={<AddTiers />} />
+            <Route exact path="/addAnnouncements" element={<AddAnnouncements />} />
+            <Route exact path="/addTrophies" element={<AddTrophies />} />
+            <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
+            <Route exact path="/addTracks" element={<AddTracks />} />
+            <Route exact path='/settingsAccount' element={<SettingsAccount />} />
+            <Route exact path='/dashboard' element={< Dashboard />} />
+            <Route exact path="/trophies/:id" element={<EditTrophy />} />
+            <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
+            <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
+            <Route exact path="/About_Us" element={<AboutUs />} />
+            <Route exact path="/Contact" element={<Contact />} />
+            <Route path='/' element={< Dashboard />} />
+          </Routes>
+        </div>
+
+        <footer class="p-5 bg-white rounded-lg md:flex md:items-center md:justify-between md:p-6">
+          <span class="text-sm text-gray-500 sm:text-center">© 2022 C300 RP™. All Rights Reserved.
+          </span>
+          <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+            <li>
+              <Link to="/About_Us" class="mr-4 hover:underline md:mr-6 ">About</Link>
+            </li>
+            <li>
+              <Link to="/Contact" class="hover:underline">Contact</Link>
+            </li>
+          </ul>
+        </footer>
       </div>
     </div>
   );

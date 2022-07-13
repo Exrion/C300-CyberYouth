@@ -1,114 +1,68 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TrackDataService from "../services/track.service";
-export default class addTracks extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTrackName = this.onChangeTrackName.bind(this);
-    this.onChangeTrackDescription = this.onChangeTrackDescription.bind(this);
-    this.onChangeTrackProvider = this.onChangeTrackProvider.bind(this);
-    this.onChangeTrackLink = this.onChangeTrackLink.bind(this);
-    this.onChangeTrackTags = this.onChangeTrackTags.bind(this);
-    this.onChangeTrackLemons = this.onChangeTrackLemons.bind(this);
-    this.onChangeCreatedAt = this.onChangeCreatedAt.bind(this);
-    this.onChangeModifiedAt = this.onChangeModifiedAt.bind(this);
 
-    this.saveTrack = this.saveTrack.bind(this);
-    this.newTrack = this.newTrack.bind(this);
-    this.state = {
-      id: null,
-      trackName: "",
-      trackDescription: "",
-      trackProvider: "",
-      trackLink: "",
-      trackTags: "",
-      trackLemons: "",
-      createdAt: "",
-      modifiedAt: "",
-    };
-  }
-  onChangeTrackName(t){
-    this.setState({
-      trackName: t.target.value,
-    });
-  }
-  onChangeTrackDescription(t){
-    this.setState({
-      trackDescription: t.target.value,
-    });
-  }
-  onChangeTrackProvider(t){
-    this.setState({
-      trackProvider: t.target.value
-    })
-  }
-  onChangeTrackLink(t){
-    this.setState({
-      trackLink: t.target.value
-    })
-  }
-  onChangeTrackTags(t){
-    this.setState({
-      trackTags: t.target.value
-    })
-  }
-  onChangeTrackLemons(t){
-    this.setState({
-      trackLemons: t.target.value
-    })
-  }
-  onChangeCreatedAt(t){
-    this.setState({
-      createdAt: t.target.value
-    })
-  }
-  onChangeModifiedAt(t){
-    this.setState({
-      modifiedAt: t.target.value
-    })
-  }
-  saveTrack(){
+const AddTracks = () => {
+  const initialTrackState = {
+    id: null,
+    trackName: "",
+    trackDescription: "",
+    trackProvider: "",
+    trackLink: "",
+    trackTags: "",
+    trackLemons: null,
+  };
+
+  const [track, setTrack] = useState(initialTrackState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTrack({ ...track, [name]: value });
+  };
+
+  const handleInputChangeNumber = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      const { name, value } = event.target;
+      setTrack({ ...track, [name]: value });
+    }
+  };
+
+  const saveTrack = () => {
     var data = {
-      trackName: this.state.trackName,
-      trackDescription: this.state.trackDescription,
-      trackProvider: this.state.trackProvider,
-      trackLink: this.state.trackLink,
-      trackTag: this.state.trackTag,
-      trackLemons: this.state.trackLemons,
-      createdAt: this.state.createdAt,
-      modifiedAt: this.state.modifiedAt
+      trackName: track.trackName,
+      trackDescription: track.trackDescription,
+      trackProvider: track.trackProvider,
+      trackLink: track.trackLink,
+      trackTags: track.trackTags,
+      trackLemons: track.trackLemons,
     };
     TrackDataService.create(data)
       .then((response) => {
-        this.setState({
+        setTrack({
           id: response.data.id,
           trackName: response.data.trackName,
           trackDescription: response.data.trackDescription,
           trackProvider: response.data.trackProvider,
           trackLink: response.data.trackLink,
+          trackTags: response.data.trackTags,
           trackLemons: response.data.trackLemons,
-          createdAt: response.data.createdAt,
-          modifiedAt: response.data.modifiedAt,
         });
+        setSubmitted(true);
         console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-  newTrack() {
-    this.setState({
-      id: null,
-      trackName: "",
-      trackDescription: "",
-      trackProvider: "",
-      trackLink: "",
-      trackTags: "",
-      trackLemons: null,
-      createdAt: null,
-      modifiedAt: null
-    });
-  }
-    render() {
+  };
+  const newTrack = () => {
+    setTrack(initialTrackState);
+    setSubmitted(false);
+  };
+
+    
         return (
           <div className="submit-form">
             {this.state.submitted ? (
@@ -148,7 +102,7 @@ export default class addTracks extends Component {
               </div>
               <div class ="form-group mb-6">
                 <label htmlFor="trackDescription">Track Description</label>
-                <input 
+                <textarea 
                   type="text"
                   class="form-control block
                   w-full
@@ -199,7 +153,7 @@ export default class addTracks extends Component {
               <div class ="form-group mb-6">
                 <label htmlFor="trackLink">Track Link</label>
                 <input 
-                  type="text"
+                  type="url"
                   class="form-control block
                   w-full
                   px-3
@@ -242,14 +196,14 @@ export default class addTracks extends Component {
                   id="trackTags"
                   required
                   value={this.state.trackTags}
-                  onChange={this.onChangeTrackTag}
+                  onChange={this.onChangeTrackTags}
                   name="trackTags"
                 />
               </div>
               <div class ="form-group mb-6">
                 <label htmlFor="trackLemons">Track Lemons</label>
                 <input 
-                  type="text"
+                  type="number"
                   class="form-control block
                   w-full
                   px-3
@@ -269,56 +223,6 @@ export default class addTracks extends Component {
                   value={this.state.trackLemons}
                   onChange={this.onChangeTrackLemons}
                   name="trackLemons"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="createdAt">Created At</label>
-                <input 
-                  type="text"
-                  class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="createdAt"
-                  required
-                  value={this.state.createdAt}
-                  onChange={this.onChangeCreatedAt}
-                  name="createdAt"
-                />
-              </div>
-              <div class ="form-group mb-6">
-                <label htmlFor="modifiedAt">Modified At</label>
-                <input 
-                  type="text"
-                  class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="modifiedAt"
-                  required
-                  value={this.state.modifiedAt}
-                  onChange={this.onChangeModifiedAt}
-                  name="modifiedAt"
                 />
               </div>
 
@@ -346,5 +250,6 @@ export default class addTracks extends Component {
           )}
       </div>
     );
-  }
-}
+  
+};
+export default AddTracks;

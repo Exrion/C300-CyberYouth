@@ -12,8 +12,11 @@ module.exports = app => {
     // // Retrieve a single Tier with id
     // router.get("/:id", trophies.findOne);
   
-    // // Update a Tier with id
-    // router.put("/:id", trophies.update);
+    // Update a Tier with id
+    router.put("/:id", tiers.update);
+
+    // Delete a Tier with id
+    router.delete("/:id", tiers.delete);
   
     app.use('/api/tiers', router);
   };

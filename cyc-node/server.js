@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
@@ -9,6 +10,9 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+
+
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
@@ -31,6 +35,13 @@ app.get("/", (req, res) => {
 
 require("./app/routes/trophy.routes")(app);
 require("./app/routes/tier.routes")(app);
+require("./app/routes/announcement.routes")(app);
+require("./app/routes/track.routes")(app);
+require("./app/routes/exchange.routes")(app);
+require("./app/routes/auth.routes")(app);
+require("./app/routes/account.routes")(app);
+//Email Service
+require("./app/routes/email.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,93 +1,62 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TierDataService from "../services/tier.service";
-export default class addTiers extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTierName = this.onChangeTierName.bind(this);
-    this.onChangeTierDescription = this.onChangeTierDescription.bind(this);
-    this.onChangeTierIcon = this.onChangeTierIcon.bind(this);
-    this.onChangeGrapesNeeded = this.onChangeGrapesNeeded.bind(this);
-    this.onChangeLemonsAwarded = this.onChangeLemonsAwarded.bind(this);
 
-    this.saveTier = this.saveTier.bind(this);
-    this.newTier = this.newTier.bind(this);
-    this.state = {
-      id: null,
-      tierName: "",
-      tierDescription: "",
-      tierIcon: "",
-      grapesNeeded: "",
-      lemonsAwarded: "",
-      
-    };
-  }
-  onChangeTierName(e) {
-    this.setState({
-      tierName: e.target.value,
-    });
-  }
-  onChangeTierDescription(e) {
-    this.setState({
-      tierDescription: e.target.value,
-    });
-  }
-  onChangeTierIcon(e) {
-    this.setState({
-      tierIcon: e.target.value,
-    });
-  }
-  onChangeGrapesNeeded(e) {
-    this.setState({
-      grapesNeeded: e.target.value,
-    });
-  }
-  onChangeLemonsAwarded(e) {
-    this.setState({
-      lemonsAwarded: e.target.value,
-    });
-  }
-  saveTier() {
+const AddTiers = () => {
+  const initialTierState = {
+    tierName: "",
+    tierDescription: "",
+    tierIcon: "",
+    grapesNeeded: 0,
+    lemonsAwarded: 0,
+  };
+
+  const [tier, setTier] = useState(initialTierState);
+  const [submitted, setSubmitted] = useState(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTier({ ...tier, [name]: value });
+  };
+
+  const handleInputChangeNumber = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      const { name, value } = event.target;
+      setTier({ ...tier, [name]: value });
+    }
+  };
+
+  const saveTier = () => {
     var data = {
-      tierName: this.state.tierName,
-      tierDescription: this.state.tierDescription,
-      tierIcon: this.state.tierIcon,
-      grapesNeeded: this.state.grapesNeeded,
-      lemonsAwarded: this.state.lemonsAwarded,
-      //   created_at: this.state.created_at,
-      //   modified_at: this.state.modified_at
+      tierName: tier.tierName,
+      tierDescription: tier.tierDescription,
+      tierIcon: tier.tierIcon,
+      grapesNeeded: tier.grapesNeeded,
+      lemonsAwarded: tier.lemonsAwarded,
     };
     TierDataService.create(data)
       .then((response) => {
-        this.setState({
+        setTier({
           id: response.data.id,
           tierName: response.data.tierName,
           tierDescription: response.data.tierDescription,
           tierIcon: response.data.tierIcon,
           grapesNeeded: response.data.grapesNeeded,
           lemonsAwarded: response.data.lemonsAwarded,
-          
-          //   created_at: response.data.created_at,
-          //   modified_at: response.data.modified_at
         });
+        setSubmitted(true);
         console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-  newTier() {
-    this.setState({
-      id: null,
-      tierName: "",
-      tierDescription: "",
-      tierIcon: null,
-      grapesNeeded: null,
-      lemonsAwarded: null,
-      //   created_at: null,
-      //   modified_at: null
-    });
-  }
-  render() {
+  };
+  const newTier = () => {
+    setTier(initialTierState);
+    setSubmitted(false);
+  };
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -127,7 +96,7 @@ export default class addTiers extends Component {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="tierDescription">Tier Description</label>
-              <input
+              <textarea
                 type="text"
                 class="form-control block
                 w-full
@@ -153,7 +122,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="tierIcon">Tier Icon</label>
               <input
-                type="text"
+                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -178,7 +147,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="grapesNeeded">Grapes Needed</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                 w-full
                 px-3
@@ -203,7 +172,7 @@ export default class addTiers extends Component {
             <div class="form-group mb-6">
               <label htmlFor="lemonsAwarded">Lemons Awarded</label>
               <input
-                type="text"
+                type="number"
                 class="form-control block
                 w-full
                 px-3
@@ -249,5 +218,6 @@ export default class addTiers extends Component {
         )}
       </div>
     );
-  }
-}
+  
+};
+export default AddTiers;

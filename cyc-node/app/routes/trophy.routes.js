@@ -10,10 +10,16 @@ module.exports = (app) => {
   router.get("/", trophies.findAll);
 
   // Retrieve a single Trophies with id
-  router.get("/:trophy_id", trophies.findOne);
+  router.get("/:id", trophies.findOne);
 
   // Update a Trophies with id
-  router.put("/:trophy_id", trophies.update);
+  router.put("/:id", trophies.update);
+
+  // Delete a Trophies with id
+  router.delete("/:id", trophies.delete);
+
+  // Delete all Trophies
+  router.delete("/", trophies.deleteAll);
 
   app.use("/api/trophies", router);
 };
