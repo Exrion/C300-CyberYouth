@@ -114,8 +114,10 @@ function App() {
               <Route exact path="/Contact" element={<Contact />} />
               <Route path="/" element={<Dashboard />} />
             </Routes>
+        </div >
 
-          <footer class="p-5 bg-white rounded-lg md:flex md:items-center md:justify-between md:p-6">
+        {/* Footer */}
+        <footer class="p-5 bg-white rounded-lg md:flex md:items-center md:justify-between md:p-6">
             <span class="text-sm text-gray-500 sm:text-center">
               © 2022 C300 RP™. All Rights Reserved.
             </span>
@@ -132,8 +134,10 @@ function App() {
               </li>
             </ul>
           </footer>
-        </div >
+
       </div >
     </div>
   );
 }
+
+export default App;
