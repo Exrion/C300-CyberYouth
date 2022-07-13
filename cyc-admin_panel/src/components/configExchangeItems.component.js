@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-export default class ConfigExchangeitems extends Component {
+import DataService from "../services/exchange.service";
+
+
+export default class ConfigExchangeitems extends Component{
     constructor(props) {
         super(props);
 
@@ -21,6 +24,17 @@ export default class ConfigExchangeitems extends Component {
                     DataisLoaded: true
                 });
             })
+    }
+    remove(id) {
+        console.log("Deleting");
+        DataService.remove(id)
+            .then(response => {
+                console.log(response.data);
+                window.location.reload(false);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     render() {

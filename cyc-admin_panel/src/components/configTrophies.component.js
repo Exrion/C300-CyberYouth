@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import DataService from "../services/trophy.service";
+
+
 
 export default class ConfigTrophies extends Component {
     constructor(props) {
@@ -22,6 +25,18 @@ export default class ConfigTrophies extends Component {
                     DataisLoaded: true
                 });
             })
+    }
+
+    remove(id) {
+        console.log("Deleting");
+        DataService.remove(id)
+            .then(response => {
+                console.log(response.data);
+                window.location.reload(false);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     render() {

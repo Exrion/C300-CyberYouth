@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
-import TierDataService from "../services/tier.service";
+import DataService from "../services/tier.service";
 
 export default class ConfigTiers extends Component {
     constructor(props) {
@@ -27,16 +27,17 @@ export default class ConfigTiers extends Component {
             })
     }
 
-    deleteTier(id) {
-        TierDataService.delete(id)
+    remove(id) {
+        console.log("Deleting");
+        DataService.remove(id)
             .then(response => {
                 console.log(response.data);
+                window.location.reload(false);
             })
             .catch(e => {
                 console.log(e);
             });
     }
-
     render() {
         const { DataisLoaded, items } = this.state;
         if (!DataisLoaded) return

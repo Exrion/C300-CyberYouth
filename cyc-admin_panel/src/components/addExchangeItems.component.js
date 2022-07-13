@@ -59,72 +59,23 @@ const AddExchangeItems = () => {
     setExchangeItem(initialExchangeItemState);
     setSubmitted(false);
   };
-    return (
-      <div className="submit-form">
-        {this.state.submitted ? (
-          <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newExchange}>
-              Add
-            </button>
-          </div>
-        ) : (
-          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+
+  return (
+    <div className="submit-form">
+      {submitted ? (
+        <div>
+          <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newExchangeItem}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <form>
             <div class="form-group mb-6">
               <label htmlFor="exchangeName">Exchange Name</label>
               <input
                 type="text"
-                class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeName"
-                required
-                value={this.state.exchangeName}
-                onChange={this.onChangeExchangeName}
-                name="exchangeName"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeDescription">Exchange Description</label>
-              <textarea
-                type="text"
-                class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exchangeDescription"
-                required
-                value={this.state.exchangeDescription}
-                onChange={this.onChangeExchangeDescription}
-                name="exchangeDescription"
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label htmlFor="exchangeImg">Exchange Image</label>
-              <input
-                type="url"
                 class="form-control block
                 w-full
                 px-3
@@ -139,10 +90,60 @@ const AddExchangeItems = () => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="exchangeName"
+                required
+                value={exchangeItem.exchangeName}
+                onChange={handleInputChange}
+                name="exchangeName"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="exchangeDescription">Exchange Description</label>
+              <input
+                type="text"
+                class="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="exchangeDescription"
+                required
+                value={exchangeItem.exchangeDescription}
+                onChange={handleInputChange}
+                name="exchangeDescription"
+              />
+            </div>
+            <div class="form-group mb-6">
+              <label htmlFor="exchangeImg">Exchange Image</label>
+              <input
+                type="text"
+                class="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exchangeImg"
                 required
-                value={this.state.exchangeImg}
-                onChange={this.onChangeExchangeImg}
+                value={exchangeItem.exchangeImg}
+                onChange={handleInputChange}
                 name="exchangeImg"
               />
             </div>
@@ -151,23 +152,24 @@ const AddExchangeItems = () => {
               <input
                 type="number"
                 class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="lemonsEach"
                 required
-                value={this.state.lemonsEach}
-                onChange={this.onChangeLemonsEach}
+                value={exchangeItem.lemonsEach}
+                onChange={handleInputChangeNumber}
                 name="lemonsEach"
               />
             </div>
@@ -176,23 +178,23 @@ const AddExchangeItems = () => {
               <input
                 type="text"
                 class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="deliveryMode"
                 required
-                value={this.state.deliveryMode}
-                onChange={this.onChangeDeliveryMode}
+                value={exchangeItem.deliveryMode}
+                onChange={handleInputChange}
                 name="deliveryMode"
               />
             </div>
@@ -201,51 +203,53 @@ const AddExchangeItems = () => {
               <input
                 type="number"
                 class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="exchangeStock"
                 required
-                value={this.state.exchangeStock}
-                onChange={this.onChangeExchangeStock}
+                value={exchangeItem.exchangeStock}
+                onChange={handleInputChangeNumber}
                 name="exchangeStock"
               />
             </div>
-            <button onClick={this.saveExchange} className="btn btn-success   w-full
-                px-6
-                py-2.5
-                bg-gray-100
-                text-black
-                font-medium
-                text-xs
-                leading-tight
-                uppercase
-                rounded
-                shadow-md
-                hover:bg-gray-200 hover:shadow-lg
-                focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0
-                active:bg-gray-100 active:shadow-lg
-                transition
-                duration-150
-                ease-in-out">
+            <button
+              onClick={saveExchangeItem}
+              className="btn btn-success   w-full
+              px-6
+              py-2.5
+              bg-gray-100
+              text-black
+              font-medium
+              text-xs
+              leading-tight
+              uppercase
+              rounded
+              shadow-md
+              hover:bg-gray-200 hover:shadow-lg
+              focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0
+              active:bg-gray-100 active:shadow-lg
+              transition
+              duration-150
+              ease-in-out"
+            >
               Submit
             </button>
-            </form>
-          </div>
-        )}
-      </div>
-    );
-  
+          </form>
+        </div>
+      )}
+    </div>
+  );
 };
 export default AddExchangeItems;
-

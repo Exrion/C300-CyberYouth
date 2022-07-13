@@ -25,10 +25,12 @@ export default class ConfigAnnouncements extends Component {
             })
     }
 
-    deleteAnnouncement(id) {
-        AnnouncementDataService.delete(id)
+    remove(id) {
+        console.log("Deleting");
+        AnnouncementDataService.remove(id)
             .then(response => {
                 console.log(response.data);
+                window.location.reload(false);
             })
             .catch(e => {
                 console.log(e);

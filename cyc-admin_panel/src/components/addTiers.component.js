@@ -57,19 +57,19 @@ const AddTiers = () => {
     setTier(initialTierState);
     setSubmitted(false);
   };
-    return (
-      <div className="submit-form">
-        {this.state.submitted ? (
-          <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTier}>
-              Add
-            </button>
-          </div>
-        ) : (
-          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  return (
+    <div className="submit-form">
+      {submitted ? (
+        <div>
+          <h4>You submitted successfully!</h4>
+          <button className="btn btn-success" onClick={newTier}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <form>
-          <div class="form-group mb-6">
+            <div class="form-group mb-6">
               <label htmlFor="tierName">Tier Name</label>
               <input
                 type="text"
@@ -89,8 +89,8 @@ const AddTiers = () => {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="tierName"
                 required
-                value={this.state.tierName}
-                onChange={this.onChangeTierName}
+                value={tier.tierName}
+                onChange={handleInputChange}
                 name="tierName"
               />
             </div>
@@ -114,8 +114,8 @@ const AddTiers = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="tierDescription"
                 required
-                value={this.state.tierDescription}
-                onChange={this.onChangeTierDescription}
+                value={tier.tierDescription}
+                onChange={handleInputChange}
                 name="tierDescription"
               />
             </div>
@@ -139,8 +139,8 @@ const AddTiers = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="tierIcon"
                 required
-                value={this.state.tierIcon}
-                onChange={this.onChangeTierIcon}
+                value={tier.tierIcon}
+                onChange={handleInputChange}
                 name="tierIcon"
               />
             </div>
@@ -162,10 +162,11 @@ const AddTiers = () => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="grapesNeeded"
                 required
-                value={this.state.grapesNeeded}
-                onChange={this.onChangeGrapesNeeded}
+                value={tier.grapesNeeded}
+                onChange={handleInputChangeNumber}
                 name="grapesNeeded"
               />
             </div>
@@ -187,14 +188,17 @@ const AddTiers = () => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter a number*"
                 id="lemonsAwarded"
                 required
-                value={this.state.lemonsAwarded}
-                onChange={this.onChangeLemonsAwarded}
+                value={tier.lemonsAwarded}
+                onChange={handleInputChangeNumber}
                 name="lemonsAwarded"
               />
             </div>
-            <button onClick={this.saveTier} className="btn btn-success   w-full
+            <button
+              onClick={saveTier}
+              className="btn btn-success   w-full
                 px-6
                 py-2.5
                 bg-gray-100
@@ -210,14 +214,14 @@ const AddTiers = () => {
                 active:bg-gray-100 active:shadow-lg
                 transition
                 duration-150
-                ease-in-out">
+                ease-in-out"
+            >
               Submit
             </button>
-            </form>
-          </div>
-        )}
-      </div>
-    );
-  
+          </form>
+        </div>
+      )}
+    </div>
+  );
 };
 export default AddTiers;
