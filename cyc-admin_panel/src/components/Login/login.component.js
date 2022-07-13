@@ -2,7 +2,6 @@ import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
-import linkedin from '../../images/login/linkedin.png';
 
 async function loginUser(credentials) {
   return fetch("http://localhost:8080/api/auth/signin", {
@@ -98,7 +97,7 @@ export default function Login({ setToken }) {
           />
           <h1 className="font-semibold">NEST Login</h1>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5 flex flex-col">
           <label className="space-y-1">
             <p>Username</p>
             <input
@@ -118,17 +117,15 @@ export default function Login({ setToken }) {
           <div>
             <button
               type="submit"
-              className="btn btn-success w-full px-6 py-2.5 bg-gray-100 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
+              className="btn btn-success w-full px-6 py-2.5 bg-blue-500 text-slate-200 text-md font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
             >
-              Submit
+              Login
             </button>
           </div>
-          <img
-            onClick={linkedInLogin}
-            src={linkedin}
-            alt="Sign in with Linked In"
-            style={{ maxWidth: '180px', cursor: 'pointer' }}
-          />
+          <button class="flex flex-flow rounded-full shadow-lg p-2 hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out" onClick={linkedInLogin}>
+            <img src={require("../../images/login/linkedin.png")} className="mr-3 h-6 sm:h-9" alt="LinkedIn Login Icon" />
+            <p class="mt-1">Sign in with LinkedIn</p>
+          </button>
         </form>
       </div>
       
