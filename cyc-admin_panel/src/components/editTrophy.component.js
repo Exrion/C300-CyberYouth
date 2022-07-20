@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TrophyDataService from "../services/trophy.service";
+import LogBookDataService from "../services/logbook.service";
 const EditTrophy = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -31,6 +32,7 @@ const EditTrophy = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCurrentTrophy({ ...currentTrophy, [name]: value });
+    setLogBook({ ...logbook, [name]: value });
   };
   const handleInputChangeNumber = (event) => {
     const re = /^[0-9\b]+$/;
@@ -52,6 +54,7 @@ const EditTrophy = (props) => {
       .catch((e) => {
         console.log(e);
       });
+
   };
   const deleteTrophy = () => {
     TrophyDataService.remove(currentTrophy.id)
@@ -63,6 +66,32 @@ const EditTrophy = (props) => {
         console.log(e);
       });
   };
+  
+  const initialLogBookState = {
+    id: null,
+    editItemID: "",
+    modificationDetail: "",
+  };
+  const [logbook, setLogBook] = useState(initialLogBookState);
+  const saveLogBook = () => {
+    var data = {
+      editItemID: "Trophy id " + currentTrophy.id,
+      modificationDetail: logbook.modificationDetail,
+    };
+    LogBookDataService.create(data)
+      .then((response) => {
+        setLogBook({
+          id: response.data.id,
+          editItemID: response.data.editItemID,
+          modificationDetail: response.data.modificationDetail,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  
 
   return (
     <div>
@@ -228,6 +257,58 @@ const EditTrophy = (props) => {
             </form>
           </div>
 
+          <div className="form-group mb-6">
+              <label htmlFor="editItemID"> editItemID</label>
+              <input
+                type="text"
+                className="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="editItemID"
+                required
+                value={logbook.editItemID}
+                //onChange={handleInputChange}
+                name="editItemID"
+              />
+            </div>
+
+          <div className="form-group mb-6">
+              <label htmlFor="modificationDetail"> Modification Detail</label>
+              <input
+                type="text"
+                className="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="modificationDetail"
+                required
+                value={logbook.modificationDetail}
+                name="modificationDetail"
+                onChange={handleInputChange}
+              />
+            </div>
+
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
             onClick={deleteTrophy}
@@ -237,7 +318,10 @@ const EditTrophy = (props) => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={updateTrophy}
+            onClick={() => {
+              updateTrophy();
+              saveLogBook();
+            }}
           >
             Update
           </button>

@@ -24,6 +24,7 @@ db.tiers = require("./tier.model.js")(sequelize, Sequelize);
 db.tracks = require("./track.model.js")(sequelize, Sequelize);
 db.announcements = require("./announcement.model.js")(sequelize, Sequelize);
 db.exchanges = require("./exchange.model.js")(sequelize, Sequelize);
+db.logbook = require("./logbook.model.js")(sequelize, Sequelize);
 
 
 module.exports = db;
