@@ -40,6 +40,7 @@ require("./app/routes/track.routes")(app);
 require("./app/routes/exchange.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/account.routes")(app);
+require("./app/routes/logbook.routes")(app);
 //Email Service
 require("./app/routes/email.routes")(app);
 
