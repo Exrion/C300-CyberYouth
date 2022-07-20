@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TrophyDataService from "../services/trophy.service";
+import LogBookDataService from "../services/logbook.service";
 const EditTrophy = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -31,6 +32,7 @@ const EditTrophy = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCurrentTrophy({ ...currentTrophy, [name]: value });
+    setLogBook({ ...logbook, [name]: value });
   };
   const handleInputChangeNumber = (event) => {
     const re = /^[0-9\b]+$/;
@@ -58,6 +60,31 @@ const EditTrophy = (props) => {
       .then((response) => {
         console.log(response.data);
         navigate("/configTrophies");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const initialLogBookState = {
+    id: null,
+    editItemID: "",
+    modificationDetail: "",
+  };
+  const [logbook, setLogBook] = useState(initialLogBookState);
+  const saveLogBook = () => {
+    var data = {
+      editItemID: "Trophy id " + currentTrophy.id,
+      modificationDetail: logbook.modificationDetail,
+    };
+    LogBookDataService.create(data)
+      .then((response) => {
+        setLogBook({
+          id: response.data.id,
+          editItemID: response.data.editItemID,
+          modificationDetail: response.data.modificationDetail,
+        });
+        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -237,7 +264,10 @@ const EditTrophy = (props) => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={updateTrophy}
+            onClick={() => {
+              updateTrophy();
+              saveLogBook();
+            }}
           >
             Update
           </button>
