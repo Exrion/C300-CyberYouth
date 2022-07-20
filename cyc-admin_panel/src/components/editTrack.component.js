@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TrackDataService from "../services/track.service";
 import LogBookDataService from "../services/logbook.service";
+import EmailDataService from "../services/email.service";
 const EditTrack = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -32,6 +33,7 @@ const EditTrack = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCurrentTrack({ ...currentTrack, [name]: value });
+    setLogBook({ ...logbook, [name]: value });
   };
   const handleInputChangeNumber = (event) => {
     const re = /^[0-9\b]+$/;
@@ -41,7 +43,6 @@ const EditTrack = (props) => {
     if (event.target.value === "" || re.test(event.target.value)) {
       const { name, value } = event.target;
       setCurrentTrack({ ...currentTrack, [name]: value });
-      setLogBook({ ...logbook, [name]: value });
     }
   };
 
@@ -83,6 +84,29 @@ const EditTrack = (props) => {
           id: response.data.id,
           editItemID: response.data.editItemID,
           modificationDetail: response.data.modificationDetail,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const initialEmailState = {
+    text: "",
+  };
+  const [setEmail] = useState(initialEmailState);
+  const sendEmail = () => {
+    var data = {
+      text: "Track id " + currentTrack.id + "\n" + logbook.modificationDetail,
+    };
+    EmailDataService.create(data)
+      .then((response) => {
+        setEmail({
+          from: response.data.from,
+          to: response.data.to,
+          subject: response.data.subject,
+          text: response.data.text,
         });
         console.log(response.data);
       })
@@ -314,6 +338,7 @@ const EditTrack = (props) => {
             onClick={() => {
               updateTrack();
               saveLogBook();
+              sendEmail();
             }}
           >
             Update

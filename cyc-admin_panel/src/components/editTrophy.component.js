@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TrophyDataService from "../services/trophy.service";
 import LogBookDataService from "../services/logbook.service";
+import EmailDataService from "../services/email.service";
 const EditTrophy = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -90,8 +91,29 @@ const EditTrophy = (props) => {
         console.log(e);
       });
   };
+  const initialEmailState = {
+    text: "",
+  };
+  const [setEmail] = useState(initialEmailState);
+  const sendEmail = () => {
+    var data = {
+      text: "Trophy id " + currentTrophy.id + "\n" + logbook.modificationDetail,
+    };
+    EmailDataService.create(data)
+      .then((response) => {
+        setEmail({
+          from: response.data.from,
+          to: response.data.to,
+          subject: response.data.subject,
+          text: response.data.text,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-  
   return (
     <div>
       {currentTrophy ? (
@@ -320,6 +342,7 @@ const EditTrophy = (props) => {
             onClick={() => {
               updateTrophy();
               saveLogBook();
+              sendEmail();
             }}
           >
             Update

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TierDataService from "../services/tier.service";
 import LogBookDataService from "../services/logbook.service";
+import EmailDataService from "../services/email.service";
 const EditTier = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -31,6 +32,7 @@ const EditTier = (props) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCurrentTier({ ...currentTier, [name]: value });
+    setLogBook({ ...logbook, [name]: value });
   };
 
   const handleInputChangeNumber = (event) => {
@@ -41,7 +43,6 @@ const EditTier = (props) => {
     if (event.target.value === "" || re.test(event.target.value)) {
       const { name, value } = event.target;
       setCurrentTier({ ...currentTier, [name]: value });
-      setLogBook({ ...logbook, [name]: value });
     }
   };
 
@@ -83,6 +84,29 @@ const EditTier = (props) => {
           id: response.data.id,
           editItemID: response.data.editItemID,
           modificationDetail: response.data.modificationDetail,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const initialEmailState = {
+    text: "",
+  };
+  const [setEmail] = useState(initialEmailState);
+  const sendEmail = () => {
+    var data = {
+      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail,
+    };
+    EmailDataService.create(data)
+      .then((response) => {
+        setEmail({
+          from: response.data.from,
+          to: response.data.to,
+          subject: response.data.subject,
+          text: response.data.text,
         });
         console.log(response.data);
       })
@@ -293,6 +317,7 @@ const EditTier = (props) => {
             onClick={() => {
               updateTier();
               saveLogBook();
+              sendEmail();
             }}
           >
             Update
