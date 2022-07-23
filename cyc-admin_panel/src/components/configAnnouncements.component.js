@@ -26,15 +26,17 @@ export default class ConfigAnnouncements extends Component {
     }
 
     remove(id) {
-        console.log("Deleting");
-        AnnouncementDataService.remove(id)
-            .then(response => {
-                console.log(response.data);
-                window.location.reload(false);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        if (window.confirm(`Confirm deletion - ${id}`)) {
+            console.log("Deleting");
+            AnnouncementDataService.remove(id)
+                .then(response => {
+                    console.log(response.data);
+                    window.location.reload(false);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     }
 
     render() {
