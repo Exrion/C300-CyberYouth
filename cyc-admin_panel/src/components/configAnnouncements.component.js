@@ -26,7 +26,7 @@ export default class ConfigAnnouncements extends Component {
     }
 
     remove(id) {
-        if (window.confirm(`Confirm deletion - ${id}`)) {
+        if (window.confirm(`Confirm deletion - Item ID: ${id}`)) {
             console.log("Deleting");
             AnnouncementDataService.remove(id)
                 .then(response => {

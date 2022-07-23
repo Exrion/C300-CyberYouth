@@ -26,7 +26,7 @@ export default class ConfigExchangeitems extends Component {
             })
     }
     remove(id) {
-        if (window.confirm(`Confirm deletion - ${id}`)) {
+        if (window.confirm(`Confirm deletion - Item ID: ${id}`)) {
             console.log("Deleting");
             DataService.remove(id)
                 .then(response => {
