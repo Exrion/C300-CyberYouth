@@ -40,6 +40,25 @@ export default class ConfigTrophies extends Component {
                 });
         }
     }
+    visualCurr(strNum, type) {
+        var curr = [];
+        for (let i = 0; i < parseInt(strNum); i++) {
+            if (type == 1) {
+                curr.push(
+                    <img src={require("../images/assets/lemon_full.png")}
+                        class="w-6 px-1"
+                    />
+                );
+            } else {
+                curr.push(
+                    <img src={require("../images/assets/grape_full.png")}
+                        class="w-7 px-1"
+                    />
+                );
+            }
+        }
+        return curr;
+    }
 
     render() {
         const { DataisLoaded, items } = this.state;
@@ -100,9 +119,19 @@ export default class ConfigTrophies extends Component {
                                                             {item.trophyDescription}
                                                         </div>
                                                         <div class="text-xs text-slate-500 flex flex-col pb-2">
-                                                            <p>Trophy Lemons: {item.trophyLemons}</p>
+                                                            <div class="flex flex-row justify-center">
+                                                                <p>Trophy Lemons: </p>
+                                                                <span class="flex flex-row px-2">{this.visualCurr(item.trophyLemons, 1)}</span>
+                                                            </div>
                                                             <p>Total Progress: {item.totalProgress}%</p>
                                                             <p>Total Level: {item.totalLvl}</p>
+                                                        </div>
+                                                        <div class="flex justify-between mb-1">
+                                                            <span class="text-base font-medium text-blue-700 dark:text-white">Level {item.totalLvl}</span>
+                                                            <span class="text-sm font-medium text-blue-700 dark:text-white">{item.totalProgress}%</span>
+                                                        </div>
+                                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                                            <div class="bg-blue-600 h-2.5 rounded-full" style={{width: `${parseInt(item.totalProgress)}%`}}></div>
                                                         </div>
                                                     </div>
                                                     <div class="row-span-1 flex justify-center">

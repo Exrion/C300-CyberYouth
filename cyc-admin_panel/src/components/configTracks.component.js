@@ -37,6 +37,25 @@ export default class ConfigTracks extends Component {
         });
     }
   }
+  visualCurr(strNum, type) {
+    var curr = [];
+    for (let i = 0; i < parseInt(strNum); i++) {
+      if (type == 1) {
+        curr.push(
+          <img src={require("../images/assets/lemon_full.png")}
+            class="w-6 px-1"
+          />
+        );
+      } else {
+        curr.push(
+          <img src={require("../images/assets/grape_full.png")}
+            class="w-7 px-1"
+          />
+        );
+      }
+    }
+    return curr;
+  }
 
   render() {
     const { DataisLoaded, items } = this.state;
@@ -109,7 +128,10 @@ export default class ConfigTracks extends Component {
                               {item.exchangeDescription}
                             </div>
                             <div class="text-xs text-slate-500 flex flex-col">
-                              <p>Track Lemons: {item.trackLemons}</p>
+                              <div class="flex flex-row justify-center">
+                                <p>Track Lemons: </p>
+                                <span class="flex flex-row px-2">{this.visualCurr(item.trackLemons, 1)}</span>
+                              </div>
                               <p>Track Tags: {item.trackTags}</p>
                             </div>
                             <div class="text-xs text-blue-600 py-1">

@@ -92,49 +92,49 @@ function App() {
 
         {/* Main Content */}
         <div className="flex items-center justify-center w-full py-2">
-            <Routes>
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/configAnnouncements" element={<ConfigAnnouncements />} />
-              <Route exact path="/configExchangeItems" element={<ConfigExchangeItems />} />
-              <Route exact path="/configTiers" element={<ConfigTiers />} />
-              <Route exact path="/configTracks" element={<ConfigTracks />} />
-              <Route exact path="/configTrophies" element={<ConfigTrophies />} />
-              <Route exact path="/addTiers" element={<AddTiers />} />
-              <Route exact path="/addAnnouncements" element={<AddAnnouncements />} />
-              <Route exact path="/addTrophies" element={<AddTrophies />} />
-              <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
-              <Route exact path="/addTracks" element={<AddTracks />} />
-              <Route exact path="/settingsAccount" element={<SettingsAccount />} />
-              <Route exact path="/dashboard" element={<Dashboard />} />
-              <Route exact path="/trophies/:id" element={<EditTrophy />} />
-              <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
-              <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
-              <Route exact path="/tiers/:id" element={<EditTier/>} />
-              <Route exact path="/tracks/:id" element={<EditTrack/>} />
-              <Route exact path="/About_Us" element={<AboutUs />} />
-              <Route exact path="/Contact" element={<Contact />} />
-              <Route path="/" element={<Dashboard />} />
-            </Routes>
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/configAnnouncements" element={<ConfigAnnouncements />} />
+            <Route exact path="/configExchangeItems" element={<ConfigExchangeItems />} />
+            <Route exact path="/configTiers" element={<ConfigTiers />} />
+            <Route exact path="/configTracks" element={<ConfigTracks />} />
+            <Route exact path="/configTrophies" element={<ConfigTrophies />} />
+            <Route exact path="/addTiers" element={<AddTiers />} />
+            <Route exact path="/addAnnouncements" element={<AddAnnouncements />} />
+            <Route exact path="/addTrophies" element={<AddTrophies />} />
+            <Route exact path="/addExchangeItems" element={<AddExchangeItems />} />
+            <Route exact path="/addTracks" element={<AddTracks />} />
+            <Route exact path="/settingsAccount" element={<SettingsAccount />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/trophies/:id" element={<EditTrophy />} />
+            <Route exact path="/announcement/:id" element={<EditAnnouncement />} />
+            <Route exact path="/exchanges/:id" element={<EditExchangeItem />} />
+            <Route exact path="/tiers/:id" element={<EditTier />} />
+            <Route exact path="/tracks/:id" element={<EditTrack />} />
+            <Route exact path="/About_Us" element={<AboutUs />} />
+            <Route exact path="/Contact" element={<Contact />} />
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
         </div >
 
         {/* Footer */}
         <footer class="p-5 bg-white rounded-lg md:flex md:items-center md:justify-between md:p-6">
-            <span class="text-sm text-gray-500 sm:text-center">
-              © 2022 C300 RP™. All Rights Reserved.
-            </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
-              <li>
-                <Link to="/About_Us" class="mr-4 hover:underline md:mr-6 ">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/Contact" class="hover:underline">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </footer>
+          <span class="text-sm text-gray-500 sm:text-center">
+            © 2022 C300 RP™. All Rights Reserved.
+          </span>
+          <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+            <li>
+              <Link to="/About_Us" class="mr-4 hover:underline md:mr-6 ">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/Contact" class="hover:underline">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </footer>
 
       </div >
     </div>

@@ -38,6 +38,25 @@ export default class ConfigExchangeitems extends Component {
                 });
         }
     }
+    visualCurr(strNum, type) {
+        var curr = [];
+        for (let i = 0; i < parseInt(strNum); i++){
+            if (type == 1){
+                curr.push(
+                <img    src={require("../images/assets/lemon_full.png")}
+                        class="w-6 px-1"
+                />
+                );
+            } else {
+                curr.push(
+                <img    src={require("../images/assets/grape_full.png")}
+                        class="w-7 px-1"
+                />
+                );
+            }            
+        }
+        return curr;
+    }
 
     render() {
         const { DataisLoaded, items } = this.state;
@@ -98,7 +117,10 @@ export default class ConfigExchangeitems extends Component {
                                                             {item.exchangeDescription}
                                                         </div>
                                                         <div class="text-xs text-slate-500 flex flex-col pb-2">
-                                                            <p>Lemons Required: {item.lemonsEach}</p>
+                                                            <div class="flex flex-row justify-center">
+                                                                <p>Lemons Required: </p>
+                                                                <span class="flex flex-row px-2">{this.visualCurr(item.lemonsEach, 1)}</span>
+                                                            </div>
                                                             <p>Delivery Mode: {item.deliveryMode}</p>
                                                             <p>Exchange Stock: {item.exchangeStock}</p>
                                                         </div>
