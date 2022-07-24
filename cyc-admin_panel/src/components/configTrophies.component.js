@@ -123,8 +123,6 @@ export default class ConfigTrophies extends Component {
                                                                 <p>Trophy Lemons: </p>
                                                                 <span class="flex flex-row px-2">{this.visualCurr(item.trophyLemons, 1)}</span>
                                                             </div>
-                                                            <p>Total Progress: {item.totalProgress}%</p>
-                                                            <p>Total Level: {item.totalLvl}</p>
                                                         </div>
                                                         <div class="flex justify-between mb-1">
                                                             <span class="text-base font-medium text-blue-700 dark:text-white">Level {item.totalLvl}</span>
@@ -134,7 +132,7 @@ export default class ConfigTrophies extends Component {
                                                             <div class="bg-blue-600 h-2.5 rounded-full" style={{width: `${parseInt(item.totalProgress)}%`}}></div>
                                                         </div>
                                                     </div>
-                                                    <div class="row-span-1 flex justify-center mt-2">
+                                                    <div class="row-span-1 flex justify-center">
                                                         <Link to={"/trophies/" + item.id} class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                                                             Edit
                                                         </Link>
