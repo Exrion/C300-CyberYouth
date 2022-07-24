@@ -1,3 +1,4 @@
 # env variables
 cyc-node/.env
-env.txt
+
+.env
