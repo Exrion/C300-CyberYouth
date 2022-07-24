@@ -23,13 +23,13 @@ async function lockaccountUser(credentials) {
   }).then((data) => data.json());
 }
 
+
 localStorage.setItem("loginCount", "0");
 export default function Login({ setToken }) {
   //Login Counter
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-  
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   
@@ -38,9 +38,11 @@ export default function Login({ setToken }) {
     const token = await loginUser({
       username,
       password,
+      
     });
     setToken(token);
 
+    
     // TODO: send email after 3 failed login attemtpts BJORN
     //ACOUNT LOCKED AFTER 3 failed attempts. Uses localstorage hence can be bypassed. Can store login count in backend instead for full solution.
     //OR create a new logintries collumn within account table and if logintries returns > 3, account is locked.
@@ -64,6 +66,7 @@ export default function Login({ setToken }) {
       currentCount++;
       localStorage.setItem("loginCount", currentCount.toString());
     }
+    
     console.log(token);
     //Login error messages
     if (!username && password) {
@@ -124,7 +127,7 @@ export default function Login({ setToken }) {
           <label className="space-y-1">
             <p>Username</p>
             <input
-              type="text"
+              type="text" 
               onChange={(e) => setUserName(e.target.value)}
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
@@ -137,6 +140,17 @@ export default function Login({ setToken }) {
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
           </label>
+          {/* <label className="space-y-1">
+            <p>2FA</p>
+            <input
+              type = "number"
+              placeholder="0000"
+              min={1000}
+              max={9999}
+              onChange={(e) => setTwoFA(e.target.value)}
+              class="form-control block w-half px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </label> */}
           <div>
             <button
               type="submit"
