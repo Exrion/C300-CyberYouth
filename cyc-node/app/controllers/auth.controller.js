@@ -12,6 +12,7 @@ exports.signup = (req, res) => {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
     locked: false,
+    twoFA: Math.floor(1000 + Math.random() * 9000),
   })
     .then((account) => {
       if (req.body.roles) {

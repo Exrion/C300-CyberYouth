@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
     locked: {
       type: Sequelize.BOOLEAN,
     },
+    twoFA:{
+      type: Sequelize.INTEGER,
+    }
   });
   return Account;
 };

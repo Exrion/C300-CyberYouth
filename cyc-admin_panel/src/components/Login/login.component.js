@@ -29,10 +29,10 @@ export default function Login({ setToken }) {
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-  let locked = false;
+  
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await loginUser({
@@ -95,6 +95,7 @@ export default function Login({ setToken }) {
       setErrorMessage("Wrong Password!");
       addLoginCount();
     }
+    
   };
 
   //Linkedin
@@ -108,7 +109,7 @@ export default function Login({ setToken }) {
       console.log(error);
     },
   });
-
+  const errorCounteMessage = "\n Login Count: " + Number(localStorage.getItem("loginCount"));
   return (
     <div className="grid place-items-center py-40">
       <div className="grid grid-rows place-content-center">
@@ -140,6 +141,7 @@ export default function Login({ setToken }) {
             <button
               type="submit"
               className="btn btn-success w-full px-6 py-2.5 bg-blue-500 text-slate-200 text-md font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
+
             >
               Login
             </button>
@@ -157,8 +159,8 @@ export default function Login({ setToken }) {
           </button>
         </form>
       </div>
-
-      {error ? <div>{errorMessage}</div> : <div></div>}
+      <br></br>
+      {error ? <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><p>{errorMessage}</p> <p>{errorCounteMessage}</p></div> : <div></div>}
     </div>
   );
 }
