@@ -5,14 +5,17 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:3000"
-};
+if (process.env.ENW == "dev") {
+  var corsOptions = {
+    origin: "http://localhost:3000"
+  };
+} else if (process.env.ENV == "prod") {
+  var corsOptions = {
+    origin: process.env.URL
+  };
+}
 
 app.use(cors(corsOptions));
-
-
-
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
