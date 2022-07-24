@@ -1,15 +1,32 @@
+// require('dotenv').config();
+// import axios from "axios";
+// const env = process.env.REACT_APP_ENV;
+// console.log(env);
+
+// const dev = {
+//   baseURL: "http://localhost:8080/api",
+//   headers: {
+//     "Content-type": "application/json",
+//   },
+// }
+
+// const prod = {
+//   baseURL: process.env.REACT_APP_URL,
+//   headers: {
+//     "Content-type": "application/json",
+//   },
+// }
+
+// const conf = {
+//   dev,
+//   prod
+// }
+
+// export default axios.create(conf[env]);
+
 import axios from "axios";
-
-const URL = "";
-
-if (process.env.ENV == "dev") {
-  URL = "http://localhost:8080/api";
-} else if (process.env.ENV == "prod") {
-  URL = process.env.URL;
-}
-
 export default axios.create({
-  baseURL: URL,
+  baseURL: "http://localhost:8080/api",
   headers: {
     "Content-type": "application/json",
   },
