@@ -89,7 +89,8 @@ const EditAnnouncement = props => {
   const [setEmail] = useState(initialEmailState);
   const sendEmail = () => {
     var data = {
-      text: "Announcement id " + currentAnnouncement.id + "\n" + logbook.modificationDetail,
+      text: "Announcement id " + currentAnnouncement.id + "\n" + logbook.modificationDetail
+      + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {
