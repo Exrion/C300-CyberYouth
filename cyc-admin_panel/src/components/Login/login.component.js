@@ -54,7 +54,7 @@ export default function Login({ setToken }) {
     if(JSON.stringify(token).includes("locked: false"))
     {
 
-      setToken(token);
+      //setToken(token);
     }
     else{
       setToken(token);
@@ -151,7 +151,7 @@ export default function Login({ setToken }) {
 };
   //Linkedin
   const { linkedInLogin } = useLinkedIn({
-    clientId: "86vhj2q7ukf83q",
+    clientId: "86h0tc10xi54pb",
     redirectUri: `${window.location.origin}/linkedin`,
     onSuccess: (code) => {
       console.log(code);

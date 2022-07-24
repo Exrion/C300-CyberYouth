@@ -113,6 +113,7 @@ function App() {
             <Route exact path="/tracks/:id" element={<EditTrack />} />
             <Route exact path="/About_Us" element={<AboutUs />} />
             <Route exact path="/Contact" element={<Contact />} />
+            <Route exact path="/linkedin" element={<LinkedInCallback />} />
             <Route path="/" element={<Dashboard />} />
           </Routes>
         </div >

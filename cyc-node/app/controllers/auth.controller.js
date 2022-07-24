@@ -6,7 +6,7 @@ const Role = db.role;
 const { Op } = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-var currentDate = new Date();
+
 exports.signup = (req, res) => {
   // Save User to Database
   Account.create({
@@ -102,10 +102,11 @@ exports.lockaccount = (req, res) => {
           },
         })
           .then((account) => {
+            var currentDate = new Date();
             mailer.createMail(
               account.email,
               "URGENT! CYC ADMIN ACCOUNT LOCKED",
-              "Your account has been locked due to suspicious activity. Immediate action required. \n Account locked at "+ currentDate.toLocaleTimeString() + " SGT" ,
+              "Your account has been locked due to suspicious activity. Immediate action required. \n Account locked at "+ currentDate.toLocaleString() + " SGT" ,
             )
           })
         
