@@ -101,7 +101,8 @@ const Exchange = (props) => {
   const [setEmail] = useState(initialEmailState);
   const sendEmail = () => {
     var data = {
-      text: "ExchangeItem id " + currentExchangeItem.id + "\n" + logbook.modificationDetail,
+      text: "ExchangeItem id " + currentExchangeItem.id + "\n" + logbook.modificationDetail
+      + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {

@@ -98,7 +98,8 @@ const EditTier = (props) => {
   const [setEmail] = useState(initialEmailState);
   const sendEmail = () => {
     var data = {
-      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail,
+      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail 
+      + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {

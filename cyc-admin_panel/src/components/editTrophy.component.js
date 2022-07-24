@@ -97,7 +97,8 @@ const EditTrophy = (props) => {
   const [setEmail] = useState(initialEmailState);
   const sendEmail = () => {
     var data = {
-      text: "Trophy id " + currentTrophy.id + "\n" + logbook.modificationDetail,
+      text: "Trophy id " + currentTrophy.id + "\n" + logbook.modificationDetail
+      + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {
