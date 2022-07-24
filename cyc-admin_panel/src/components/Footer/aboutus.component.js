@@ -84,7 +84,7 @@ export default class AboutUs extends Component {
                     </h2>
                     <h3 className="mb-3 text-gray-500">Backend Developer</h3>
                     <p className="mb-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius hendrerit leo ac consectetur.
+                      Avid reader of many genres of books, novels and manga!
                     </p>
                     <span className="inline-flex">
                       <a className="text-gray-500">
