@@ -17,9 +17,9 @@ const dev = {
 
 const prod = {
   HOST: "",
-  USER: "c300",
-  PASSWORD: "c300_password",
-  DB: "mydb",
+  USER: process.env.PROD_DB_USER,
+  PASSWORD: process.env.PROD_DB_PASS,
+  DB: process.env.PROD_DB_NAME,
   dialect: "mysql",
   pool: {
     max: 5,
