@@ -22,6 +22,16 @@ async function lockaccountUser(credentials) {
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
 }
+ //REMOVE FOR PRODUCTION temp account unlock button
+async function unlockaccountUser(credentials) {
+  return fetch("http://localhost:8080/api/auth/unlockaccount", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
 
 
 localStorage.setItem("loginCount", "0");
@@ -30,6 +40,7 @@ export default function Login({ setToken }) {
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [locked, setLocked] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   
@@ -40,7 +51,15 @@ export default function Login({ setToken }) {
       password,
       
     });
-    setToken(token);
+    if(JSON.stringify(token).includes("locked: false"))
+    {
+
+      setToken(token);
+    }
+    else{
+      setToken(token);
+    }
+    
 
     
     // TODO: send email after 3 failed login attemtpts BJORN
@@ -55,11 +74,12 @@ export default function Login({ setToken }) {
           locked,
         });
         setToken(token);
-        console.log("3 login tries ACCOUNT LOCKED");
+        console.log("3 login tries ACCOUNT LOCKED")
       }
       //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
       setErrorMessage("Try again later.");
     }
+   
     //Login Counter adding
     function addLoginCount() {
       let currentCount = Number(localStorage.getItem("loginCount"));
@@ -90,17 +110,45 @@ export default function Login({ setToken }) {
       addLoginCount();
     } else if (JSON.stringify(token).includes("Account is locked")) {
       setError(true);
+      setLocked(true);
       setErrorMessage(
         "Your account has been locked due to suspicious activity, please contact an administrator"
       );
+      // let email = JSON.parse(localStorage.getItem("token")).email;
+      // console.log("EMAIL IS HERE"+email)
+      // let subject = "URGENT! CYC ADMIN ACCOUNT LOCKED";
+      // let text = "Your account has been locked due to suspicious activity. Immediate action required.";
+      // const sendEmailResult = await sendMail({
+      //   email,
+      //   subject,
+      //   text
+      // });
+      // console.log(sendEmailResult);
     } else if (JSON.stringify(token).includes("Invalid Password")) {
       setError(true);
       setErrorMessage("Wrong Password!");
+      if(Number(localStorage.getItem("loginCount")) >= 3)
+      {
+        setLocked(true);
+        setErrorMessage("Wrong Password! Your account has been locked due to suspicious activity, please contact an administrator.");
+      }
       addLoginCount();
     }
     
   };
-
+  
+ //REMOVE FOR PRODUCTION temp account unlock button
+ function unlockAccount() {
+  let locked = false;
+  console.log(locked);
+  const token = unlockaccountUser({
+    username,
+    locked,
+  });
+  setToken(token);
+  setLocked(false);
+  setErrorMessage("ACCOUNT UNLOCKED");
+};
   //Linkedin
   const { linkedInLogin } = useLinkedIn({
     clientId: "86vhj2q7ukf83q",
@@ -153,6 +201,7 @@ export default function Login({ setToken }) {
           </label> */}
           <div>
             <button
+              
               type="submit"
               className="btn btn-success w-full px-6 py-2.5 bg-blue-500 text-slate-200 text-md font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
 
@@ -175,6 +224,16 @@ export default function Login({ setToken }) {
       </div>
       <br></br>
       {error ? <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><p>{errorMessage}</p> <p>{errorCounteMessage}</p></div> : <div></div>}
+
+      {/*REMOVE FOR PRODUCTION temp account unlock button*/}
+      {locked ? <div>  
+        <button
+        onClick={unlockAccount} 
+        class="h-8 px-4 m-2 text-sm text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800"
+        >
+        DEMO UNLOCK BUTTON 
+        </button></div> 
+        : <div></div>}
     </div>
   );
 }

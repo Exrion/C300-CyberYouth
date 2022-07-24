@@ -1,5 +1,6 @@
 const db = require("../models");
 const config = require("../config/auth.config");
+var mailer = require('./email.controller');
 const Account = db.account;
 const Role = db.role;
 const { Op } = db.Sequelize.Op;
@@ -94,9 +95,43 @@ exports.lockaccount = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
+        Account.findOne({
+          where: {
+            username: req.body.username,
+          },
+        })
+          .then((account) => {
+            mailer.create(
+              account.email,
+              "URGENT! CYC ADMIN ACCOUNT LOCKED",
+              "Your account has been locked due to suspicious activity. Immediate action required.",
+            )
+          })
         
         res.send({
           message: "Account was locked successfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Account with username=${username}. Maybe Account was not found or req.body is empty!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Account with username=" + username,
+      });
+    });
+};
+
+exports.unlockaccount = (req, res) => {
+  Account.update(req.body, {
+    where: { username: req.body.username },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Account was unlocked successfully.",
         });
       } else {
         res.send({
