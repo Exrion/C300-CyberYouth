@@ -21,8 +21,8 @@ exports.create = (req, res) => {
     let mailOptions = {
         from: "cycfyp2022@gmail.com",
         to: "rphadessoi@gmail.com",
-        subject: 'Nodemailer Project',
-        text: 'Hi from your nodemailer project, Best regards, Bjorn'
+        subject: req.body.subject,
+        text: req.body.text,
       };
 
 
