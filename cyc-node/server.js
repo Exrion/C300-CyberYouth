@@ -5,13 +5,14 @@ const cors = require("cors");
 
 const app = express();
 
-if (process.env.ENV == "dev") {
+//this is the issue 
+if (process.env.NODE_ENV === "dev") {
   var corsOptions = {
     origin: "http://localhost:3000"
   };
-} else if (process.env.ENV == "prod") {
+} else if (process.env.NODE_ENV === "prod") {
   var corsOptions = {
-    origin: process.env.URL
+    origin: process.env.URL,
   };
 }
 
