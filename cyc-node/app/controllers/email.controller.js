@@ -20,7 +20,7 @@ exports.create = (req, res) => {
    
     let mailOptions = {
         from: "cycfyp2022@gmail.com",
-        to: "rphadessoi@gmail.com",
+        to: req.body.email,
         subject: req.body.subject,
         text: req.body.text,
       };

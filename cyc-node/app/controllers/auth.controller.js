@@ -94,8 +94,9 @@ exports.lockaccount = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
+        
         res.send({
-          message: "Account was updated successfully.",
+          message: "Account was locked successfully.",
         });
       } else {
         res.send({
