@@ -16,7 +16,7 @@ const dev = {
 }
 
 const prod = {
-  HOST: "",
+  HOST: process.env.PROD_DB_HOST,
   USER: process.env.PROD_DB_USER,
   PASSWORD: process.env.PROD_DB_PASS,
   DB: process.env.PROD_DB_NAME,
