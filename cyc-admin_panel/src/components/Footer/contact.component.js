@@ -23,16 +23,16 @@ export default class Contact extends Component {
               <img
                 alt="contact"
                 className="flex-shrink-0 object-cover object-center w-36 h-36 mb-4 rounded-full sm:mb-0 shadow-lg"
-                src={require("../../images/aboutus/aboutus_banner.jpeg")}
+                src={require("../../images/aboutus/keying.png")}
               />
               <div class="flex flex-col px-10">
                 <h1 class="text-xl text-bold">
                   Ang Ke Ying
                 </h1>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Phone:
+                <p class="text-left leading-relaxed text-gray-500">
+                  +65 92470972
                 </p>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
+                <p class="text-left leading-relaxed text-gray-500">
                   Email:
                 </p>
               </div>
@@ -42,17 +42,17 @@ export default class Contact extends Component {
               <img
                 alt="contact"
                 className="flex-shrink-0 object-cover object-center w-36 h-36 mb-4 rounded-full sm:mb-0 shadow-lg"
-                src={require("../../images/aboutus/aboutus_banner.jpeg")}
+                src={require("../../images/aboutus/bjorn.png")}
               />
               <div class="flex flex-col px-10">
                 <h1 class="text-xl text-bold">
                   Bjorn Tin
                 </h1>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Phone:
+                <p class="text-left leading-relaxed text-gray-500">
+                  +65 93807798
                 </p>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Email:
+                <p class="text-left leading-relaxed text-gray-500">
+                  Email: bjorntin123@gmail.com
                 </p>
               </div>
             </div>
@@ -64,17 +64,17 @@ export default class Contact extends Component {
               <img
                 alt="contact"
                 className="flex-shrink-0 object-cover object-center w-36 h-36 mb-4 rounded-full sm:mb-0 shadow-lg"
-                src={require("../../images/aboutus/aboutus_banner.jpeg")}
+                src={require("../../images/aboutus/charisse.jpeg")}
               />
               <div class="flex flex-col px-10">
                 <h1 class="text-xl text-bold">
                   Charisse Yee
                 </h1>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Phone:
+                <p class="text-left leading-relaxed text-gray-500">
+                  +65 88680053
                 </p>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Email:
+                <p class="text-left leading-relaxed text-gray-500">
+                  Email: charisseyee.ite@gmail.com
                 </p>
               </div>
             </div>
@@ -83,17 +83,17 @@ export default class Contact extends Component {
               <img
                 alt="contact"
                 className="flex-shrink-0 object-cover object-center w-36 h-36 mb-4 rounded-full sm:mb-0 shadow-lg"
-                src={require("../../images/aboutus/aboutus_banner.jpeg")}
+                src={require("../../images/aboutus/titus.jpeg")}
               />
               <div class="flex flex-col px-10">
                 <h1 class="text-xl text-bold">
                   Titus Lim
                 </h1>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Phone:
+                <p class="text-left leading-relaxed text-gray-500">
+                  +65 97598593
                 </p>
-                <p class="text-left leading-relaxed lg:w-2/3 text-gray-500">
-                  Email:
+                <p class="text-left leading-relaxed text-gray-500">
+                  Email: titus.happy@gmail.com
                 </p>
               </div>
             </div>
