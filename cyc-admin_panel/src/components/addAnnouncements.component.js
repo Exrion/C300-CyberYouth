@@ -137,7 +137,7 @@ const AddAnnouncements = () => {
             <div class="form-group mb-6">
               <label htmlFor="announcementImg">Announcement Images</label>
               <input
-                type="url"
+                type="text"
                 class="form-control block
               w-full
               px-3
