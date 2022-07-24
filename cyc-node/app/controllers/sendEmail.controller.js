@@ -1,6 +1,5 @@
 
 
-exports.create = (req, res) => {
     var nodemailer = require('nodemailer');
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -17,12 +16,12 @@ exports.create = (req, res) => {
         }
       });
     
-   
+  exports.createMail = (to,subject,text) => {  
     let mailOptions = {
         from: "cycfyp2022@gmail.com",
-        to: req.body.email,
-        subject: req.body.subject,
-        text: req.body.text,
+        to: to,
+        subject: subject,
+        text: text,
       };
 
 
@@ -30,9 +29,7 @@ exports.create = (req, res) => {
       if (err) {
         console.log("Error " + err);
       } else {
-        res.send({
-          message: "Email sent successfully"
-        });
+        
         console.log("Email sent successfully");
       }
     });
