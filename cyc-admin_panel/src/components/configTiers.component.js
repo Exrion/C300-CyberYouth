@@ -28,16 +28,38 @@ export default class ConfigTiers extends Component {
     }
 
     remove(id) {
-        console.log("Deleting");
-        DataService.remove(id)
-            .then(response => {
-                console.log(response.data);
-                window.location.reload(false);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        if (window.confirm(`Confirm deletion - Item ID: ${id}`)) {
+            console.log("Deleting");
+            DataService.remove(id)
+                .then(response => {
+                    console.log(response.data);
+                    window.location.reload(false);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     }
+    visualCurr(strNum, type) {
+        var curr = [];
+        for (let i = 0; i < parseInt(strNum); i++) {
+            if (type == 1) {
+                curr.push(
+                    <img src={require("../images/assets/lemon_full.png")}
+                        class="w-6 px-1"
+                    />
+                );
+            } else {
+                curr.push(
+                    <img src={require("../images/assets/grape_full.png")}
+                        class="w-7 px-1"
+                    />
+                );
+            }
+        }
+        return curr;
+    }
+
     render() {
         const { DataisLoaded, items } = this.state;
         if (!DataisLoaded) return
@@ -97,8 +119,14 @@ export default class ConfigTiers extends Component {
                                                             {item.tierDescription}
                                                         </div>
                                                         <div class="text-xs text-slate-500 flex flex-col">
-                                                            <p>Lemons Required: {item.grapesNeeded}</p>
-                                                            <p>Grapes Needed: {item.lemonsAwarded}</p>
+                                                            <div class="flex flex-row justify-center">
+                                                                <p>Lemons Required: </p>
+                                                                <span class="flex flex-row px-2">{this.visualCurr(item.lemonsAwarded, 1)}</span>
+                                                            </div>
+                                                            <div class="flex flex-row justify-center">
+                                                                <p>Grapes Needed: </p>
+                                                                <span class="flex flex-row px-2">{this.visualCurr(item.grapesNeeded, 2)}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row-span-1 flex justify-center">

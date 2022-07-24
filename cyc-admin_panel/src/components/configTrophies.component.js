@@ -28,15 +28,36 @@ export default class ConfigTrophies extends Component {
     }
 
     remove(id) {
-        console.log("Deleting");
-        DataService.remove(id)
-            .then(response => {
-                console.log(response.data);
-                window.location.reload(false);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        if (window.confirm(`Confirm deletion - Item ID: ${id}`)) {
+            console.log("Deleting");
+            DataService.remove(id)
+                .then(response => {
+                    console.log(response.data);
+                    window.location.reload(false);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
+    }
+    visualCurr(strNum, type) {
+        var curr = [];
+        for (let i = 0; i < parseInt(strNum); i++) {
+            if (type == 1) {
+                curr.push(
+                    <img src={require("../images/assets/lemon_full.png")}
+                        class="w-6 px-1"
+                    />
+                );
+            } else {
+                curr.push(
+                    <img src={require("../images/assets/grape_full.png")}
+                        class="w-7 px-1"
+                    />
+                );
+            }
+        }
+        return curr;
     }
 
     render() {
@@ -98,12 +119,22 @@ export default class ConfigTrophies extends Component {
                                                             {item.trophyDescription}
                                                         </div>
                                                         <div class="text-xs text-slate-500 flex flex-col pb-2">
-                                                            <p>Trophy Lemons: {item.trophyLemons}</p>
+                                                            <div class="flex flex-row justify-center">
+                                                                <p>Trophy Lemons: </p>
+                                                                <span class="flex flex-row px-2">{this.visualCurr(item.trophyLemons, 1)}</span>
+                                                            </div>
                                                             <p>Total Progress: {item.totalProgress}%</p>
                                                             <p>Total Level: {item.totalLvl}</p>
                                                         </div>
+                                                        <div class="flex justify-between mb-1">
+                                                            <span class="text-base font-medium text-blue-700 dark:text-white">Level {item.totalLvl}</span>
+                                                            <span class="text-sm font-medium text-blue-700 dark:text-white">{item.totalProgress}%</span>
+                                                        </div>
+                                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                                            <div class="bg-blue-600 h-2.5 rounded-full" style={{width: `${parseInt(item.totalProgress)}%`}}></div>
+                                                        </div>
                                                     </div>
-                                                    <div class="row-span-1 flex justify-center">
+                                                    <div class="row-span-1 flex justify-center mt-2">
                                                         <Link to={"/trophies/" + item.id} class="focus:outline-none text-white bg-green-700 hover:bg-green-800 transition ease-in-out focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                                                             Edit
                                                         </Link>
