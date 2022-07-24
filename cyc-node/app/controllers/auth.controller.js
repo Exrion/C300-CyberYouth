@@ -1,11 +1,12 @@
 const db = require("../models");
 const config = require("../config/auth.config");
-var mailer = require('./email.controller');
+var mailer = require('./sendEmail.controller');
 const Account = db.account;
 const Role = db.role;
 const { Op } = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+var current = new Date();
 exports.signup = (req, res) => {
   // Save User to Database
   Account.create({
@@ -101,10 +102,10 @@ exports.lockaccount = (req, res) => {
           },
         })
           .then((account) => {
-            mailer.create(
+            mailer.createMail(
               account.email,
               "URGENT! CYC ADMIN ACCOUNT LOCKED",
-              "Your account has been locked due to suspicious activity. Immediate action required.",
+              "Your account has been locked due to suspicious activity. Immediate action required. \n Account locked at "+ current.toLocaleTimeString() + " SGT" ,
             )
           })
         
