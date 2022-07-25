@@ -12,6 +12,15 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
 }
+async function signinTwoFA(credentials) {
+  return fetch("http://localhost:8080/api/auth/signinTwoFA", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
 
 async function lockaccountUser(credentials) {
   return fetch("http://localhost:8080/api/auth/lockaccount", {
@@ -40,26 +49,43 @@ export default function Login({ setToken }) {
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [twoFA ,  setTwoFA] = useState();
   const [locked, setLocked] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
+  const [message ,setMessage]= useState("");
+  const [validAccount, setValidAccount] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
+    setMessage("");
+    var token = await loginUser({
       username,
       password,
       
     });
-    if(JSON.stringify(token).includes("locked: false"))
-    {
-
-      //setToken(token);
-    }
-    else{
-      setToken(token);
+    if(validAccount)
+    { 
+      token = await signinTwoFA({
+      username,
+      password,
+      twoFA
+    });
     }
     
+    if(JSON.stringify(token).includes("Valid Account") )
+    {
+      setValidAccount(true);
+      setMessage("A 2FA code has been sent to the email registered with this account.\nPlease wait 60 Seconds before sending the code again.");
+      setError(false);
+      console.log(validAccount);
+    }
+    else{
+      setValidAccount(false);
+      console.log("I AM HERE "+validAccount);
+    }
+
+    setToken(token);
 
     
     // TODO: send email after 3 failed login attemtpts BJORN
@@ -77,6 +103,7 @@ export default function Login({ setToken }) {
         console.log("3 login tries ACCOUNT LOCKED")
       }
       //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
+      console.log(validAccount)
       setErrorMessage("Try again later.");
     }
    
@@ -92,47 +119,45 @@ export default function Login({ setToken }) {
     if (!username && password) {
       setError(true);
       setErrorMessage("Enter a Username!");
+      setValidAccount(false);
       addLoginCount();
     } else if (username && !password) {
-      setError(true);
+      setError(true);setValidAccount(false);
       setErrorMessage("Enter a Password!");
       addLoginCount();
     } else if (!username && !password) {
-      setError(true);
+      setError(true);setValidAccount(false);
       setErrorMessage("Enter a Username and Password!");
       addLoginCount();
     } else if (
       JSON.stringify(token).includes("User Not found.") &&
       password?.length !== 0
     ) {
-      setError(true);
+      setError(true);setValidAccount(false);
       setErrorMessage("Enter a valid Username!");
       addLoginCount();
     } else if (JSON.stringify(token).includes("Account is locked")) {
-      setError(true);
+      setError(true);setValidAccount(false);
       setLocked(true);
       setErrorMessage(
         "Your account has been locked due to suspicious activity, please contact an administrator"
       );
-      // let email = JSON.parse(localStorage.getItem("token")).email;
-      // console.log("EMAIL IS HERE"+email)
-      // let subject = "URGENT! CYC ADMIN ACCOUNT LOCKED";
-      // let text = "Your account has been locked due to suspicious activity. Immediate action required.";
-      // const sendEmailResult = await sendMail({
-      //   email,
-      //   subject,
-      //   text
-      // });
-      // console.log(sendEmailResult);
+      
     } else if (JSON.stringify(token).includes("Invalid Password")) {
-      setError(true);
+      setError(true);setValidAccount(false);
       setErrorMessage("Wrong Password!");
       if(Number(localStorage.getItem("loginCount")) >= 3)
       {
-        setLocked(true);
+        setLocked(true);setValidAccount(false);
         setErrorMessage("Wrong Password! Your account has been locked due to suspicious activity, please contact an administrator.");
       }
       addLoginCount();
+    }
+    else if (JSON.stringify(token).includes("Invalid twoFA Token!")) {
+      setError(true);
+      setErrorMessage("Invalid 2FA code!");
+      addLoginCount();
+      setValidAccount(false);
     }
     
   };
@@ -188,6 +213,17 @@ export default function Login({ setToken }) {
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
           </label>
+          {validAccount ? <div>
+          <label className="space-y-1">
+            <p>2FA</p>
+            <input
+              type="text"
+              onChange={(e) => setTwoFA(e.target.value)}
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </label></div> 
+        : <div></div>}
+          
           {/* <label className="space-y-1">
             <p>2FA</p>
             <input
@@ -223,7 +259,7 @@ export default function Login({ setToken }) {
         </form>
       </div>
       <br></br>
-      {error ? <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><p>{errorMessage}</p> <p>{errorCounteMessage}</p></div> : <div></div>}
+      {error ? <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><p>{errorMessage}</p> <p>{errorCounteMessage}</p></div> : <div>{message}</div>}
 
       {/*REMOVE FOR PRODUCTION temp account unlock button*/}
       {locked ? <div>  
