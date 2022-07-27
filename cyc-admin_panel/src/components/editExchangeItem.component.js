@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import ExchangeDataService from "../services/exchange.service";
 import LogBookDataService from "../services/logbook.service";
 import EmailDataService from "../services/email.service";
-<<<<<<< HEAD
 async function sendEmail(email) {
   return fetch("http://localhost:8080/api/sendmail", {
     method: "POST",
@@ -15,7 +14,6 @@ async function sendEmail(email) {
 }
 
 
-=======
 
 function ddlLemons(num, value) {
   var items = [];
@@ -29,7 +27,6 @@ function ddlLemons(num, value) {
     return items;
 }
 
->>>>>>> 3decf62c07c0e5d10b6f728850b7f3c134d64931
 const Exchange = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
