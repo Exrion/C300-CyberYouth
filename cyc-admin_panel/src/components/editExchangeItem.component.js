@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ExchangeDataService from "../services/exchange.service";
 import LogBookDataService from "../services/logbook.service";
-import EmailDataService from "../services/email.service";
+
 async function sendEmail(email) {
   return fetch("http://localhost:8080/api/sendmail", {
     method: "POST",
@@ -12,8 +12,6 @@ async function sendEmail(email) {
     body: JSON.stringify(email),
   }).then((data) => data.json());
 }
-
-
 
 function ddlInt(num, value) {
   var items = [];
@@ -119,34 +117,32 @@ const Exchange = (props) => {
         console.log(e);
       });
   };
- 
-//Retrieve user from localstorage
-const [user, setUser] = useState([]);
-
-useEffect(() => {
-const user = JSON.parse(localStorage.getItem('token'));
-if (user) {
-    setUser(user);
-}
-}, []);
 
 
-var email = (user.email);
-var subject = ("Udated Exchange Item");
-var text = ("ExchangeItem id " + currentExchangeItem.id + "\n" + logbook.modificationDetail
-+ "\nModified At: " + new Date().toLocaleString() + "");
+  //Retrieve user from localstorage
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('token'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
+
+  //send email
+  var email = (user.email);
+  var subject = ("Exchange Item Id " + currentExchangeItem.id + " was modified");
+  var text = ("Exchange Item id " + currentExchangeItem.id + "\n" + logbook.modificationDetail
+    + "\nModified At: " + new Date().toLocaleString() + "");
  function sendEmailFunction() {
  const emailRes =  sendEmail({
-    
      email,
      subject,
      text,
-   });
-   console.log(emailRes);
-   console.log("HERE");
-}
-
-
+    });
+    console.log(emailRes);
+    console.log("HERE");
+  }
     
 
   return (
@@ -337,7 +333,11 @@ var text = ("ExchangeItem id " + currentExchangeItem.id + "\n" + logbook.modific
 
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
-            onClick={deleteExchangeItem}
+            onClick={() => {
+              deleteExchangeItem();
+              saveLogBook();
+              sendEmailFunction();
+            }}
           >
             Delete
           </button>

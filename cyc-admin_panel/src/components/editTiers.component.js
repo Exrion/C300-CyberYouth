@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TierDataService from "../services/tier.service";
 import LogBookDataService from "../services/logbook.service";
-import EmailDataService from "../services/email.service";
 
 function ddlInt(num, value) {
   var items = [];
@@ -14,6 +13,16 @@ function ddlInt(num, value) {
     }
   }
   return items;
+}
+
+async function sendEmail(email) {
+  return fetch("http://localhost:8080/api/sendmail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(email),
+  }).then((data) => data.json());
 }
 
 const EditTier = (props) => {
@@ -105,29 +114,31 @@ const EditTier = (props) => {
       });
   };
 
-  const initialEmailState = {
-    text: "",
-  };
-  const [setEmail] = useState(initialEmailState);
-  const sendEmail = () => {
-    var data = {
-      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail
-        + "\nModified At: " + new Date().toLocaleString() + "",
-    };
-    EmailDataService.create(data)
-      .then((response) => {
-        setEmail({
-          from: response.data.from,
-          to: response.data.to,
-          subject: response.data.subject,
-          text: response.data.text,
-        });
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+//Retrieve user from localstorage
+const [user, setUser] = useState([]);
+
+useEffect(() => {
+const user = JSON.parse(localStorage.getItem('token'));
+if (user) {
+    setUser(user);
+}
+}, []);
+
+//send email
+var email = (user.email);
+var subject = ("Tier Item Id " + currentTier.id + " was modified");
+var text = ("Tier id " + currentTier.id + "\n" + logbook.modificationDetail
++ "\nModified At: " + new Date().toLocaleString() + "");
+ function sendEmailFunction() {
+
+ const emailRes =  sendEmail({
+     email,
+     subject,
+     text,
+    });
+    console.log(emailRes);
+    console.log("HERE");
+  }
 
   return (
     <div>
@@ -287,7 +298,11 @@ const EditTier = (props) => {
 
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
-            onClick={deleteTier}
+            onClick={() => {
+              deleteTier();
+              saveLogBook();
+              sendEmailFunction();
+            }}
           >
             Delete
           </button>
@@ -297,7 +312,7 @@ const EditTier = (props) => {
             onClick={() => {
               updateTier();
               saveLogBook();
-              sendEmail();
+              sendEmailFunction();
             }}
           >
             Update

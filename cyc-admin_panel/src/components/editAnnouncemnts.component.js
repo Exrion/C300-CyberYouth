@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import AnnouncementDataService from "../services/announcement.service";
 import LogBookDataService from "../services/logbook.service";
-import EmailDataService from "../services/email.service";
 
-function ddlAnncType(itemArr, value) {
-  for (let i=0; i < itemArr.length; i++) {
-    if (itemArr[0] === value) {
-      <option selected value={itemArr[0]}>{itemArr[0]}</option>
-    } else {
-      <option value={itemArr[0]}>{itemArr[0]}</option>
-    }
-  }
+async function sendEmail(email) {
+  return fetch("http://localhost:8080/api/sendmail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(email),
+  }).then((data) => data.json());
 }
 
 const EditAnnouncement = props => {
@@ -94,29 +93,31 @@ const EditAnnouncement = props => {
       });
   };
 
-  const initialEmailState = {
-    text: "",
-  };
-  const [setEmail] = useState(initialEmailState);
-  const sendEmail = () => {
-    var data = {
-      text: "Announcement id " + currentAnnouncement.id + "\n" + logbook.modificationDetail
-        + "\nModified At: " + new Date().toLocaleString() + "",
-    };
-    EmailDataService.create(data)
-      .then((response) => {
-        setEmail({
-          from: response.data.from,
-          to: response.data.to,
-          subject: response.data.subject,
-          text: response.data.text,
-        });
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  //Retrieve user from localstorage
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('token'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
+
+  //send email
+  var email = (user.email);
+  var subject = ("Announcement Item Id " + currentAnnouncement.id + " was modified");
+  var text = ("Announcement id " + currentAnnouncement.id + "\n" + logbook.modificationDetail
+    + "\nModified At: " + new Date().toLocaleString() + "");
+  function sendEmailFunction() {
+
+  const emailRes =  sendEmail({
+     email,
+     subject,
+     text,
+    });
+   console.log(emailRes);
+   console.log("HERE");
+  }
 
   return (
     <div>
@@ -283,7 +284,13 @@ const EditAnnouncement = props => {
           </div>
 
 
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={deleteAnnouncement}>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" 
+          onClick={() => {
+            deleteAnnouncement();
+            saveLogBook();
+            sendEmailFunction();
+          }}
+          >
             Delete
           </button>
           <button
@@ -292,7 +299,7 @@ const EditAnnouncement = props => {
             onClick={() => {
               updateAnnouncement();
               saveLogBook();
-              sendEmail();
+              sendEmailFunction();
             }}
           >
             Update
@@ -307,6 +314,6 @@ const EditAnnouncement = props => {
       )}
     </div>
   );
-}
+};
 
 export default EditAnnouncement;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TrackDataService from "../services/track.service";
 import LogBookDataService from "../services/logbook.service";
-import EmailDataService from "../services/email.service";
+
 
 function ddlInt(num, value) {
   var items = [];
@@ -14,6 +14,16 @@ function ddlInt(num, value) {
     }
   }
   return items;
+}
+
+async function sendEmail(email) {
+  return fetch("http://localhost:8080/api/sendmail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(email),
+  }).then((data) => data.json());
 }
 
 const EditTrack = (props) => {
@@ -105,29 +115,32 @@ const EditTrack = (props) => {
       });
   };
 
-  const initialEmailState = {
-    text: "",
-  };
-  const [setEmail] = useState(initialEmailState);
-  const sendEmail = () => {
-    var data = {
-      text: "Track id " + currentTrack.id + "\n" + logbook.modificationDetail
-        + "\nModified At: " + new Date().toLocaleString() + "",
-    };
-    EmailDataService.create(data)
-      .then((response) => {
-        setEmail({
-          from: response.data.from,
-          to: response.data.to,
-          subject: response.data.subject,
-          text: response.data.text,
-        });
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  //Retrieve user from localstorage
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+  const user = JSON.parse(localStorage.getItem('token'));
+  if (user) {
+      setUser(user);
+  }
+  }, []);
+
+  //send email
+  var email = (user.email);
+  var subject = ("Track Item Id " + currentTrack.id + " was modified");
+  var text = ("Track id " + currentTrack.id + "\n" + logbook.modificationDetail
+  + "\nModified At: " + new Date().toLocaleString() + "");
+  function sendEmailFunction() {
+
+  const emailRes =  sendEmail({
+     email,
+     subject,
+     text,
+    });
+    console.log(emailRes);
+    console.log("HERE");
+    }
+
 
   return (
     <div>
@@ -323,7 +336,7 @@ const EditTrack = (props) => {
             onClick={() => {
               updateTrack();
               saveLogBook();
-              sendEmail();
+              sendEmailFunction();
             }}
           >
             Update
@@ -338,6 +351,6 @@ const EditTrack = (props) => {
       )}
     </div>
   );
-};
+}
 
 export default EditTrack;
