@@ -4,9 +4,9 @@ import ExchangeDataService from "../services/exchange.service";
 import LogBookDataService from "../services/logbook.service";
 import EmailDataService from "../services/email.service";
 
-function ddlLemons(num, value) {
+function ddlInt(num, value) {
   var items = [];
-        for (let i = 1; i < num; i++) {
+        for (let i = 1; i < num + 1; i++) {
           if (i == value) {            
             items.push(<option selected value={i}>{i}</option>);
           } else {
@@ -235,7 +235,7 @@ const Exchange = (props) => {
                           ease-in-out
                           m-0
                           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                  {ddlLemons(10,currentExchangeItem.lemonsEach)}
+                  {ddlInt(10,currentExchangeItem.lemonsEach)}
                   </select>
               </div>
 

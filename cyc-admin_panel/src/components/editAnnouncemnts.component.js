@@ -3,6 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import AnnouncementDataService from "../services/announcement.service";
 import LogBookDataService from "../services/logbook.service";
 import EmailDataService from "../services/email.service";
+
+function ddlAnncType(itemArr, value) {
+  for (let i=0; i < itemArr.length; i++) {
+    if (itemArr[0] === value) {
+      <option selected value={itemArr[0]}>{itemArr[0]}</option>
+    } else {
+      <option value={itemArr[0]}>{itemArr[0]}</option>
+    }
+  }
+}
+
 const EditAnnouncement = props => {
   const { id } = useParams();
   let navigate = useNavigate();

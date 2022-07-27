@@ -3,6 +3,19 @@ import { useParams, useNavigate } from "react-router-dom";
 import TierDataService from "../services/tier.service";
 import LogBookDataService from "../services/logbook.service";
 import EmailDataService from "../services/email.service";
+
+function ddlInt(num, value) {
+  var items = [];
+  for (let i = 1; i < num + 1; i++) {
+    if (i == value) {
+      items.push(<option selected value={i}>{i}</option>);
+    } else {
+      items.push(<option value={i}>{i}</option>);
+    }
+  }
+  return items;
+}
+
 const EditTier = (props) => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -98,8 +111,8 @@ const EditTier = (props) => {
   const [setEmail] = useState(initialEmailState);
   const sendEmail = () => {
     var data = {
-      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail 
-      + "\nModified At: " + new Date().toLocaleString() + "",
+      text: "Tier id " + currentTier.id + "\n" + logbook.modificationDetail
+        + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {
@@ -202,65 +215,55 @@ const EditTier = (props) => {
 
               <div className="form-group mb-6">
                 <label htmlFor="grapesNeeded">Grapes Needed</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="grapesNeeded"
-                  name="grapesNeeded"
-                  value={currentTier.grapesNeeded}
-                  onChange={handleInputChangeNumber}
-                />
+                <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                  {ddlInt(10, currentTier.grapesNeeded)}
+                </select>
               </div>
 
               <div className="form-group mb-6">
                 <label htmlFor="lemonsAwarded">Lemons Awarded</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="lemonsAwarded"
-                  name="lemonsAwarded"
-                  value={currentTier.lemonsAwarded}
-                  onChange={handleInputChangeNumber}
-                />
+                <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                  {ddlInt(10, currentTier.lemonsAwarded)}
+                </select>
               </div>
             </form>
           </div>
 
-  
+
 
           <div className="form-group mb-6">
-              <label htmlFor="modificationDetail"> Modification Detail</label>
-              <input
-                type="text"
-                className="form-control block
+            <label htmlFor="modificationDetail"> Modification Detail</label>
+            <input
+              type="text"
+              className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -274,13 +277,13 @@ const EditTier = (props) => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="modificationDetail"
-                required
-                value={logbook.modificationDetail}
-                name="modificationDetail"
-                onChange={handleInputChange}
-              />
-            </div>
+              id="modificationDetail"
+              required
+              value={logbook.modificationDetail}
+              name="modificationDetail"
+              onChange={handleInputChange}
+            />
+          </div>
 
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
