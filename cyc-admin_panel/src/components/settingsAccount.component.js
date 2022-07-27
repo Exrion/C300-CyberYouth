@@ -1,7 +1,25 @@
 import React, { Component, useState, useEffect } from "react";
 import { FaPencilAlt } from "react-icons/fa";
+import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 const SettingAccount = () => {
+
+  const [code, setCode] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const { linkedInLogin } = useLinkedIn({
+    clientId: "86h0tc10xi54pb",
+    redirectUri: `http://localhost:3000/linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    onSuccess: (code) => {
+      console.log(code);
+      setCode(code);
+      setErrorMessage("");
+    },
+    onError: (error) => {
+      console.log(error);
+      setCode("");
+      setErrorMessage(error.errorMessage);
+    },
+  });
 
     //Logout by clearing local storage
    function logout() {
@@ -69,6 +87,29 @@ const SettingAccount = () => {
                                 <p>Logout</p>
                             </button>
                         </div>
+
+                        <div class="flex flex-col place-items-start">
+                          <p class="text-2xl text-bold">Connect with LinkedIn</p>
+                          <p class="text-left text-md text-slate-700">Connect your NEST panel account with LinkedIn!</p>
+                          <button
+                            class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+                            onClick={linkedInLogin}
+                          >
+                            <p>Connect With LinkedIn</p>
+                          </button>
+                        </div>
+                        {/* <div>
+                          <img src={userLinkedin.profileImageURL} alt="Profile image" />
+                          <h3>{`${userLinkedin.firstName} ${state.userLinkedin.lastName}`}</h3>
+                          <h3>{userLinkedin.email}</h3>
+                          {!code && <div>No code</div>}
+                          {code && (
+                            <div>
+                              <div>Authorization Code: {code}</div>
+                            </div>
+                          )}
+                          {errorMessage && <div>{errorMessage}</div>}
+                        </div> */}
                     </div>
                 </div>
             </div>
