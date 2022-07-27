@@ -4,7 +4,7 @@ import AnnouncementDataService from "../services/announcement.service";
 import LogBookDataService from "../services/logbook.service";
 import EmailDataService from "../services/email.service";
 const EditAnnouncement = props => {
-  const { id }= useParams();
+  const { id } = useParams();
   let navigate = useNavigate();
   const initialAnnouncementState = {
     id: null,
@@ -36,7 +36,7 @@ const EditAnnouncement = props => {
     setCurrentAnnouncement({ ...currentAnnouncement, [name]: value });
     setLogBook({ ...logbook, [name]: value });
   };
-    
+
   const updateAnnouncement = () => {
     AnnouncementDataService.update(currentAnnouncement.id, currentAnnouncement)
       .then(response => {
@@ -82,7 +82,7 @@ const EditAnnouncement = props => {
         console.log(e);
       });
   };
-  
+
   const initialEmailState = {
     text: "",
   };
@@ -90,7 +90,7 @@ const EditAnnouncement = props => {
   const sendEmail = () => {
     var data = {
       text: "Announcement id " + currentAnnouncement.id + "\n" + logbook.modificationDetail
-      + "\nModified At: " + new Date().toLocaleString() + "",
+        + "\nModified At: " + new Date().toLocaleString() + "",
     };
     EmailDataService.create(data)
       .then((response) => {
@@ -107,20 +107,20 @@ const EditAnnouncement = props => {
       });
   };
 
-    return (
-      <div>
-        {currentAnnouncement ? (
-          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+  return (
+    <div>
+      {currentAnnouncement ? (
+        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
           <div className="form-group mb-6">
 
-       <h4 className="form-group mb-6"><b>EDIT Announcement</b></h4>
-       
-       <form>
-         <div className="form-group mb-6">
-           <label htmlFor="announcementTitle">Announcement Title</label>
-           <input
-             type="text"
-             className="form-control block
+            <h4 className="form-group mb-6"><b>EDIT Announcement</b></h4>
+
+            <form>
+              <div className="form-group mb-6">
+                <label htmlFor="announcementTitle">Announcement Title</label>
+                <input
+                  type="text"
+                  className="form-control block
            w-full
            px-3
            py-1.5
@@ -134,18 +134,18 @@ const EditAnnouncement = props => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="announcementTitle"
-             name="announcementTitle"
-             value={currentAnnouncement.announcementTitle}
-             onChange={handleInputChange}
-           />
-         </div>
+                  id="announcementTitle"
+                  name="announcementTitle"
+                  value={currentAnnouncement.announcementTitle}
+                  onChange={handleInputChange}
+                />
+              </div>
 
-         <div className="form-group mb-6">
-           <label htmlFor="announcementType">Announcement Type</label>
-           <input
-             type="text"
-             className="form-control block
+              <div className="form-group mb-6">
+                <label htmlFor="announcementType">Announcement Type</label>
+                <input
+                  type="text"
+                  className="form-control block
            w-full
            px-3
            py-1.5
@@ -159,18 +159,18 @@ const EditAnnouncement = props => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="announcementType"
-             name="announcementType"
-             value={currentAnnouncement.announcementType}
-             onChange={handleInputChange}
-           />
-         </div>
+                  id="announcementType"
+                  name="announcementType"
+                  value={currentAnnouncement.announcementType}
+                  onChange={handleInputChange}
+                />
+              </div>
 
-         <div className="form-group mb-6">
-           <label htmlFor="announcementBody">Announcement Body</label>
-           <input
-             type="text"
-             className="form-control block
+              <div className="form-group mb-6">
+                <label htmlFor="announcementBody">Announcement Body</label>
+                <input
+                  type="text"
+                  className="form-control block
            w-full
            px-3
            py-1.5
@@ -184,18 +184,18 @@ const EditAnnouncement = props => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="announcementBody"
-             name="announcementBody"
-             value={currentAnnouncement.announcementBody}
-             onChange={handleInputChange}
-           />
-         </div>
+                  id="announcementBody"
+                  name="announcementBody"
+                  value={currentAnnouncement.announcementBody}
+                  onChange={handleInputChange}
+                />
+              </div>
 
-         <div className="form-group mb-6">
-         <label htmlFor="announcementImg">Announcement Img</label>
-         <input
-           type="text"
-           className="form-control block
+              <div className="form-group mb-6">
+                <label htmlFor="announcementImg">Announcement Img</label>
+                <input
+                  type="text"
+                  className="form-control block
            w-full
            px-3
            py-1.5
@@ -209,20 +209,20 @@ const EditAnnouncement = props => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-           id="announcementImg"
-           name = "announcementImg"
-           value={currentAnnouncement.announcementImg}
-           onChange={handleInputChange}
-         />
+                  id="announcementImg"
+                  name="announcementImg"
+                  value={currentAnnouncement.announcementImg}
+                  onChange={handleInputChange}
+                />
 
-       </div>
+              </div>
 
 
-       <div className="form-group mb-6">
-         <label htmlFor="announcementLink">Announcement Link</label>
-         <input
-           type="text"
-           className="form-control block
+              <div className="form-group mb-6">
+                <label htmlFor="announcementLink">Announcement Link</label>
+                <input
+                  type="text"
+                  className="form-control block
            w-full
            px-3
            py-1.5
@@ -236,46 +236,20 @@ const EditAnnouncement = props => {
            ease-in-out
            m-0
            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-           id="announcementLink"
-           name="announcementLink"
-           value={currentAnnouncement.announcementLink}
-           onChange={handleInputChange}
-         />
-       </div> 
+                  id="announcementLink"
+                  name="announcementLink"
+                  value={currentAnnouncement.announcementLink}
+                  onChange={handleInputChange}
+                />
+              </div>
             </form>
-        </div>
-
-        <div className="form-group mb-6">
-              <label htmlFor="editItemID"> editItemID</label>
-              <input
-                type="text"
-                className="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="editItemID"
-                required
-                value={logbook.editItemID}
-                //onChange={handleInputChange}
-                name="editItemID"
-              />
-            </div>
+          </div>
 
           <div className="form-group mb-6">
-              <label htmlFor="modificationDetail"> Modification Detail</label>
-              <input
-                type="text"
-                className="form-control block
+            <label htmlFor="modificationDetail"> Modification Detail</label>
+            <input
+              type="text"
+              className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -289,16 +263,16 @@ const EditAnnouncement = props => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="modificationDetail"
-                required
-                value={logbook.modificationDetail}
-                name="modificationDetail"
-                onChange={handleInputChange}
-              />
-            </div>
+              id="modificationDetail"
+              required
+              value={logbook.modificationDetail}
+              name="modificationDetail"
+              onChange={handleInputChange}
+            />
+          </div>
 
-            
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={deleteAnnouncement}>
+
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={deleteAnnouncement}>
             Delete
           </button>
           <button
@@ -321,7 +295,7 @@ const EditAnnouncement = props => {
         </div>
       )}
     </div>
-    );
-  }
+  );
+}
 
 export default EditAnnouncement;
