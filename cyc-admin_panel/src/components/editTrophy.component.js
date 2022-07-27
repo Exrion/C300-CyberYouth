@@ -279,31 +279,6 @@ const EditTrophy = (props) => {
             </form>
           </div>
 
-          <div className="form-group mb-6">
-              <label htmlFor="editItemID"> editItemID</label>
-              <input
-                type="text"
-                className="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="editItemID"
-                required
-                value={logbook.editItemID}
-                //onChange={handleInputChange}
-                name="editItemID"
-              />
-            </div>
 
           <div className="form-group mb-6">
               <label htmlFor="modificationDetail"> Modification Detail</label>
