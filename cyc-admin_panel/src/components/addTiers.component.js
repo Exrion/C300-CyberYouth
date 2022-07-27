@@ -122,7 +122,7 @@ const AddTiers = () => {
             <div class="form-group mb-6">
               <label htmlFor="tierIcon">Tier Icon</label>
               <input
-                type="url"
+                type="text"
                 class="form-control block
                 w-full
                 px-3
