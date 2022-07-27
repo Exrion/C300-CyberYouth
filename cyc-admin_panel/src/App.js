@@ -5,6 +5,9 @@ import { Routes, Route, Link } from "react-router-dom";
 //Linkedin imports
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 
+import { BrowserRouter, Switch } from "react-router-dom";
+import settingAccount from "./components/settingsAccount.component";
+
 // Importing Components
 import Dashboard from "./components/dashboard.component";
 import ConfigAnnouncements from "./components/configAnnouncements.component";
@@ -29,7 +32,7 @@ import Contact from "./components/Footer/contact.component";
 import Login from "./components/Login/login.component";
 import useToken from "./components/App/useToken.component";
 import { FaWindows } from "react-icons/fa";
-import ProfileCard from "./components/Login/profileCard.component";
+import SettingAccount from "./components/settingsAccount.component";
 
 function App() {
   //--- LOGIN FUNCTION---//
@@ -52,7 +55,7 @@ function App() {
   return (
     <div className="App">
       {localStorage.removeItem("loginCount")}
-      <div className="xl:px-60">
+      {/* <div className="xl:px-60">
         <div className="profile">
           <div className="profile-container">
             <img
@@ -73,7 +76,7 @@ function App() {
             <h2>{this.state.headline}</h2>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Navigation Bar */}
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -153,6 +156,8 @@ function App() {
           <Route exact path="/About_Us" element={<AboutUs />} />
           <Route exact path="/Contact" element={<Contact />} />
           <Route path="/" element={<Dashboard />} />
+          <Route exact path="/settingAccount" Component={LinkedInCallback} />
+          <Route path="/" component={settingAccount} />
         </Routes>
       </div>
 

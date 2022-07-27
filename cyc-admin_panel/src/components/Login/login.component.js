@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import { useLinkedIn } from "react-linkedin-login-oauth2";
-import _ from "lodash";
-import Alert from "react-s-alert";
-import ProfileCard from "./profileCard.component.js";
 
-// import { getLinkedInUrls } from "../Auth/authUtils.component";
-
-//LinkedIn
-// const providersUrls = getLinkedInUrls;
+async function signUpUser(credentials) {
+  return fetch("http://localhost:8080/api/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
 
 async function loginUser(credentials) {
   return fetch("http://localhost:8080/api/auth/signin", {
@@ -105,80 +107,6 @@ export default function Login({ setToken }) {
     }
   };
 
-  //Linkedin
-  // const { linkedInLogin } = useLinkedIn({
-  //   clientId: "86h0tc10xi54pb",
-  //   redirectUri: `http://localhost:3000/oauth2?provider=linkedin`,
-  //   onSuccess: (code) => {
-  //     console.log(code);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //   },
-  // });
-
-  const [state, setState] = useState({
-    isAuthorized: false,
-    firstName: null,
-    lastName: null,
-    profileURL: null,
-    pictureURL: null,
-  });
-
-  useEffect(() => {
-    window.addEventListener("message", handlePostMessage);
-  });
-
-  const updateProfile = (profile) => {
-    console.log(profile);
-    setState({
-      isAuthorized: true,
-      firstName: _.get(profile, "localizedFirstName", ""),
-      lastName: _.get(profile, "localizedLastName", ""),
-      profileURL: `https://www.linkedin.com/in/${_.get(
-        profile,
-        "vanityName",
-        ""
-      )}`,
-      pictureURL: _.get(
-        _.last(_.get(profile, "profilePicture.displayImage~.elements", "")),
-        "identifiers[0].identifier",
-        ""
-      ),
-    });
-  };
-
-  const handlePostMessage = (event) => {
-    if (event.data.type === "profile") {
-      updateProfile(event.data.profile);
-      Alert.success(
-        `Login successful: ${event.data.profile.localizedFirstName}`,
-        { position: "top" }
-      );
-    }
-  };
-
-  const requestProfile = () => {
-    var oauthUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86h0tc10xi54pb&scope=r_liteprofile&state=123456&redirect_uri=http://localhost:3000/oauth?provider=linkedin`;
-    var width = 450,
-      height = 730,
-      left = window.screen.width / 2 - width / 2,
-      top = window.screen.height / 2 - height / 2;
-
-    window.open(
-      oauthUrl,
-      "Linkedin",
-      "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
-        width +
-        ", height=" +
-        height +
-        ", top=" +
-        top +
-        ", left=" +
-        left
-    );
-  };
-
   return (
     <div className="grid place-items-center py-40">
       <div className="grid grid-rows place-content-center">
@@ -214,11 +142,11 @@ export default function Login({ setToken }) {
               Login
             </button>
           </div>
-          <div className="App-body">
+          {/* <div className="App-body">
             <button
               id="LinkedIn"
               class="flex flex-flow rounded-full shadow-lg p-2 hover:bg-gray-200 hover:shadow-lg focus:bg-gray-200 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-100 active:shadow-lg transition duration-150 ease-in-out"
-              onClick={requestProfile}
+              onClick={LinkedIn}
             >
               <img
                 src={require("../../images/login/linkedin.png")}
@@ -227,15 +155,7 @@ export default function Login({ setToken }) {
               />
               <p class="mt-1">Sign in with LinkedIn</p>
             </button>
-            {state.isAuthorized && (
-              <ProfileCard
-                firstName={state.firstName}
-                lastName={state.lastName}
-                profileURL={state.profileURL}
-                pictureURL={state.pictureURL}
-              />
-            )}
-          </div>
+          </div> */}
         </form>
       </div>
 

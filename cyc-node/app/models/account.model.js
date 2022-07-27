@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
     locked: {
       type: Sequelize.BOOLEAN,
     },
+    linkedinId: {
+      type: Sequelize.STRING,
+    },
   });
   return Account;
 };

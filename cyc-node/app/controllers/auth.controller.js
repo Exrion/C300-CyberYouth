@@ -12,6 +12,7 @@ exports.signup = (req, res) => {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
     locked: false,
+    linkedinID: req.body.id,
   })
     .then((account) => {
       if (req.body.roles) {
