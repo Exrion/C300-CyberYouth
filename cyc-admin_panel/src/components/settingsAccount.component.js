@@ -90,9 +90,9 @@ const SettingAccount = () => {
 
                         <div class="flex flex-col place-items-start">
                           <p class="text-2xl text-bold">Connect with LinkedIn</p>
-                          <p class="text-md text-slate-700">Connect with LinkedIn</p>
+                          <p class="text-left text-md text-slate-700">Connect your NEST panel account with LinkedIn!</p>
                           <button
-                            class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                            class="flex flex-row justify-center place-items-center space-x-2 mt-2 h-7 ease-in-out text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
                             onClick={linkedInLogin}
                           >
                             <p>Connect With LinkedIn</p>
