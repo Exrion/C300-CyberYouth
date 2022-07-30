@@ -1,6 +1,36 @@
 import React, { useState } from "react";
 import ExchangeDataService from "../services/exchange.service";
 
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
+    } else {
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
+    }
+  }
+  return items;
+}
+
+const deliveryMode =
+  [
+    "Pickup",
+    "Delivery"
+  ]
+
+function ddlInt(num, value) {
+  var items = [];
+  for (let i = 1; i < num + 1; i++) {
+    if (i == value) {
+      items.push(<option selected value={i}>{i}</option>);
+    } else {
+      items.push(<option value={i}>{i}</option>);
+    }
+  }
+  return items;
+}
+
 const AddExchangeItems = () => {
   const initialExchangeItemState = {
     id: null,
@@ -149,54 +179,53 @@ const AddExchangeItems = () => {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="lemonsEach">Lemons Each</label>
-              <input
-                type="number"
-                class="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Enter a number*"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="lemonsEach"
                 required
-                value={exchangeItem.lemonsEach}
                 onChange={handleInputChangeNumber}
                 name="lemonsEach"
-              />
+              >
+                {ddlInt(10)}
+              </select>
             </div>
             <div class="form-group mb-6">
               <label htmlFor="deliveryMode">Delivery Mode</label>
-              <input
-                type="text"
-                class="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="deliveryMode"
                 required
-                value={exchangeItem.deliveryMode}
                 onChange={handleInputChange}
                 name="deliveryMode"
-              />
+              >
+                {ddlStringArr(deliveryMode)}
+              </select>
             </div>
             <div class="form-group mb-6">
               <label htmlFor="exchangeStock">Exchange Stock</label>

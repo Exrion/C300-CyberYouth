@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import AnnouncementDataService from "../services/announcement.service";
 
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
+    } else {
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
+    }
+  }
+  return items;
+}
+
+const anncType =
+  [
+    "Information",
+    "Maintenance",
+    "News"
+  ]
+
 const AddAnnouncements = () => {
   const initialAnnouncementState = {
     id: null,
@@ -86,28 +105,30 @@ const AddAnnouncements = () => {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="announcementType">Announcement Type</label>
-              <input
-                type="text"
-                class="form-control block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="announcementType"
-                required
-                value={announcement.announcementType}
-                onChange={handleInputChange}
-                name="announcementType"
-              />
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                      id="announcementType"
+                      onChange={handleInputChange}
+                      name="announcementType"
+                      required
+                          >
+                  {ddlStringArr(
+                    anncType
+                  )}
+                </select>
             </div>
             <div class="form-group mb-6">
               <label htmlFor="announcementBody">Announcement Body</label>

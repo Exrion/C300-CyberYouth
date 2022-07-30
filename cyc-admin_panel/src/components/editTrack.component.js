@@ -239,7 +239,12 @@ const EditTrack = (props) => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="trackProvider"
+                  required
+                  onChange={handleInputChange}
+                  name="trackProvider"
+                >
                   {ddlStringArr(
                     trackProvider,
                     currentTrack.trackProvider
@@ -313,7 +318,12 @@ const EditTrack = (props) => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="trackLemons"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="trackLemons"
+                >
                   {ddlInt(10, currentTrack.trackLemons)}
                 </select>
               </div>
