@@ -3,6 +3,28 @@ import { useParams, useNavigate } from "react-router-dom";
 import TrackDataService from "../services/track.service";
 import LogBookDataService from "../services/logbook.service";
 
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
+    } else {
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
+    }
+  }
+  return items;
+}
+
+const trackProvider =
+  [
+    "Alpha",
+    "Omegon",
+    "Delta",
+    "Omnicron",
+    "Kappa",
+    "Psi",
+    "Iota"
+  ]
 
 function ddlInt(num, value) {
   var items = [];
@@ -119,27 +141,27 @@ const EditTrack = (props) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-  const user = JSON.parse(localStorage.getItem('token'));
-  if (user) {
+    const user = JSON.parse(localStorage.getItem('token'));
+    if (user) {
       setUser(user);
-  }
+    }
   }, []);
 
   //send email
   var email = (user.email);
   var subject = ("Track Item Id " + currentTrack.id + " was modified");
   var text = ("Track id " + currentTrack.id + "\n" + logbook.modificationDetail
-  + "\nModified At: " + new Date().toLocaleString() + "");
+    + "\nModified At: " + new Date().toLocaleString() + "");
   function sendEmailFunction() {
 
-  const emailRes =  sendEmail({
-     email,
-     subject,
-     text,
+    const emailRes = sendEmail({
+      email,
+      subject,
+      text,
     });
     console.log(emailRes);
     console.log("HERE");
-    }
+  }
 
 
   return (
@@ -203,27 +225,31 @@ const EditTrack = (props) => {
 
               <div className="form-group mb-6">
                 <label htmlFor="trackProvider">Track Provider</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                   id="trackProvider"
-                  name="trackProvider"
-                  value={currentTrack.trackProvider}
+                  required
                   onChange={handleInputChange}
-                />
+                  name="trackProvider"
+                >
+                  {ddlStringArr(
+                    trackProvider,
+                    currentTrack.trackProvider
+                  )}
+                </select>
               </div>
 
               <div className="form-group mb-6">
@@ -292,7 +318,12 @@ const EditTrack = (props) => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="trackLemons"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="trackLemons"
+                >
                   {ddlInt(10, currentTrack.trackLemons)}
                 </select>
               </div>

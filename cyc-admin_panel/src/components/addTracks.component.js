@@ -1,6 +1,41 @@
 import React, { useState } from "react";
 import TrackDataService from "../services/track.service";
 
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
+    } else {
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
+    }
+  }
+  return items;
+}
+
+const trackProvider =
+  [
+    "Alpha",
+    "Omegon",
+    "Delta",
+    "Omnicron",
+    "Kappa",
+    "Psi",
+    "Iota"
+  ]
+
+function ddlInt(num, value) {
+  var items = [];
+  for (let i = 1; i < num + 1; i++) {
+    if (i == value) {
+      items.push(<option selected value={i}>{i}</option>);
+    } else {
+      items.push(<option value={i}>{i}</option>);
+    }
+  }
+  return items;
+}
+
 const AddTracks = () => {
   const initialTrackState = {
     id: null,
@@ -126,28 +161,28 @@ const AddTracks = () => {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="trackProvider">Track Provider</label>
-              <input
-                type="text"
-                class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="trackProvider"
                 required
-                value={track.trackProvider}
                 onChange={handleInputChange}
                 name="trackProvider"
-              />
+              >
+                {ddlStringArr(trackProvider)}
+              </select>
             </div>
             <div class="form-group mb-6">
               <label htmlFor="trackLink">Track Link</label>
@@ -201,29 +236,28 @@ const AddTracks = () => {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="trackLemons">Track Lemons</label>
-              <input
-                type="text"
-                class="form-control block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Enter a number*"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="trackLemons"
                 required
-                value={track.trackLemons}
                 onChange={handleInputChangeNumber}
                 name="trackLemons"
-              />
+              >
+                {ddlInt(10)}
+              </select>
             </div>
 
             <button

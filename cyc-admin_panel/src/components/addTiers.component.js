@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import TierDataService from "../services/tier.service";
 
+function ddlInt(num, value) {
+  var items = [];
+  for (let i = 1; i < num + 1; i++) {
+    if (i == value) {
+      items.push(<option selected value={i}>{i}</option>);
+    } else {
+      items.push(<option value={i}>{i}</option>);
+    }
+  }
+  return items;
+}
+
 const AddTiers = () => {
   const initialTierState = {
     tierName: "",
@@ -146,55 +158,53 @@ const AddTiers = () => {
             </div>
             <div class="form-group mb-6">
               <label htmlFor="grapesNeeded">Grapes Needed</label>
-              <input
-                type="number"
-                class="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Enter a number*"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="grapesNeeded"
                 required
-                value={tier.grapesNeeded}
                 onChange={handleInputChangeNumber}
                 name="grapesNeeded"
-              />
+              >
+                {ddlInt(10)}
+              </select>
             </div>
             <div class="form-group mb-6">
               <label htmlFor="lemonsAwarded">Lemons Awarded</label>
-              <input
-                type="number"
-                class="form-control block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Enter a number*"
+              <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                 id="lemonsAwarded"
                 required
-                value={tier.lemonsAwarded}
                 onChange={handleInputChangeNumber}
                 name="lemonsAwarded"
-              />
+              >
+                {ddlInt(10)}
+              </select>
             </div>
             <button
               onClick={saveTier}

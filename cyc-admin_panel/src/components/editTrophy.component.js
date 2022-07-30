@@ -118,22 +118,22 @@ const EditTrophy = (props) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-  const user = JSON.parse(localStorage.getItem('token'));
-  if (user) {
+    const user = JSON.parse(localStorage.getItem('token'));
+    if (user) {
       setUser(user);
-  }
+    }
   }, []);
-  
+
   //send email
   var email = (user.email);
   var subject = ("Trophy Item Id " + currentTrophy.id + " was modified");
   var text = ("Trophy id " + currentTrophy.id + "\n" + logbook.modificationDetail
-  + "\nModified At: " + new Date().toLocaleString() + "");
+    + "\nModified At: " + new Date().toLocaleString() + "");
   function sendEmailFunction() {
-  const emailRes =  sendEmail({
-     email,
-     subject,
-     text,
+    const emailRes = sendEmail({
+      email,
+      subject,
+      text,
     });
 
     console.log(emailRes);
@@ -226,7 +226,7 @@ const EditTrophy = (props) => {
 
               <div className="form-group mb-6">
                 <label htmlFor="totalProgress">Total Progress</label>
-                <input 
+                <input
                   min="0"
                   max="100"
                   type="text"
@@ -294,7 +294,12 @@ const EditTrophy = (props) => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="trophyLemons"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="trophyLemons"
+                >
                   {ddlInt(10, currentTrophy.trophyLemons)}
                 </select>
               </div>
@@ -303,10 +308,10 @@ const EditTrophy = (props) => {
 
 
           <div className="form-group mb-6">
-              <label htmlFor="modificationDetail"> Modification Detail</label>
-              <input
-                type="text"
-                className="form-control block
+            <label htmlFor="modificationDetail"> Modification Detail</label>
+            <input
+              type="text"
+              className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -320,13 +325,13 @@ const EditTrophy = (props) => {
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="modificationDetail"
-                required
-                value={logbook.modificationDetail}
-                name="modificationDetail"
-                onChange={handleInputChange}
-              />
-            </div>
+              id="modificationDetail"
+              required
+              value={logbook.modificationDetail}
+              name="modificationDetail"
+              onChange={handleInputChange}
+            />
+          </div>
 
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"

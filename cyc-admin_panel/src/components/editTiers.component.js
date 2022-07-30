@@ -114,27 +114,27 @@ const EditTier = (props) => {
       });
   };
 
-//Retrieve user from localstorage
-const [user, setUser] = useState([]);
+  //Retrieve user from localstorage
+  const [user, setUser] = useState([]);
 
-useEffect(() => {
-const user = JSON.parse(localStorage.getItem('token'));
-if (user) {
-    setUser(user);
-}
-}, []);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('token'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
 
-//send email
-var email = (user.email);
-var subject = ("Tier Item Id " + currentTier.id + " was modified");
-var text = ("Tier id " + currentTier.id + "\n" + logbook.modificationDetail
-+ "\nModified At: " + new Date().toLocaleString() + "");
- function sendEmailFunction() {
+  //send email
+  var email = (user.email);
+  var subject = ("Tier Item Id " + currentTier.id + " was modified");
+  var text = ("Tier id " + currentTier.id + "\n" + logbook.modificationDetail
+    + "\nModified At: " + new Date().toLocaleString() + "");
+  function sendEmailFunction() {
 
- const emailRes =  sendEmail({
-     email,
-     subject,
-     text,
+    const emailRes = sendEmail({
+      email,
+      subject,
+      text,
     });
     console.log(emailRes);
     console.log("HERE");
@@ -240,7 +240,12 @@ var text = ("Tier id " + currentTier.id + "\n" + logbook.modificationDetail
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="grapesNeeded"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="grapesNeeded"
+                >
                   {ddlInt(10, currentTier.grapesNeeded)}
                 </select>
               </div>
@@ -261,7 +266,12 @@ var text = ("Tier id " + currentTier.id + "\n" + logbook.modificationDetail
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="lemonsAwarded"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="lemonsAwarded"
+                >
                   {ddlInt(10, currentTier.lemonsAwarded)}
                 </select>
               </div>
