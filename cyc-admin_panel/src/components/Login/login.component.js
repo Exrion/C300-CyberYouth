@@ -102,7 +102,6 @@ export default function Login({ setToken }) {
         setToken(token);
         console.log("3 login tries ACCOUNT LOCKED")
       }
-      //TO DO: SEND EMAIL MESSAGE OR LOCKOUT BJORN
       console.log(validAccount)
       setErrorMessage("Try again later.");
     }
