@@ -3,15 +3,24 @@ import { useParams, useNavigate } from 'react-router-dom';
 import AnnouncementDataService from "../services/announcement.service";
 import LogBookDataService from "../services/logbook.service";
 
-function ddlAnncType(itemArr, value) {
-  for (let i=0; i < itemArr.length; i++) {
-    if (itemArr[0] === value) {
-      <option selected value={itemArr[0]}>{itemArr[0]}</option>
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
     } else {
-      <option value={itemArr[0]}>{itemArr[0]}</option>
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
     }
   }
+  return items;
 }
+
+const anncType =
+  [
+    "Information",
+    "Maintenance",
+    "News"
+  ]
 
 async function sendEmail(email) {
   return fetch("http://localhost:8080/api/sendmail", {
@@ -120,13 +129,13 @@ const EditAnnouncement = props => {
     + "\nModified At: " + new Date().toLocaleString() + "");
   function sendEmailFunction() {
 
-  const emailRes =  sendEmail({
-     email,
-     subject,
-     text,
+    const emailRes = sendEmail({
+      email,
+      subject,
+      text,
     });
-   console.log(emailRes);
-   console.log("HERE");
+    console.log(emailRes);
+    console.log("HERE");
   }
 
   return (
@@ -165,27 +174,26 @@ const EditAnnouncement = props => {
 
               <div className="form-group mb-6">
                 <label htmlFor="announcementType">Announcement Type</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="announcementType"
-                  name="announcementType"
-                  value={currentAnnouncement.announcementType}
-                  onChange={handleInputChange}
-                />
+                <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                  {ddlStringArr(
+                    anncType,
+                    currentAnnouncement.announcementType
+                  )}
+                </select>
               </div>
 
               <div className="form-group mb-6">
@@ -294,12 +302,12 @@ const EditAnnouncement = props => {
           </div>
 
 
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" 
-          onClick={() => {
-            deleteAnnouncement();
-            saveLogBook();
-            sendEmailFunction();
-          }}
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+            onClick={() => {
+              deleteAnnouncement();
+              saveLogBook();
+              sendEmailFunction();
+            }}
           >
             Delete
           </button>
