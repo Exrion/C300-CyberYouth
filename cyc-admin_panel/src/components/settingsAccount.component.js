@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { FaPencilAlt } from "react-icons/fa";
+//LinkedIn Modules
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 
 const SettingAccount = () => {
@@ -20,6 +21,86 @@ const SettingAccount = () => {
       setErrorMessage(error.errorMessage);
     },
   });
+
+  const Post = () => {
+    const LinkedInPost = `https://www.linkedin.com/company/82344804/admin/?share=true`;
+    const width = 600,
+      height = 600,
+      left = window.screen.width / 2 - width / 2,
+      top = window.screen.height / 2 - height / 2;
+    window.open(
+      LinkedInPost,
+      'Linkedin',
+      'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' +
+      width +
+      ', height=' +
+      height +
+      ', top=' +
+      top +
+      ', left=' +
+      left
+    );
+  };
+
+  const HashTag = () => {
+    const LinkedInTag = `https://www.linkedin.com/company/82344804/admin/?activeTab=hashtags&edit=true`;
+    const width = 850,
+      height = 600,
+      left = window.screen.width / 2 - width / 2,
+      top = window.screen.height / 2 - height / 2;
+    window.open(
+      LinkedInTag,
+      'Linkedin',
+      'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' +
+      width +
+      ', height=' +
+      height +
+      ', top=' +
+      top +
+      ', left=' +
+      left
+    );
+  };
+
+  const Event = () => {
+    const LinkedInEvent = `https://www.linkedin.com/company/82344804/admin/notifications/events/`;
+    const width = 850,
+      height = 900,
+      left = window.screen.width / 2 - width / 2,
+      top = window.screen.height / 2 - height / 2;
+    window.open(
+      LinkedInEvent,
+      'Linkedin',
+      'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' +
+      width +
+      ', height=' +
+      height +
+      ', top=' +
+      top +
+      ', left=' +
+      left
+    );
+  }
+
+  const EditLinkedIn = () => {
+    const LinkedInEdit = `https://www.linkedin.com/company/82344804/admin/?activeTab=details&edit=true`;
+    const width = 850,
+      height = 600,
+      left = window.screen.width / 2 - width / 2,
+      top = window.screen.height / 2 - height / 2;
+    window.open(
+      LinkedInEdit,
+      'Linkedin',
+      'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' +
+      width +
+      ', height=' +
+      height +
+      ', top=' +
+      top +
+      ', left=' +
+      left
+    );
+  }
 
     //Logout by clearing local storage
    function logout() {
@@ -98,18 +179,22 @@ const SettingAccount = () => {
                             <p>Connect With LinkedIn</p>
                           </button>
                         </div>
-                        {/* <div>
-                          <img src={userLinkedin.profileImageURL} alt="Profile image" />
-                          <h3>{`${userLinkedin.firstName} ${state.userLinkedin.lastName}`}</h3>
-                          <h3>{userLinkedin.email}</h3>
-                          {!code && <div>No code</div>}
-                          {code && (
-                            <div>
-                              <div>Authorization Code: {code}</div>
-                            </div>
-                          )}
-                          {errorMessage && <div>{errorMessage}</div>}
-                        </div> */}
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        onClick={Post}>
+                          Add Post
+                        </button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        onClick={HashTag}>
+                          Add HashTag
+                        </button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        onClick={Event}>
+                          Add Event
+                        </button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        onClick={EditLinkedIn}>
+                          Edit LinkedIn Page
+                        </button>
                     </div>
                 </div>
             </div>
