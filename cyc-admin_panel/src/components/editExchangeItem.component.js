@@ -3,6 +3,24 @@ import { useParams, useNavigate } from "react-router-dom";
 import ExchangeDataService from "../services/exchange.service";
 import LogBookDataService from "../services/logbook.service";
 
+function ddlStringArr(itemArr, value) {
+  var items = [];
+  for (let i = 0; i < itemArr.length; i++) {
+    if (itemArr[i] === value) {
+      items.push(<option selected value={itemArr[i]}>{itemArr[i]}</option>);
+    } else {
+      items.push(<option value={itemArr[i]}>{itemArr[i]}</option>);
+    }
+  }
+  return items;
+}
+
+const deliveryMode =
+  [
+    "Pickup",
+    "Delivery"
+  ]
+
 async function sendEmail(email) {
   return fetch("http://localhost:8080/api/sendmail", {
     method: "POST",
@@ -15,14 +33,14 @@ async function sendEmail(email) {
 
 function ddlInt(num, value) {
   var items = [];
-        for (let i = 1; i < num + 1; i++) {
-          if (i == value) {            
-            items.push(<option selected value={i}>{i}</option>);
-          } else {
-            items.push(<option value={i}>{i}</option>);
-          }
-        }
-    return items;
+  for (let i = 1; i < num + 1; i++) {
+    if (i == value) {
+      items.push(<option selected value={i}>{i}</option>);
+    } else {
+      items.push(<option value={i}>{i}</option>);
+    }
+  }
+  return items;
 }
 
 const Exchange = (props) => {
@@ -37,7 +55,7 @@ const Exchange = (props) => {
     deliveryMode: "",
     exchangeStock: null,
   };
-  
+
   const [currentExchangeItem, setCurrentExchangeItem] = useState(
     initialExchangeItemState
   );
@@ -134,16 +152,16 @@ const Exchange = (props) => {
   var subject = ("Exchange Item Id " + currentExchangeItem.id + " was modified");
   var text = ("Exchange Item id " + currentExchangeItem.id + "\n" + logbook.modificationDetail
     + "\nModified At: " + new Date().toLocaleString() + "");
- function sendEmailFunction() {
- const emailRes =  sendEmail({
-     email,
-     subject,
-     text,
+  function sendEmailFunction() {
+    const emailRes = sendEmail({
+      email,
+      subject,
+      text,
     });
     console.log(emailRes);
     console.log("HERE");
   }
-    
+
 
   return (
     <div>
@@ -233,7 +251,7 @@ const Exchange = (props) => {
 
               <div className="form-group mb-6">
                 <label htmlFor="lemonsEach">Lemons Each</label>
-                  <select class="form-select appearance-none
+                <select class="form-select appearance-none
                           block
                           w-full
                           px-3
@@ -247,60 +265,43 @@ const Exchange = (props) => {
                           transition
                           ease-in-out
                           m-0
-                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                  {ddlInt(10,currentExchangeItem.lemonsEach)}
-                  </select>
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
+                  id="lemonsEach"
+                  required
+                  onChange={handleInputChangeNumber}
+                  name="lemonsEach"
+                >
+                  {ddlInt(10, currentExchangeItem.lemonsEach)}
+                </select>
               </div>
 
               <div className="form-group mb-6">
                 <label htmlFor="deliveryMode">Delivery Mode</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                <select class="form-select appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-700
+                          bg-white bg-clip-padding bg-no-repeat
+                          border border-solid border-gray-300
+                          rounded
+                          transition
+                          ease-in-out
+                          m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
                   id="deliveryMode"
-                  name="deliveryMode"
-                  value={currentExchangeItem.deliveryMode}
+                  required
                   onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="form-group mb-6">
-                <label htmlFor="exchangeStock">Exchange Stock</label>
-                <input
-                  type="text"
-                  className="form-control block
-           w-full
-           px-3
-           py-1.5
-           text-base
-           font-normal
-           text-gray-700
-           bg-white bg-clip-padding
-           border border-solid border-gray-300
-           rounded
-           transition
-           ease-in-out
-           m-0
-           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  placeholder="Enter a number*"
-                  id="exchangeStock"
-                  name="exchangeStock"
-                  value={currentExchangeItem.exchangeStock}
-                  onChange={handleInputChangeNumber}
-                />
+                  name="deliveryMode"
+                >
+                  {ddlStringArr(
+                    deliveryMode,
+                    currentExchangeItem.deliveryMode
+                  )}
+                </select>
               </div>
             </form>
           </div>

@@ -2,8 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import DataService from "../services/trophy.service";
+import Search from "../components/App/search.component";
 
+//Search Function
+const filterItems = (items, query) => {
+    if (!query) {
+        return items;
+    }
 
+    return items.filter((item) => {
+        const itemName = item.trophyName.toLowerCase();
+        return itemName.includes(query);
+    });
+};
 
 export default class ConfigTrophies extends Component {
     constructor(props) {
@@ -73,6 +84,14 @@ export default class ConfigTrophies extends Component {
             </h1>
         </div>
 
+        //Search Bar
+        const { search } = window.location;
+        const params = new URLSearchParams(search);
+        const query = params.get('s');
+        // const [searchQuery, setSearchQuery] = this.setState({searchQuery: query});
+        // const filteredItems = filterItems(items, searchQuery);
+        const filteredItems = filterItems(items, query)
+
         return (
             <div class="xl:mx-5 md:mx-20 flex-1">
                 <div class="grid grid-cols-3 gap-5 grid-rows-2">
@@ -89,8 +108,11 @@ export default class ConfigTrophies extends Component {
                             </div>
 
                             {/* Search bar */}
-                            <div>
-                                <input type="search" id="default-search" class="block p-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search entries" required />
+                            <div class="flex flex-row">
+                                <Search
+                                // searchQuery={searchQuery}
+                                // setSearchQuery={setSearchQuery}
+                                />
                             </div>
                         </div>
                     </div>
@@ -104,7 +126,7 @@ export default class ConfigTrophies extends Component {
                             {/* Content Grid */}
                             <ul class="flex-col flex space-y-5">
                                 {
-                                    items.map((item) => (
+                                    filteredItems.map((item) => (
                                         <li class="group rounded-xl shadow w-full h-full">
                                             <div class="grid grid-cols-3">
                                                 <div class="col-span-1">
@@ -129,7 +151,7 @@ export default class ConfigTrophies extends Component {
                                                             <span class="text-sm font-medium text-blue-700 dark:text-white">{item.totalProgress}%</span>
                                                         </div>
                                                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                                            <div class="bg-blue-600 h-2.5 rounded-full" style={{width: `${parseInt(item.totalProgress)}%`}}></div>
+                                                            <div class="bg-blue-600 h-2.5 rounded-full" style={{ width: `${parseInt(item.totalProgress)}%` }}></div>
                                                         </div>
                                                     </div>
                                                     <div class="row-span-1 flex justify-center">
